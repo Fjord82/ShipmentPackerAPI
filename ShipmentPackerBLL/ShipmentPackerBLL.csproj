@@ -9,4 +9,7 @@
     <Folder Include="Converters\" />
     <Folder Include="Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShipmentPackerDAL\ShipmentPackerDAL.csproj" />
+  </ItemGroup>
 </Project>
