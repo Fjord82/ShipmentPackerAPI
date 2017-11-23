@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentPackerDAL", "Shipme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentPackerRestAPI", "ShipmentPackerRestAPI\ShipmentPackerRestAPI.csproj", "{1253DE13-2791-47F1-8A8C-2968B7B0CD5D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{3110AAFC-6BE8-45DD-A5C4-F9BED3801AC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,5 +27,9 @@ Global
 		{1253DE13-2791-47F1-8A8C-2968B7B0CD5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1253DE13-2791-47F1-8A8C-2968B7B0CD5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1253DE13-2791-47F1-8A8C-2968B7B0CD5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3110AAFC-6BE8-45DD-A5C4-F9BED3801AC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3110AAFC-6BE8-45DD-A5C4-F9BED3801AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3110AAFC-6BE8-45DD-A5C4-F9BED3801AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3110AAFC-6BE8-45DD-A5C4-F9BED3801AC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
