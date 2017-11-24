@@ -18,4 +18,9 @@
     <Folder Include="BLL\Converters\" />
     <Folder Include="BLL\Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShipmentPackerBLL\ShipmentPackerBLL.csproj" />
+    <ProjectReference Include="..\ShipmentPackerDAL\ShipmentPackerDAL.csproj" />
+    <ProjectReference Include="..\ShipmentPackerRestAPI\ShipmentPackerRestAPI.csproj" />
+  </ItemGroup>
 </Project>
