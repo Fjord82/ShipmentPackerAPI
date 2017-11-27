@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Xunit;
-using System.Collections.Generic;
+﻿using Xunit;
 using ShipmentPackerBLL.Services;
 using Test.Mock.DAL;
 using ShipmentPackerBLL.BusinessObjects;
