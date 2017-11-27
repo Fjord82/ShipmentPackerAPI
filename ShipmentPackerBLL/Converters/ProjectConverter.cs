@@ -10,7 +10,7 @@ namespace ShipmentPackerBLL.Converters
         {
         }
 
-        public Project Convert(ProjectBO projectBO)
+        public Project ConvertBO(ProjectBO projectBO)
         {
             if(projectBO == null)
             {
@@ -23,6 +23,22 @@ namespace ShipmentPackerBLL.Converters
                 CreatorName = projectBO.CreatorName,
                 CustomerName = projectBO.CustomerName,
                 FreightType = projectBO.FreightType
+            };
+        }
+
+        public ProjectBO Convert(Project project)
+        {
+            if (project == null)
+            {
+                return null;
+            }
+            return new ProjectBO()
+            {
+                Id = project.Id,
+                ProjectName = project.ProjectName,
+                CreatorName = project.CreatorName,
+                CustomerName = project.CustomerName,
+                FreightType = project.FreightType
             };
         }
     }
