@@ -13,7 +13,7 @@ namespace Test.BLL.BusinessObjects
         [Fact]
         public void ValidateProjectNameFailTest()
         {
-            Assert.Equal(null, project.ProjectName);
+            Assert.Null(project.ProjectName);
 
             var result = Validator.TryValidateProperty(project.ProjectName, new ValidationContext(project) {MemberName = "ProjectName"}, null);
 
@@ -36,7 +36,7 @@ namespace Test.BLL.BusinessObjects
         [Fact]
         public void ValidateCreatorNameFailTest()
         {
-            Assert.Equal(null, project.CreatorName);
+            Assert.Null(project.CreatorName);
 
             var result = Validator.TryValidateProperty(project.CreatorName, new ValidationContext(project) {MemberName = "CreatorName"}, null);
 
@@ -58,7 +58,7 @@ namespace Test.BLL.BusinessObjects
         [Fact]
         public void ValidateCustomerNameFailTest()
         {
-            Assert.Equal(null, project.CustomerName);
+            Assert.Null(project.CustomerName);
 
             var result = Validator.TryValidateProperty(project.CustomerName, new ValidationContext(project) { MemberName = "CustomerName" }, null);
 
@@ -80,7 +80,7 @@ namespace Test.BLL.BusinessObjects
         [Fact]
         public void ValidateFreightTypeFailTest()
         {
-            Assert.Equal(null, project.FreightType);
+            Assert.Null(project.FreightType);
 
             var result = Validator.TryValidateProperty(project.FreightType, new ValidationContext(project) { MemberName = "FreightType" }, null);
 

@@ -2,10 +2,11 @@
 using ShipmentPackerDAL.Context;
 using ShipmentPackerDAL.Repositories;
 
-namespace ShipmentPackerDAL.UnitOfWork
+namespace ShipmentPackerDAL.UOW
 {
     public class UnitOfWork : IUnitOfWork
     {
+
         public IProjectRepository ProjectRepository { get; internal set; }
 
         private MyDBContext _context;
@@ -21,12 +22,12 @@ namespace ShipmentPackerDAL.UnitOfWork
 
         public int Complete()
         {
-            throw new NotImplementedException();
+            return _context.SaveChanges();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _context.Dispose();
         }
     }
 }

@@ -1,0 +1,30 @@
+﻿using System;
+using ShipmentPackerDAL;
+
+namespace Test.Mock.DAL
+{
+    public class MockUnitOfWork : IUnitOfWork
+    {
+
+        public IProjectRepository ProjectRepository { get; internal set; }
+
+        private MockContext _context;
+
+        public MockUnitOfWork()
+        {
+            _context = new MockContext();
+            ProjectRepository = new MockProjectRepository(_context);
+        }
+
+
+        public int Complete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
