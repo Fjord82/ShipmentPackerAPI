@@ -13,18 +13,19 @@ namespace Test.Mock.DAL
         public MockUnitOfWork()
         {
             _context = new MockContext();
+            _context.Database.EnsureCreated();
             ProjectRepository = new MockProjectRepository(_context);
         }
 
 
         public int Complete()
         {
-            throw new NotImplementedException();
+            return _context.SaveChanges();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _context.Dispose();
         }
     }
 }

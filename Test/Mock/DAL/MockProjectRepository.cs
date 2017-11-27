@@ -8,8 +8,6 @@ namespace Test.Mock.DAL
     public class MockProjectRepository : IProjectRepository
     {
         private MockContext _context;
-        private int _Id = 0;
-
 
         public MockProjectRepository(MockContext context)
         {
@@ -18,11 +16,8 @@ namespace Test.Mock.DAL
 
         public Project Create(Project project)
         {
-            var newProject = project;
-            newProject.Id = _Id;
-            _Id++;
-            _context.Projects.Add(newProject);
-            return newProject;
+            _context.Projects.Add(project);
+            return project;
         }
 
         public Project Delete(int Id)

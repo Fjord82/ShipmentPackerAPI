@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using ShipmentPackerDAL.Entities;
 
 namespace Test.Mock.DAL
 {
-    public class MockContext
+    public class MockContext : DbContext
     {
-        public List<Project> Projects;
+        static DbContextOptions<MockContext> options =
+            new DbContextOptionsBuilder<MockContext>()
+                .UseInMemoryDatabase("MockDB")
+                .Options;
 
-        public MockContext()
+        //For Local host
+        public MockContext() : base(options)
         {
-            Projects = new List<Project>();
         }
+
+        public DbSet<Project> Projects { get; set; }
     }
 }
