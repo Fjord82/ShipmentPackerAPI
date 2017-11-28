@@ -19,16 +19,28 @@ namespace ShipmentPackerRestAPI.Controllers
 
         // GET: api/Projects
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var projects = facade.ProjectService.GetAll();
+            if (projects == null)
+            {
+                return StatusCode(404, "No projects in DB.");
+            }
+
+            return Ok(projects);
         }
 
         // GET: api/Projects/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            var project = facade.ProjectService.Get(id);
+            if (project == null)
+            {
+                return StatusCode(404, "No project found.");
+            }
+
+            return Ok(project);
         }
         
         // POST: api/Projects
@@ -44,14 +56,38 @@ namespace ShipmentPackerRestAPI.Controllers
         
         // PUT: api/Projects/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]ProjectBO project)
         {
+            if (id != project.Id)
+            {
+                return BadRequest("Path ID does not match video ID in JSON object.");
+            }
+            try
+            {
+                var updatedProject = facade.ProjectService.Update(project);
+                if (updatedProject == null)
+                {
+                    return StatusCode(404, "No project found with that ID");
+                }
+                return Ok(updatedProject);
+            }
+            catch (InvalidOperationException e)
+            {
+                return StatusCode(404, e.Message);
+            }
         }
         
         // DELETE: api/Projects/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var deletedProject = facade.ProjectService.Delete(id);
+            if (deletedProject == null)
+            {
+                return StatusCode(404, "No project found with that ID");
+            }
+
+            return Ok(deletedProject);
         }
     }
 }
