@@ -18,7 +18,7 @@ namespace ShipmentPackerBLL.Services
 
         public PackingListBO Create(PackingListBO packingList)
         {
-            /* if(packingList == null)
+             /*if(packingList == null)
              {
                  return null;
              }
