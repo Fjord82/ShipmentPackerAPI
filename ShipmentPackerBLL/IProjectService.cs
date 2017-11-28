@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ShipmentPackerBLL.BusinessObjects;
 
 namespace ShipmentPackerBLL
@@ -8,5 +9,9 @@ namespace ShipmentPackerBLL
 
         //C - Create
         ProjectBO Create(ProjectBO project);
+
+        //R - Read
+        List<ProjectBO> GetAll();
+        ProjectBO Get(int Id);
     }
 }
