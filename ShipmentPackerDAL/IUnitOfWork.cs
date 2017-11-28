@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
+
 namespace ShipmentPackerDAL
 {
     public interface IUnitOfWork : IDisposable
@@ -6,5 +8,7 @@ namespace ShipmentPackerDAL
         IProjectRepository ProjectRepository { get; }
 
         int Complete();
+
+        void clearDb();
     }
 }
