@@ -124,11 +124,17 @@ namespace Test.BLL.Services
             newProject.CreatorName = "Niels";
             newProject = service.Update(newProject);
 
+            var updatedProject = service.Get(originalProject.Id);
+
             Assert.Equal(originalProject.Id, newProject.Id);
 
             Assert.Equal("Niels", newProject.CreatorName);
 
+            Assert.Equal(newProject.CreatorName, updatedProject.CreatorName);
+
             Assert.NotEqual(originalProject.CreatorName, newProject.CreatorName);
+
+
             clearDb();
         }
 
