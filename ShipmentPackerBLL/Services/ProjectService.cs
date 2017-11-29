@@ -21,7 +21,7 @@ namespace ShipmentPackerBLL.Services
 
         public ProjectBO Create(ProjectBO project)
         {
-            if(project == null)
+            if (project == null)
             {
                 return null;
             }
@@ -36,12 +36,12 @@ namespace ShipmentPackerBLL.Services
 
         public ProjectBO Get(int Id)
         {
-            if(Id < 1)
+            if (Id < 1)
             {
                 return null;
             }
 
-            using(var uow = _facade.UnitOfWork)
+            using (var uow = _facade.UnitOfWork)
             {
                 var project = uow.ProjectRepository.Get(Id);
                 uow.Complete();
@@ -51,7 +51,7 @@ namespace ShipmentPackerBLL.Services
 
         public List<ProjectBO> GetAll()
         {
-            using(var uow = _facade.UnitOfWork)
+            using (var uow = _facade.UnitOfWork)
             {
                 return uow.ProjectRepository.GetAll().Select(p => _conv.Convert(p)).ToList();
             }
@@ -80,7 +80,27 @@ namespace ShipmentPackerBLL.Services
 
         public ProjectBO Update(ProjectBO project)
         {
-            throw new NotImplementedException();
+            if (project == null)
+                return null;
+
+            using (var uow = _facade.UnitOfWork)
+            {
+                var projectEnt = uow.ProjectRepository.Get(project.Id);
+
+                if (projectEnt == null)
+                    return null;
+
+                var projectUpdated = _conv.ConvertBO(project);
+
+                projectEnt.Id = projectUpdated.Id;
+                projectEnt.ProjectName = projectUpdated.ProjectName;
+                projectEnt.CreatorName = projectUpdated.CreatorName;
+                projectEnt.CustomerName = projectUpdated.CustomerName;
+                projectEnt.FreightType = projectUpdated.FreightType;
+
+                uow.Complete();
+                return _conv.Convert(projectEnt);
+            }
         }
     }
 }

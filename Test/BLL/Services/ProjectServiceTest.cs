@@ -109,6 +109,51 @@ namespace Test.BLL.Services
             clearDb();
         }
 
+        [Fact]
+        public void UpdatePassTest()
+        {
+            var originalProject = getProjectMock();
+            originalProject = service.Create(originalProject);
+
+            var newProject = new ProjectBO();
+            newProject.Id = originalProject.Id;
+            newProject.ProjectName = originalProject.ProjectName;
+            newProject.CustomerName = originalProject.CustomerName;
+            newProject.CreatorName = originalProject.CreatorName;
+            newProject.FreightType = originalProject.FreightType;
+            newProject.CreatorName = "Niels";
+            newProject = service.Update(newProject);
+
+            var updatedProject = service.Get(originalProject.Id);
+
+            Assert.Equal(originalProject.Id, newProject.Id);
+
+            Assert.Equal("Niels", newProject.CreatorName);
+
+            Assert.Equal(newProject.CreatorName, updatedProject.CreatorName);
+
+            Assert.NotEqual(originalProject.CreatorName, newProject.CreatorName);
+
+
+            clearDb();
+        }
+
+        [Fact]
+        public void UpdateFailTest()
+        {
+            var originalProject = getProjectMock();
+            originalProject = service.Create(originalProject);
+            var newProject = originalProject;
+            newProject.Id++;
+            newProject = service.Update(newProject);
+
+            var nullProject = service.Update(null);
+
+            Assert.Null(nullProject);
+            Assert.Null(newProject);
+
+        }
+
 
         public ProjectBO getProjectMock()
         {
