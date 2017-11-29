@@ -56,6 +56,7 @@ namespace ShipmentPackerBLL.Services
             }
         }
 
+
         public ProjectBO Delete(int Id)
         {
             if(Id < 1)
@@ -74,6 +75,11 @@ namespace ShipmentPackerBLL.Services
                 return project;
             }
 
+        public ProjectBO Update(ProjectBO project)
+        {
+            throw new NotImplementedException();
         }
+
+        
     }
 }
