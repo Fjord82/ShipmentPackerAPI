@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using ShipmentPackerBLL.BusinessObjects;
 using ShipmentPackerBLL.Converters;
 using ShipmentPackerDAL;
@@ -7,7 +9,7 @@ namespace ShipmentPackerBLL.Services
 {
     public class ProjectService : IProjectService
     {
-        IDALFacade _facade;
+        public IDALFacade _facade { get; set; }
         ProjectConverter _conv;
 
         public ProjectService(IDALFacade facade)
@@ -30,6 +32,38 @@ namespace ShipmentPackerBLL.Services
                 uow.Complete();
                 return _conv.Convert(createdProject);
             }
+        }
+
+        public ProjectBO Get(int Id)
+        {
+            if(Id < 1)
+            {
+                return null;
+            }
+
+            using(var uow = _facade.UnitOfWork)
+            {
+                var project = uow.ProjectRepository.Get(Id);
+                return _conv.Convert(project);
+            }
+        }
+
+        public List<ProjectBO> GetAll()
+        {
+            using(var uow = _facade.UnitOfWork)
+            {
+                return uow.ProjectRepository.GetAll().Select(p => _conv.Convert(p)).ToList();
+            }
+        }
+
+        public ProjectBO Update(ProjectBO project)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ProjectBO Delete(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
