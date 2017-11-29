@@ -19,6 +19,6 @@ namespace ShipmentPackerBLL
         PackingListBO Update(PackingListBO packingList);
 
         //D - Delete
-        PackingListBO Delete(int id);
+        PackingListBO Delete(int Id);
     }
 }

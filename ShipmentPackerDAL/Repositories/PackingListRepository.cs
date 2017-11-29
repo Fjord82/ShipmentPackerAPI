@@ -23,7 +23,9 @@ namespace ShipmentPackerDAL.Repositories
 
         public PackingList Delete(int Id)
         {
-            throw new NotImplementedException();
+            var packList = Get(Id);
+            _context.PackingLists.Remove(packList);
+            return packList;
         }
 
         public PackingList Get(int Id)
