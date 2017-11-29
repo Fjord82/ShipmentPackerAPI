@@ -78,8 +78,6 @@ namespace ShipmentPackerBLL.Services
             }
         }
 
-        }
-
         public ProjectBO Update(ProjectBO project)
         {
             throw new NotImplementedException();
