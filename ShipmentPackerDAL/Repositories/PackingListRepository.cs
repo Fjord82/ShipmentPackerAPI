@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ShipmentPackerDAL.Context;
 using ShipmentPackerDAL.Entities;
 
@@ -27,17 +28,17 @@ namespace ShipmentPackerDAL.Repositories
 
         public PackingList Get(int Id)
         {
-            throw new NotImplementedException();
+            return _context.PackingLists.FirstOrDefault(pl => pl.Id == Id);
         }
 
         public List<PackingList> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.PackingLists.ToList();
         }
 
         public IEnumerable<PackingList> GetAllById(List<int> ids)
         {
-            throw new NotImplementedException();
+            return _context.PackingLists.Where(pl => ids.Contains(pl.Id));
         }
     }
 }
