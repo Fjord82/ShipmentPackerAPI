@@ -82,9 +82,6 @@ namespace Test.BLL.BusinessObjects
         {
             Assert.Null(project.FreightType);
 
-            var result = Validator.TryValidateProperty(project.FreightType, new ValidationContext(project) { MemberName = "FreightType" }, null);
-
-            Assert.False(result);
         }
 
 
@@ -95,8 +92,6 @@ namespace Test.BLL.BusinessObjects
 
             Assert.Equal("Air", project.FreightType);
 
-            var result = Validator.TryValidateProperty(project.FreightType, new ValidationContext(project) { MemberName = "FreightType" }, null);
-            Assert.True(result);
             reset();
         }
 
