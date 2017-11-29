@@ -59,15 +59,15 @@ namespace ShipmentPackerBLL.Services
 
         public ProjectBO Delete(int Id)
         {
-            if(Id < 1)
+            if (Id < 1)
             {
                 return null;
             }
-            using(var uow = _facade.UnitOfWork)
+            using (var uow = _facade.UnitOfWork)
             {
 
                 var project = Get(Id);
-                if(project == null)
+                if (project == null)
                 {
                     return null;
                 }
@@ -75,11 +75,11 @@ namespace ShipmentPackerBLL.Services
                 return project;
             }
 
+        }
+
         public ProjectBO Update(ProjectBO project)
         {
             throw new NotImplementedException();
         }
-
-        
     }
 }
