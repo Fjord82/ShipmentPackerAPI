@@ -13,5 +13,11 @@ namespace ShipmentPackerBLL
         //R - Read
         List<ProjectBO> GetAll();
         ProjectBO Get(int Id);
+
+        //U - Update
+        ProjectBO Update(ProjectBO project);
+
+        //D - Delete
+        ProjectBO Delete(int id);
     }
 }
