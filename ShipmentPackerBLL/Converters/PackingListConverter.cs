@@ -12,7 +12,7 @@ namespace ShipmentPackerBLL.Converters
 
         public PackingList ConvertBO(PackingListBO packingListBO)
         {
-            /*if (packingListBO == null)
+            if (packingListBO == null)
             {
                 return null;
             }
@@ -21,14 +21,12 @@ namespace ShipmentPackerBLL.Converters
                 Id = packingListBO.Id,
                 ItemType = packingListBO.ItemType,
                 FreightType = packingListBO.FreightType
-            };*/
-
-            throw new NotImplementedException();
+            };
         }
 
         public PackingListBO Convert(PackingList packingList)
         {
-            /*if (packingList == null)
+            if (packingList == null)
             {
                 return null;
             }
@@ -37,9 +35,7 @@ namespace ShipmentPackerBLL.Converters
                 Id = packingList.Id,
                 ItemType = packingList.ItemType,
                 FreightType = packingList.FreightType
-            };*/
-
-            throw new NotImplementedException();
+            };
         }
     }
 }

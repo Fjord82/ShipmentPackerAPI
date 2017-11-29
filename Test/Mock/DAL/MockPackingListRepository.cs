@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using ShipmentPackerDAL.Context;
+using ShipmentPackerDAL;
 using ShipmentPackerDAL.Entities;
 
-namespace ShipmentPackerDAL.Repositories
+namespace Test.Mock.DAL
 {
-    public class PackingListRepository : IPackingListRepository
+    public class MockPackingListRepository : IPackingListRepository
     {
-        MyDBContext _context;
+        private MockContext _context;
 
-        public PackingListRepository(MyDBContext context)
+        public MockPackingListRepository(MockContext context)
         {
             _context = context;
         }
 
         public PackingList Create(PackingList packingList)
         {
-           _context.PackingLists.Add(packingList);
+            _context.PackingLists.Add(packingList);
             return packingList;
         }
 

@@ -7,6 +7,8 @@ namespace ShipmentPackerDAL
     {
         IProjectRepository ProjectRepository { get; }
 
+        IPackingListRepository PackingListRepository { get; }
+
         int Complete();
 
         void clearDb();

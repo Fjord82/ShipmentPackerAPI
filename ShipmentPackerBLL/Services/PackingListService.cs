@@ -19,18 +19,17 @@ namespace ShipmentPackerBLL.Services
 
         public PackingListBO Create(PackingListBO packingList)
         {
-             /*if(packingList == null)
+             if(packingList == null)
              {
                  return null;
              }
 
              using(var uow = _facade.UnitOfWork)
              {
-                 var createdPackingList = uow.ProjectRepository.Create(_conv.ConvertBO(packingList));
+                 var createdPackingList = uow.PackingListRepository.Create(_conv.ConvertBO(packingList));
                  uow.Complete();
                  return _conv.Convert(createdPackingList);
-             }*/
-            throw new NotImplementedException();
+             }
         }
 
         public List<PackingListBO> GetAll()
