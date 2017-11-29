@@ -44,6 +44,7 @@ namespace ShipmentPackerBLL.Services
             using(var uow = _facade.UnitOfWork)
             {
                 var project = uow.ProjectRepository.Get(Id);
+                uow.Complete();
                 return _conv.Convert(project);
             }
         }
@@ -71,9 +72,11 @@ namespace ShipmentPackerBLL.Services
                 {
                     return null;
                 }
-                uow.ProjectRepository.Delete(Id);
+                project = _conv.Convert(uow.ProjectRepository.Delete(Id));
+                uow.Complete();
                 return project;
             }
+        }
 
         }
 
