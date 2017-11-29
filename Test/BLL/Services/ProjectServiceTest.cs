@@ -114,7 +114,13 @@ namespace Test.BLL.Services
         {
             var originalProject = getProjectMock();
             originalProject = service.Create(originalProject);
-            var newProject = originalProject;
+
+            var newProject = new ProjectBO();
+            newProject.Id = originalProject.Id;
+            newProject.ProjectName = originalProject.ProjectName;
+            newProject.CustomerName = originalProject.CustomerName;
+            newProject.CreatorName = originalProject.CreatorName;
+            newProject.FreightType = originalProject.FreightType;
             newProject.CreatorName = "Niels";
             newProject = service.Update(newProject);
 
