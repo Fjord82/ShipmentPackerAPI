@@ -61,9 +61,24 @@ namespace ShipmentPackerBLL.Services
             throw new NotImplementedException();
         }
 
-        public PackingListBO Delete(int id)
+        public PackingListBO Delete(int Id)
         {
-            throw new NotImplementedException();
+            if (Id < 1)
+            {
+                return null;
+            }
+            using (var uow = _facade.UnitOfWork)
+            {
+
+                var packingList = Get(Id);
+                if (packingList == null)
+                {
+                    return null;
+                }
+                packingList = _conv.Convert(uow.PackingListRepository.Delete(Id));
+                uow.Complete();
+                return packingList;
+            }
         }
     }
 }
