@@ -83,6 +83,32 @@ namespace Test.BLL.Services
             clearDb();
         }
 
+        [Fact]
+        public void DeletePassTest()
+        {
+            var newProject = getProjectMock();
+            newProject = service.Create(newProject);
+            var deletedProject = service.Delete(newProject.Id);
+
+            var checkProject = service.Get(deletedProject.Id);
+
+            Assert.Null(checkProject);
+
+            clearDb(); 
+        }
+
+        [Fact]
+        public void DeleteFailTest()
+        {
+            for (int i = -2; i < 5; i++)
+            {
+                var entityProject = service.Delete(i);
+
+                Assert.Null(entityProject);
+            }
+            clearDb();
+        }
+
 
         public ProjectBO getProjectMock()
         {

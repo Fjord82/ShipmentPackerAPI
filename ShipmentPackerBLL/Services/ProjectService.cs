@@ -55,5 +55,25 @@ namespace ShipmentPackerBLL.Services
                 return uow.ProjectRepository.GetAll().Select(p => _conv.Convert(p)).ToList();
             }
         }
+
+        public ProjectBO Delete(int Id)
+        {
+            if(Id < 1)
+            {
+                return null;
+            }
+            using(var uow = _facade.UnitOfWork)
+            {
+
+                var project = Get(Id);
+                if(project == null)
+                {
+                    return null;
+                }
+                uow.ProjectRepository.Delete(Id);
+                return project;
+            }
+
+        }
     }
 }
