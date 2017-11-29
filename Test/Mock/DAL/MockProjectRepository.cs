@@ -23,7 +23,9 @@ namespace Test.Mock.DAL
 
         public Project Delete(int Id)
         {
-            throw new NotImplementedException();
+            var proj = Get(Id);
+            _context.Projects.Remove(proj);
+            return proj;
         }
 
         public Project Get(int Id)
