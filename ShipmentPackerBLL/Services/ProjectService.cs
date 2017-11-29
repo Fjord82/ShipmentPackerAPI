@@ -55,5 +55,15 @@ namespace ShipmentPackerBLL.Services
                 return uow.ProjectRepository.GetAll().Select(p => _conv.Convert(p)).ToList();
             }
         }
+
+        public ProjectBO Update(ProjectBO project)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ProjectBO Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
