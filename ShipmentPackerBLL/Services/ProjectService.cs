@@ -56,12 +56,28 @@ namespace ShipmentPackerBLL.Services
             }
         }
 
-        public ProjectBO Update(ProjectBO project)
+
+        public ProjectBO Delete(int Id)
         {
-            throw new NotImplementedException();
+            if (Id < 1)
+            {
+                return null;
+            }
+            using (var uow = _facade.UnitOfWork)
+            {
+
+                var project = Get(Id);
+                if (project == null)
+                {
+                    return null;
+                }
+                uow.ProjectRepository.Delete(Id);
+                return project;
+            }
+
         }
 
-        public ProjectBO Delete(int id)
+        public ProjectBO Update(ProjectBO project)
         {
             throw new NotImplementedException();
         }
