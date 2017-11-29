@@ -10,7 +10,6 @@ namespace ShipmentPackerBLL
     {
         public IProjectService ProjectService
         {
-            // Totally testing stuff
             get { return new ProjectService(new DALFacade()); }
         }
     }
