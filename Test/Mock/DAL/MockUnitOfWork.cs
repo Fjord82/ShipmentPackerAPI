@@ -9,6 +9,8 @@ namespace Test.Mock.DAL
 
         public IProjectRepository ProjectRepository { get; internal set; }
 
+        public IPackingListRepository PackingListRepository { get; internal set; }
+
         private MockContext Context;
 
         public MockUnitOfWork()
@@ -16,6 +18,7 @@ namespace Test.Mock.DAL
             Context = new MockContext();
             Context.Database.EnsureCreated();
             ProjectRepository = new MockProjectRepository(Context);
+            PackingListRepository = new MockPackingListRepository(Context);
         }
 
 

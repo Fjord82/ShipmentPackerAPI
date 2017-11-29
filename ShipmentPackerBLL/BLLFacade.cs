@@ -12,5 +12,10 @@ namespace ShipmentPackerBLL
         {
             get { return new ProjectService(new DALFacade()); }
         }
+
+        public IPackingListService PackingListService
+        {
+            get { return new PackingListService(new DALFacade()); }
+        }
     }
 }
