@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ShipmentPackerBLL.BusinessObjects;
 using ShipmentPackerBLL.Converters;
 using ShipmentPackerDAL;
@@ -7,7 +8,7 @@ namespace ShipmentPackerBLL.Services
 {
     public class PackingListService : IPackingListService
     {
-        IDALFacade _facade;
+        public IDALFacade _facade { get; set; }
         PackingListConverter _conv;
 
         public PackingListService(IDALFacade facade)
@@ -29,6 +30,26 @@ namespace ShipmentPackerBLL.Services
                  uow.Complete();
                  return _conv.Convert(createdPackingList);
              }*/
+            throw new NotImplementedException();
+        }
+
+        public List<PackingListBO> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public PackingListBO Get(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PackingListBO Update(PackingListBO packingList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PackingListBO Delete(int id)
+        {
             throw new NotImplementedException();
         }
     }
