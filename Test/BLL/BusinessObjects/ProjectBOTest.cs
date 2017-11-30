@@ -77,23 +77,6 @@ namespace Test.BLL.BusinessObjects
             reset();
         }
 
-        [Fact]
-        public void ValidateFreightTypeFailTest()
-        {
-            Assert.Null(project.FreightType);
-
-        }
-
-
-        [Fact]
-        public void ValidateFreightTypePassTest()
-        {
-            project.FreightType = "Air";
-
-            Assert.Equal("Air", project.FreightType);
-
-            reset();
-        }
 
         public void reset()
         {

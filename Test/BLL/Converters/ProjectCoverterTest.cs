@@ -22,8 +22,7 @@ namespace Test.BLL.Converters
                 Id = 20,
                 ProjectName = "ImportantProject",
                 CreatorName = "Bobby",
-                CustomerName = "Billy",
-                FreightType = "Mega tough"
+                CustomerName = "Billy"
             });
 
             projectBOs.Add(new ProjectBO()
@@ -39,8 +38,7 @@ namespace Test.BLL.Converters
                 Id = 20,
                 ProjectName = "ImportantProject",
                 CreatorName = "Bobby",
-                CustomerName = "Billy",
-                FreightType = "Mega tough"
+                CustomerName = "Billy"
             });
 
             projects.Add(new Project()

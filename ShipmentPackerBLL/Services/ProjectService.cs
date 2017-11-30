@@ -96,7 +96,6 @@ namespace ShipmentPackerBLL.Services
                 projectEnt.ProjectName = projectUpdated.ProjectName;
                 projectEnt.CreatorName = projectUpdated.CreatorName;
                 projectEnt.CustomerName = projectUpdated.CustomerName;
-                projectEnt.FreightType = projectUpdated.FreightType;
 
                 uow.Complete();
                 return _conv.Convert(projectEnt);

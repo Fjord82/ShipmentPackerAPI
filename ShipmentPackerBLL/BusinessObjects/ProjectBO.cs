@@ -16,9 +16,5 @@ namespace ShipmentPackerBLL.BusinessObjects
         [Required]
         public string CustomerName { get; set; }
 
-        public string FreightType { get; set; }
-
-
-
     }
 }

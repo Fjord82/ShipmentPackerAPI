@@ -71,6 +71,10 @@ namespace ShipmentPackerBLL.Services
                 var packingListUpdated = _conv.ConvertBO(packingList);
 
                 packingListEnt.Id = packingListUpdated.Id;
+                packingListEnt.PackingName = packingListUpdated.PackingName;
+                packingListEnt.CreatorName = packingListUpdated.CreatorName;
+                packingListEnt.DeliveryAddress = packingListUpdated.DeliveryAddress;
+                packingListEnt.DeliveryDate = packingListUpdated.DeliveryDate;
                 packingListEnt.ItemType = packingListUpdated.ItemType;
                 packingListEnt.FreightType = packingListUpdated.FreightType;
 

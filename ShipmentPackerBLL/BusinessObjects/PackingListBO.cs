@@ -8,6 +8,18 @@ namespace ShipmentPackerBLL.BusinessObjects
         public int Id { get; set; }
 
         [Required]
+        public string PackingName { get; set; }
+
+        [Required]
+        public string CreatorName { get; set; }
+
+        [Required]
+        public string DeliveryAddress { get; set; }
+
+        [Required]
+        public string DeliveryDate { get; set; }
+
+        [Required]
         public string ItemType { get; set; }
 
         [Required]

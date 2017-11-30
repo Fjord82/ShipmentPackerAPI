@@ -11,7 +11,5 @@ namespace ShipmentPackerDAL.Entities
 
         public string CustomerName { get; set; }
 
-        public string FreightType { get; set; }
-
     }
 }

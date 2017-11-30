@@ -118,7 +118,6 @@ namespace Test.BLL.Services
             newProject.ProjectName = originalProject.ProjectName;
             newProject.CustomerName = originalProject.CustomerName;
             newProject.CreatorName = originalProject.CreatorName;
-            newProject.FreightType = originalProject.FreightType;
             newProject.CreatorName = "Niels";
             newProject = service.Update(newProject);
 
@@ -160,8 +159,7 @@ namespace Test.BLL.Services
             {
                 ProjectName = "ImportantProject",
                 CreatorName = "Bobby",
-                CustomerName = "Billy",
-                FreightType = "Mega tough"
+                CustomerName = "Billy"
             };
 
             return project;
