@@ -75,9 +75,27 @@ namespace ShipmentPackerBLL.Services
             }
         }
 
-        public ColliListBO Update(ColliListBO project)
+        public ColliListBO Update(ColliListBO colliList)
         {
-            throw new NotImplementedException();
+            if (colliList == null)
+                return null;
+
+            using (var uow = _facade.UnitOfWork)
+            {
+                var colliListEnt = uow.ColliListRepository.Get(colliList.Id);
+
+                if (colliListEnt == null)
+                    return null;
+
+                var colliListUpdated = _conv.ConvertBO(colliList);
+
+                colliListEnt.Id = colliListUpdated.Id;
+                colliListEnt.ItemType = colliListUpdated.ItemType;
+                colliListEnt.FreightType = colliListUpdated.FreightType;
+
+                uow.Complete();
+                return _conv.Convert(colliListEnt);
+            }
         }
     }
 }
