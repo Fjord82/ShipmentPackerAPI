@@ -5,6 +5,14 @@ namespace ShipmentPackerDAL.Entities
     {
         public int Id { get; set; }
 
+        public string PackingName { get; set; }
+
+        public string CreatorName { get; set; }
+
+        public string DeliveryAddress { get; set; }
+
+        public string DeliveryDate { get; set; }
+
         public string ItemType { get; set; }
 
         public string FreightType { get; set; }

@@ -21,8 +21,7 @@ namespace ShipmentPackerBLL.Converters
                 Id = projectBO.Id,
                 ProjectName = projectBO.ProjectName,
                 CreatorName = projectBO.CreatorName,
-                CustomerName = projectBO.CustomerName,
-                FreightType = projectBO.FreightType
+                CustomerName = projectBO.CustomerName
             };
         }
 
@@ -37,8 +36,7 @@ namespace ShipmentPackerBLL.Converters
                 Id = project.Id,
                 ProjectName = project.ProjectName,
                 CreatorName = project.CreatorName,
-                CustomerName = project.CustomerName,
-                FreightType = project.FreightType
+                CustomerName = project.CustomerName
             };
         }
     }
