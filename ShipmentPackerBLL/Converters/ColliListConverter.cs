@@ -12,7 +12,7 @@ namespace ShipmentPackerBLL.Converters
 
         public ColliList ConvertBO(ColliListBO colliListBO)
         {
-           /* if (colliListBO == null)
+           if (colliListBO == null)
             {
                 return null;
             }
@@ -22,14 +22,12 @@ namespace ShipmentPackerBLL.Converters
                 Id = colliListBO.Id,
                 ItemType = colliListBO.ItemType,
                 FreightType = colliListBO.FreightType
-            };*/
-
-            throw new NotImplementedException();
+            };
         }
 
         public ColliListBO Convert(ColliList colliList)
         {
-            /*if (colliList == null)
+            if (colliList == null)
             {
                 return null;
             }
@@ -39,9 +37,7 @@ namespace ShipmentPackerBLL.Converters
                 Id = colliList.Id,
                 ItemType = colliList.ItemType,
                 FreightType = colliList.FreightType
-            };*/
-
-            throw new NotImplementedException();
+            };
         }
     }
 }

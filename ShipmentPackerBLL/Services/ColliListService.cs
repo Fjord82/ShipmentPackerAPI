@@ -19,19 +19,17 @@ namespace ShipmentPackerBLL.Services
 
         public ColliListBO Create(ColliListBO colliList)
         {
-            /*if (colliList == null)
+            if (colliList == null)
             {
                 return null;
             }
 
             using (var uow = _facade.UnitOfWork)
             {
-                var createdColliList = uow.ProjectRepository.Create(_conv.ConvertBO(colliList));
+                var createdColliList = uow.ColliListRepository.Create(_conv.ConvertBO(colliList));
                 uow.Complete();
                 return _conv.Convert(createdColliList);
-            }*/
-
-            throw new NotImplementedException();
+            }
         }
 
         public ColliListBO Delete(int Id)
