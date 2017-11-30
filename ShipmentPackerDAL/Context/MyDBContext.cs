@@ -17,7 +17,7 @@ namespace ShipmentPackerDAL.Context
 
         //}
 
-        //For Azure Deployment
+        //For deployment on Azure
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
