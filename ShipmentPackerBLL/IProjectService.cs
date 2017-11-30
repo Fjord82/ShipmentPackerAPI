@@ -18,6 +18,6 @@ namespace ShipmentPackerBLL
         ProjectBO Update(ProjectBO project);
 
         //D - Delete
-        ProjectBO Delete(int id);
+        ProjectBO Delete(int Id);
     }
 }

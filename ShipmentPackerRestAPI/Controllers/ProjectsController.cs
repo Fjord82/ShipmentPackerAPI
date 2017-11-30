@@ -31,7 +31,7 @@ namespace ShipmentPackerRestAPI.Controllers
         }
 
         // GET: api/Projects/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var project = facade.ProjectService.Get(id);
@@ -60,7 +60,7 @@ namespace ShipmentPackerRestAPI.Controllers
         {
             if (id != project.Id)
             {
-                return BadRequest("Path ID does not match video ID in JSON object.");
+                return BadRequest("Path ID does not match project ID in JSON object.");
             }
             try
             {

@@ -1,10 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Xunit;
-using System.Collections.Generic;
+﻿using Xunit;
 using ShipmentPackerBLL.Services;
 using Test.Mock.DAL;
 using ShipmentPackerBLL.BusinessObjects;
+using System.Collections.Generic;
 
 namespace Test.BLL.Services
 {
@@ -134,7 +132,6 @@ namespace Test.BLL.Services
 
             Assert.NotEqual(originalProject.CreatorName, newProject.CreatorName);
 
-
             clearDb();
         }
 
@@ -151,6 +148,8 @@ namespace Test.BLL.Services
 
             Assert.Null(nullProject);
             Assert.Null(newProject);
+
+            clearDb();
 
         }
 

@@ -9,7 +9,7 @@ namespace ShipmentPackerBLL.Services
 {
     public class ProjectService : IProjectService
     {
-        public IDALFacade _facade { get; set; }
+        public IDALFacade   _facade { get; set; }
         ProjectConverter _conv;
 
         public ProjectService(IDALFacade facade)
