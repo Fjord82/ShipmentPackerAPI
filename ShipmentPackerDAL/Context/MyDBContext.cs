@@ -27,10 +27,8 @@ namespace ShipmentPackerDAL.Context
         }
 
         public DbSet<Project> Projects { get; set; }
-<<<<<<< HEAD
-        //public DbSet<ColliList> ColliLists { get; set; }
-=======
+        public DbSet<ColliList> ColliLists { get; set; }
         public DbSet<PackingList> PackingLists { get; set; }
->>>>>>> Development
+
    }
 }

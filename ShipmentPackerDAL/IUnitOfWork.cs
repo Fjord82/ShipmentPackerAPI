@@ -9,6 +9,8 @@ namespace ShipmentPackerDAL
 
         IPackingListRepository PackingListRepository { get; }
 
+        IColliListRepository ColliListRepository { get; }
+
         int Complete();
 
         void clearDb();

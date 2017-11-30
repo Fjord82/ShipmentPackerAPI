@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ShipmentPackerBLL.BusinessObjects;
 using ShipmentPackerBLL.Converters;
 using ShipmentPackerDAL;
@@ -30,6 +31,26 @@ namespace ShipmentPackerBLL.Services
                 return _conv.Convert(createdColliList);
             }*/
 
+            throw new NotImplementedException();
+        }
+
+        public ColliListBO Delete(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ColliListBO Get(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ColliListBO> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ColliListBO Update(ColliListBO project)
+        {
             throw new NotImplementedException();
         }
     }

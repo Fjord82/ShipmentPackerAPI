@@ -19,6 +19,7 @@ namespace Test.Mock.DAL
 
         public DbSet<Project> Projects { get; set; }
         public DbSet<PackingList> PackingLists { get; set; }
+        public DbSet<ColliList> ColliLists { get; set; }
 
     }
 }
