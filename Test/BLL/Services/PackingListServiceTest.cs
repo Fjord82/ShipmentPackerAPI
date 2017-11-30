@@ -108,6 +108,49 @@ namespace Test.BLL.Services
             clearDb();
         }
 
+        [Fact]
+        public void UpdatePassTest()
+        {
+            var originalPackingList = getPackingListMock();
+            originalPackingList = service.Create(originalPackingList);
+
+            var newPackingList = new PackingListBO();
+            newPackingList.Id = originalPackingList.Id;
+            newPackingList.ItemType = originalPackingList.ItemType;
+            newPackingList.FreightType = originalPackingList.FreightType;
+            newPackingList.ItemType = "Light air";
+            newPackingList = service.Update(newPackingList);
+
+            var updatedPackingList = service.Get(originalPackingList.Id);
+
+            Assert.Equal(originalPackingList.Id, newPackingList.Id);
+
+            Assert.Equal("Light air", newPackingList.ItemType);
+
+            Assert.Equal(newPackingList.ItemType, updatedPackingList.ItemType);
+
+            Assert.NotEqual(originalPackingList.ItemType, newPackingList.ItemType);
+
+            clearDb();
+        }
+
+        [Fact]
+        public void UpdateFailTest()
+        {
+            var originalPackingList = getPackingListMock();
+            originalPackingList = service.Create(originalPackingList);
+            var newPackingList = originalPackingList;
+            newPackingList.Id++;
+            newPackingList = service.Update(newPackingList);
+
+            var nullPackingList = service.Update(null);
+
+            Assert.Null(nullPackingList);
+            Assert.Null(newPackingList);
+
+        }
+
+
         private PackingListBO getPackingListMock()
         {
             PackingListBO packingList = new PackingListBO()
