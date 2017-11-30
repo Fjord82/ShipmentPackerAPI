@@ -29,7 +29,7 @@ namespace ShipmentPackerRestAPI.Controllers
         }
 
         // GET: api/ColliLists/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var colliList = facade.ColliListService.Get(id);

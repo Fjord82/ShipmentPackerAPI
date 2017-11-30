@@ -31,7 +31,7 @@ namespace ShipmentPackerRestAPI.Controllers
         }
 
         // GET: api/Projects/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var project = facade.ProjectService.Get(id);

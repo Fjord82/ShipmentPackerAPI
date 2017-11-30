@@ -29,7 +29,7 @@ namespace ShipmentPackerRestAPI.Controllers
         }
 
         // GET: api/PackingLists/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var packingList = facade.PackingListService.Get(id);
