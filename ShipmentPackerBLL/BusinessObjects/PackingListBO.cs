@@ -24,5 +24,7 @@ namespace ShipmentPackerBLL.BusinessObjects
 
         [Required]
         public string FreightType { get; set; }
+
+        public int Project { get; set; }
     }
 }

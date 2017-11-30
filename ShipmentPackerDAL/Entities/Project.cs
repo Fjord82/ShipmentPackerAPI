@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace ShipmentPackerDAL.Entities
 {
     public class Project
@@ -10,6 +12,8 @@ namespace ShipmentPackerDAL.Entities
         public string CreatorName { get; set; }
 
         public string CustomerName { get; set; }
+
+        public List<int> PackingLists { get; set; }
 
     }
 }

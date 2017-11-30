@@ -16,5 +16,7 @@ namespace ShipmentPackerDAL.Entities
         public string ItemType { get; set; }
 
         public string FreightType { get; set; }
+
+        public int Project { get; set; }
     }
 }
