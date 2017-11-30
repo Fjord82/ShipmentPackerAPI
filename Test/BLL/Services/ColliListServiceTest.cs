@@ -105,6 +105,48 @@ namespace Test.BLL.Services
             clearDb();
         }
 
+        [Fact]
+        public void UpdatePassTest()
+        {
+            var originalColliList = getColliListMock();
+            originalColliList = service.Create(originalColliList);
+
+            var newColliList = new ColliListBO();
+            newColliList.Id = originalColliList.Id;
+            newColliList.ItemType = originalColliList.ItemType;
+            newColliList.FreightType = originalColliList.FreightType;
+            newColliList.ItemType = "Light air";
+            newColliList = service.Update(newColliList);
+
+            var updatedColliList = service.Get(originalColliList.Id);
+
+            Assert.Equal(originalColliList.Id, newColliList.Id);
+
+            Assert.Equal("Light air", newColliList.ItemType);
+
+            Assert.Equal(newColliList.ItemType, updatedColliList.ItemType);
+
+            Assert.NotEqual(originalColliList.ItemType, newColliList.ItemType);
+
+            clearDb();
+        }
+
+        [Fact]
+        public void UpdateFailTest()
+        {
+            var originalColliList = getColliListMock();
+            originalColliList = service.Create(originalColliList);
+            var newColliList = originalColliList;
+            newColliList.Id++;
+            newColliList = service.Update(newColliList);
+
+            var nullColliList = service.Update(null);
+
+            Assert.Null(nullColliList);
+            Assert.Null(newColliList);
+
+        }
+
         private ColliListBO getColliListMock()
         {
             ColliListBO colliList = new ColliListBO()
