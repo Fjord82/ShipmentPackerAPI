@@ -8,7 +8,7 @@ namespace ShipmentPackerBLL.Services
 {
     public class ColliListService : IColliListService
     {
-        IDALFacade _facade;
+        public IDALFacade _facade { get; set; }
         ColliListConverter _conv;
 
         public ColliListService(IDALFacade facade)
