@@ -1,5 +1,6 @@
 ﻿using System;
 using ShipmentPackerDAL;
+using ShipmentPackerDAL.Repositories;
 
 namespace Test.Mock.DAL
 {
@@ -8,24 +9,34 @@ namespace Test.Mock.DAL
 
         public IProjectRepository ProjectRepository { get; internal set; }
 
-        private MockContext _context;
+        public IPackingListRepository PackingListRepository { get; internal set; }
+
+        private MockContext Context;
 
         public MockUnitOfWork()
         {
-            _context = new MockContext();
-            _context.Database.EnsureCreated();
-            ProjectRepository = new MockProjectRepository(_context);
+            Context = new MockContext();
+            Context.Database.EnsureCreated();
+            ProjectRepository = new MockProjectRepository(Context);
+            PackingListRepository = new MockPackingListRepository(Context);
         }
 
 
         public int Complete()
         {
-            return _context.SaveChanges();
+            return Context.SaveChanges();
         }
 
         public void Dispose()
         {
-            _context.Dispose();
+            Context.Dispose();
         }
+
+        public void clearDb()
+        {
+            Context.Database.EnsureDeleted();
+            Context.Database.EnsureCreated();
+        }
+
     }
 }

@@ -3,22 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ShipmentPackerBLL.BusinessObjects
 {
-    public class ProjectBO
+    public class PackingListBO
     {
         public int Id { get; set; }
 
         [Required]
-        public string ProjectName { get; set; }
+        public string ItemType { get; set; }
 
         [Required]
-        public string CreatorName { get; set; }
-
-        [Required]
-        public string CustomerName { get; set; }
-
         public string FreightType { get; set; }
-
-
-
     }
 }

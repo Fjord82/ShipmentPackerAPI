@@ -8,26 +8,33 @@ namespace ShipmentPackerDAL.UOW
     {
 
         public IProjectRepository ProjectRepository { get; internal set; }
+        public IPackingListRepository PackingListRepository { get; internal set; }
 
-        private MyDBContext _context;
+        private MyDBContext Context;
 
         public UnitOfWork()
         {
-            _context = new MyDBContext();
-            _context.Database.EnsureCreated();
-            ProjectRepository = new ProjectRepository(_context);
+            Context = new MyDBContext();
+            Context.Database.EnsureCreated();
+            ProjectRepository = new ProjectRepository(Context);
+            PackingListRepository = new PackingListRepository(Context);
         }
 
 
 
         public int Complete()
         {
-            return _context.SaveChanges();
+            return Context.SaveChanges();
         }
 
         public void Dispose()
         {
-            _context.Dispose();
+            Context.Dispose();
+        }
+
+        public void clearDb()
+        {
+            throw new Exception("Method only for testing purposes.");
         }
     }
 }
