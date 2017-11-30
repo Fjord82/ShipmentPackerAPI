@@ -10,12 +10,12 @@ using ShipmentPackerBLL.BusinessObjects;
 namespace ShipmentPackerRestAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("api/PackingList")]
-    public class PackingListController : Controller
+    [Route("api/PackingLists")]
+    public class PackingListsController : Controller
     {
         BLLFacade facade = new BLLFacade();
 
-        // GET: api/PackingList
+        // GET: api/PackingLists
         [HttpGet]
         public IActionResult Get()
         {
@@ -28,7 +28,7 @@ namespace ShipmentPackerRestAPI.Controllers
             return Ok(packingLists);
         }
 
-        // GET: api/PackingList/5
+        // GET: api/PackingLists/5
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
         {
@@ -41,7 +41,7 @@ namespace ShipmentPackerRestAPI.Controllers
             return Ok(packingList);
         }
         
-        // POST: api/PackingList
+        // POST: api/PackingLists
         [HttpPost]
         public IActionResult Post([FromBody]PackingListBO packingList)
         {
@@ -52,7 +52,7 @@ namespace ShipmentPackerRestAPI.Controllers
             return Ok(facade.PackingListService.Create(packingList));
         }
         
-        // PUT: api/PackingList/5
+        // PUT: api/PackingLists/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]PackingListBO packingList)
         {
@@ -75,7 +75,7 @@ namespace ShipmentPackerRestAPI.Controllers
             }
         }
         
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/PackingLists/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
