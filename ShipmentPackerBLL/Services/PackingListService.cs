@@ -58,7 +58,25 @@ namespace ShipmentPackerBLL.Services
 
         public PackingListBO Update(PackingListBO packingList)
         {
-            throw new NotImplementedException();
+            if (packingList == null)
+                return null;
+
+            using (var uow = _facade.UnitOfWork)
+            {
+                var packingListEnt = uow.PackingListRepository.Get(packingList.Id);
+
+                if (packingListEnt == null)
+                    return null;
+
+                var packingListUpdated = _conv.ConvertBO(packingList);
+
+                packingListEnt.Id = packingListUpdated.Id;
+                packingListEnt.ItemType = packingListUpdated.ItemType;
+                packingListEnt.FreightType = packingListUpdated.FreightType;
+
+                uow.Complete();
+                return _conv.Convert(packingListEnt);
+            }
         }
 
         public PackingListBO Delete(int Id)
