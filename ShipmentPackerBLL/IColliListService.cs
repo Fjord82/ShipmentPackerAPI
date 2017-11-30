@@ -14,7 +14,7 @@ namespace ShipmentPackerBLL
         ColliListBO Get(int Id);
 
         //U - Update
-        ColliListBO Update(ColliListBO project);
+        ColliListBO Update(ColliListBO colliList);
 
         //D - Delete
         ColliListBO Delete(int Id);
