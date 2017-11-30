@@ -149,6 +149,8 @@ namespace Test.BLL.Services
             Assert.Null(nullProject);
             Assert.Null(newProject);
 
+            clearDb();
+
         }
 
 

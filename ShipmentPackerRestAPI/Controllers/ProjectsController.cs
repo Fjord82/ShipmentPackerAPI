@@ -60,7 +60,7 @@ namespace ShipmentPackerRestAPI.Controllers
         {
             if (id != project.Id)
             {
-                return BadRequest("Path ID does not match video ID in JSON object.");
+                return BadRequest("Path ID does not match project ID in JSON object.");
             }
             try
             {
