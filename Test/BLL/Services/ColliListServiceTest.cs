@@ -79,6 +79,32 @@ namespace Test.BLL.Services
             clearDb();
         }
 
+        [Fact]
+        public void DeletePassTest()
+        {
+            var newColliList = getColliListMock();
+            newColliList = service.Create(newColliList);
+            var deletedColliList = service.Delete(newColliList.Id);
+
+            var checkColliList = service.Get(deletedColliList.Id);
+
+            Assert.Null(checkColliList);
+
+            clearDb();
+        }
+
+        [Fact]
+        public void DeleteFailTest()
+        {
+            for (int i = -2; i < 5; i++)
+            {
+                var entityColliList = service.Delete(i);
+
+                Assert.Null(entityColliList);
+            }
+            clearDb();
+        }
+
         private ColliListBO getColliListMock()
         {
             ColliListBO colliList = new ColliListBO()
