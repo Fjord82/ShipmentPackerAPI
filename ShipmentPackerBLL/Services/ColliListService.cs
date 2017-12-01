@@ -92,6 +92,7 @@ namespace ShipmentPackerBLL.Services
                 colliListEnt.Id = colliListUpdated.Id;
                 colliListEnt.ItemType = colliListUpdated.ItemType;
                 colliListEnt.FreightType = colliListUpdated.FreightType;
+                colliListEnt.IsActive = colliListUpdated.IsActive;
 
                 uow.Complete();
                 return _conv.Convert(colliListEnt);

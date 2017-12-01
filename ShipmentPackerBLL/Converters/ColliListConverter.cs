@@ -21,7 +21,8 @@ namespace ShipmentPackerBLL.Converters
             {
                 Id = colliListBO.Id,
                 ItemType = colliListBO.ItemType,
-                FreightType = colliListBO.FreightType
+                FreightType = colliListBO.FreightType,
+                IsActive = colliListBO.IsActive
             };
         }
 
@@ -36,7 +37,8 @@ namespace ShipmentPackerBLL.Converters
             {
                 Id = colliList.Id,
                 ItemType = colliList.ItemType,
-                FreightType = colliList.FreightType
+                FreightType = colliList.FreightType,
+                IsActive = colliList.IsActive
             };
         }
     }
