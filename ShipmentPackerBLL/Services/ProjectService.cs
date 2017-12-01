@@ -101,5 +101,11 @@ namespace ShipmentPackerBLL.Services
                 return _conv.Convert(projectEnt);
             }
         }
+
+        public Boolean IsActive()
+        {
+
+            return true;
+        }
     }
 }

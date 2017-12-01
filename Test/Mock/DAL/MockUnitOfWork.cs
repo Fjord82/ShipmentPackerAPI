@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 using ShipmentPackerDAL;
 using ShipmentPackerDAL.Repositories;
 
@@ -37,8 +38,14 @@ namespace Test.Mock.DAL
 
         public void clearDb()
         {
-            Context.Database.EnsureDeleted();
-            Context.Database.EnsureCreated();
+            try
+            {
+                Context.Database.EnsureDeleted();
+                Context.Database.EnsureCreated();
+            }catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
     }
