@@ -12,5 +12,7 @@ namespace ShipmentPackerBLL.BusinessObjects
 
         [Required]
         public string FreightType { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

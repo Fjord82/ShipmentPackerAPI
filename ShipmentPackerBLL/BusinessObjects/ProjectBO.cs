@@ -16,5 +16,7 @@ namespace ShipmentPackerBLL.BusinessObjects
         [Required]
         public string CustomerName { get; set; }
 
+        public bool IsActive { get; set; }
+
     }
 }

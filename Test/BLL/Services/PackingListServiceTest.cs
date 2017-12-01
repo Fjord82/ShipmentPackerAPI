@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ShipmentPackerBLL.BusinessObjects;
 using ShipmentPackerBLL.Services;
 using Test.Mock.DAL;
@@ -21,12 +22,22 @@ namespace Test.BLL.Services
         public void CreatePassTest()
         {
 
-            var packingList = getPackingListMock();
-            var newPackingList = service.Create(packingList);
+            try
+            {
+                clearDb();
+                var packingList = getPackingListMock();
+                var newPackingList = service.Create(packingList);
 
-            Assert.True(newPackingList.Id > 0);
-
-            clearDb();
+                Assert.True(newPackingList.Id > 0);
+            }
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
         }
 
         [Fact]
@@ -43,13 +54,23 @@ namespace Test.BLL.Services
         [Fact]
         public void ReadPassTest()
         {
-            var packingList = getPackingListMock();
-            var newPackingList = service.Create(packingList);
+            try
+            {
+                clearDb();
+                var packingList = getPackingListMock();
+                var newPackingList = service.Create(packingList);
 
-            var createdPackingList = service.Get(newPackingList.Id);
-            Assert.Equal(newPackingList.ItemType, createdPackingList.ItemType);
-
-            clearDb();
+                var createdPackingList = service.Get(newPackingList.Id);
+                Assert.Equal(newPackingList.ItemType, createdPackingList.ItemType);
+            }
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
         }
 
         [Fact]
@@ -67,33 +88,53 @@ namespace Test.BLL.Services
         [Fact]
         public void GetAllPassTest()
         {
-            List<PackingListBO> createdPackingLists = new List<PackingListBO>();
-            for (int i = 0; i < 2; i++)
+            try
             {
-                var packingList = getPackingListMock();
-                var newPackingList = service.Create(packingList);
-                createdPackingLists.Add(newPackingList);
+                clearDb();
+                List<PackingListBO> createdPackingLists = new List<PackingListBO>();
+                for (int i = 0; i < 2; i++)
+                {
+                    var packingList = getPackingListMock();
+                    var newPackingList = service.Create(packingList);
+                    createdPackingLists.Add(newPackingList);
+                }
+
+                var listOfPackingList = service.GetAll();
+                Assert.Equal(createdPackingLists.Count, listOfPackingList.Count);
+                Assert.Equal(createdPackingLists.ToString(), listOfPackingList.ToString());
             }
-
-            var listOfPackingList = service.GetAll();
-            Assert.Equal(createdPackingLists.Count, listOfPackingList.Count);
-            Assert.Equal(createdPackingLists.ToString(), listOfPackingList.ToString());
-
-            clearDb();
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
         }
 
         [Fact]
         public void DeletePassTest()
         {
-            var newPackingList = getPackingListMock();
-            newPackingList = service.Create(newPackingList);
-            var deletedPackingList = service.Delete(newPackingList.Id);
+            try
+            {
+                clearDb();
+                var newPackingList = getPackingListMock();
+                newPackingList = service.Create(newPackingList);
+                var deletedPackingList = service.Delete(newPackingList.Id);
 
-            var checkPackingList = service.Get(deletedPackingList.Id);
+                var checkPackingList = service.Get(deletedPackingList.Id);
 
-            Assert.Null(checkPackingList);
-
-            clearDb();
+                Assert.Null(checkPackingList);
+            }
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
         }
 
         [Fact]
@@ -111,27 +152,36 @@ namespace Test.BLL.Services
         [Fact]
         public void UpdatePassTest()
         {
-            var originalPackingList = getPackingListMock();
-            originalPackingList = service.Create(originalPackingList);
+            try
+            {
+                var originalPackingList = getPackingListMock();
+                originalPackingList = service.Create(originalPackingList);
 
-            var newPackingList = new PackingListBO();
-            newPackingList.Id = originalPackingList.Id;
-            newPackingList.ItemType = originalPackingList.ItemType;
-            newPackingList.FreightType = originalPackingList.FreightType;
-            newPackingList.ItemType = "Light air";
-            newPackingList = service.Update(newPackingList);
+                var newPackingList = new PackingListBO();
+                newPackingList.Id = originalPackingList.Id;
+                newPackingList.ItemType = originalPackingList.ItemType;
+                newPackingList.FreightType = originalPackingList.FreightType;
+                newPackingList.ItemType = "Light air";
+                newPackingList = service.Update(newPackingList);
 
-            var updatedPackingList = service.Get(originalPackingList.Id);
+                var updatedPackingList = service.Get(originalPackingList.Id);
 
-            Assert.Equal(originalPackingList.Id, newPackingList.Id);
+                Assert.Equal(originalPackingList.Id, newPackingList.Id);
 
-            Assert.Equal("Light air", newPackingList.ItemType);
+                Assert.Equal("Light air", newPackingList.ItemType);
 
-            Assert.Equal(newPackingList.ItemType, updatedPackingList.ItemType);
+                Assert.Equal(newPackingList.ItemType, updatedPackingList.ItemType);
 
-            Assert.NotEqual(originalPackingList.ItemType, newPackingList.ItemType);
-
-            clearDb();
+                Assert.NotEqual(originalPackingList.ItemType, newPackingList.ItemType);
+            }
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
         }
 
         [Fact]

@@ -96,10 +96,12 @@ namespace ShipmentPackerBLL.Services
                 projectEnt.ProjectName = projectUpdated.ProjectName;
                 projectEnt.CreatorName = projectUpdated.CreatorName;
                 projectEnt.CustomerName = projectUpdated.CustomerName;
+                projectEnt.IsActive = projectUpdated.IsActive;
 
                 uow.Complete();
                 return _conv.Convert(projectEnt);
             }
         }
+
     }
 }

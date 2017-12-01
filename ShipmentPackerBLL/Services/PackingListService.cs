@@ -77,6 +77,7 @@ namespace ShipmentPackerBLL.Services
                 packingListEnt.DeliveryDate = packingListUpdated.DeliveryDate;
                 packingListEnt.ItemType = packingListUpdated.ItemType;
                 packingListEnt.FreightType = packingListUpdated.FreightType;
+                packingListEnt.IsActive = packingListUpdated.IsActive;
 
                 uow.Complete();
                 return _conv.Convert(packingListEnt);

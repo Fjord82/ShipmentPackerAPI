@@ -8,5 +8,7 @@ namespace ShipmentPackerDAL.Entities
         public string ItemType { get; set; }
 
         public string FreightType { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

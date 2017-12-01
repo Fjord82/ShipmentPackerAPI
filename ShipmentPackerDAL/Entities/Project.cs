@@ -11,5 +11,7 @@ namespace ShipmentPackerDAL.Entities
 
         public string CustomerName { get; set; }
 
+        public bool IsActive { get; set; }
+
     }
 }
