@@ -12,10 +12,10 @@ namespace ShipmentPackerDAL.Context
                 .Options;
 
         //For Local host
-        public MyDBContext() : base(options)
-        {
+        //public MyDBContext() : base(options)
+        //{
 
-        }
+        //}
 
         //For deployment on Azure
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
