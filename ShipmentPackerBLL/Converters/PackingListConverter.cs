@@ -24,7 +24,8 @@ namespace ShipmentPackerBLL.Converters
                 DeliveryAddress = packingListBO.DeliveryAddress,
                 DeliveryDate = packingListBO.DeliveryDate,
                 ItemType = packingListBO.ItemType,
-                FreightType = packingListBO.FreightType
+                FreightType = packingListBO.FreightType,
+                IsActive = packingListBO.IsActive
             };
 
         }
@@ -43,7 +44,8 @@ namespace ShipmentPackerBLL.Converters
                 DeliveryAddress = packingList.DeliveryAddress,
                 DeliveryDate = packingList.DeliveryDate,
                 ItemType = packingList.ItemType,
-                FreightType = packingList.FreightType
+                FreightType = packingList.FreightType,
+                IsActive = packingList.IsActive
             };
         }
     }
