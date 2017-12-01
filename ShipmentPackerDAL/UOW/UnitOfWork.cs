@@ -36,7 +36,8 @@ namespace ShipmentPackerDAL.UOW
 
         public void clearDb()
         {
-            throw new Exception("Method only for testing purposes.");
+            Context.Database.EnsureDeleted();
+            Context.Database.EnsureCreated();
         }
     }
 }

@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ShipmentPackerBLL.BusinessObjects;
 using ShipmentPackerBLL;
+using Microsoft.AspNetCore.Cors;
 
 namespace ShipmentPackerRestAPI.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/ColliLists")]
     public class ColliListsController : Controller

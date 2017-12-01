@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ShipmentPackerBLL;
 using ShipmentPackerBLL.BusinessObjects;
+using Microsoft.AspNetCore.Cors;
 
 namespace ShipmentPackerRestAPI.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/PackingLists")]
     public class PackingListsController : Controller
