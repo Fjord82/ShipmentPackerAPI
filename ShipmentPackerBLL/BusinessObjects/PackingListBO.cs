@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ShipmentPackerBLL.BusinessObjects
@@ -25,6 +26,7 @@ namespace ShipmentPackerBLL.BusinessObjects
         [Required]
         public string FreightType { get; set; }
 
-        public int Project { get; set; }
+        public List<int> ProjectIds { get; set; }
+        public List<ProjectBO> Projects { get; set; }
     }
 }

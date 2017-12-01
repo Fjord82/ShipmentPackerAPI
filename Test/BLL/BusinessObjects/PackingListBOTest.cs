@@ -55,23 +55,6 @@ namespace Test.BLL.BusinessObjects
             reset();
         }
 
-        [Fact]
-        public void ValidateProjectPassTest()
-        {
-            packingList.Project = 1;
-
-            Assert.NotEqual(0, packingList.Project);
-            Assert.Equal(1, packingList.Project);
-
-            reset();
-        }
-
-        [Fact]
-        public void ValidateProjectFailTest()
-        {
-            Assert.Equal(0, packingList.Project);
-        }
-
         public void reset()
         {
             packingList = new PackingListBO();

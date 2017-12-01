@@ -17,7 +17,8 @@ namespace ShipmentPackerBLL.BusinessObjects
         [Required]
         public string CustomerName { get; set; }
 
-        public List<int> PackingLists { get; set; }
+        public List<int> PackingListIds { get; set; }
+        public List<PackingListBO> PackingLists { get; set; }
 
     }
 }

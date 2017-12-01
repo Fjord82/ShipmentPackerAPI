@@ -1,6 +1,8 @@
 ﻿using System;
 using ShipmentPackerBLL.BusinessObjects;
 using ShipmentPackerDAL.Entities;
+using System.Linq;
+using ShipmentPackerDAL.JoinEntities;
 
 namespace ShipmentPackerBLL.Converters
 {
@@ -21,7 +23,12 @@ namespace ShipmentPackerBLL.Converters
                 Id = projectBO.Id,
                 ProjectName = projectBO.ProjectName,
                 CreatorName = projectBO.CreatorName,
-                CustomerName = projectBO.CustomerName
+                CustomerName = projectBO.CustomerName,
+                PackingLists = projectBO.PackingListIds?.Select(pID => new ProjectPackingList()
+                {
+                    PackingListID = pID,
+                    ProjectID = projectBO.Id
+                }).ToList()
             };
         }
 
@@ -36,7 +43,8 @@ namespace ShipmentPackerBLL.Converters
                 Id = project.Id,
                 ProjectName = project.ProjectName,
                 CreatorName = project.CreatorName,
-                CustomerName = project.CustomerName
+                CustomerName = project.CustomerName,
+                PackingListIds = project.PackingLists?.Select(pl => pl.PackingListID).ToList()
             };
         }
     }

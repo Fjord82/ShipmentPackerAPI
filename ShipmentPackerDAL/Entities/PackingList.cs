@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ShipmentPackerDAL.JoinEntities;
+using System;
+using System.Collections.Generic;
+
 namespace ShipmentPackerDAL.Entities
 {
     public class PackingList
@@ -17,6 +20,6 @@ namespace ShipmentPackerDAL.Entities
 
         public string FreightType { get; set; }
 
-        public int Project { get; set; }
+        public List<ProjectPackingList> Projects { get; set; }
     }
 }

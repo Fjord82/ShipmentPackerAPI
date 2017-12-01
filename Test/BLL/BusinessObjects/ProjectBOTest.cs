@@ -77,29 +77,6 @@ namespace Test.BLL.BusinessObjects
             reset();
         }
 
-        [Fact]
-        public void ValidateCustomerPackingListsPassTest()
-        {
-            project.PackingLists = new List<int>();
-            project.PackingLists.Add(1);
-
-            Assert.NotNull(project.PackingLists);
-            Assert.Single(project.PackingLists);
-            Assert.Contains(1, project.PackingLists);
-
-            reset();
-        }
-
-        [Fact]
-        public void ValidateCustomerPackingListFailTest()
-        {
-            project.PackingLists = new List<int>();
-            Assert.Empty(project.PackingLists);
-
-            reset();
-        }
-
-
         public void reset()
         {
             project = new ProjectBO();
