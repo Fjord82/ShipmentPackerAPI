@@ -21,7 +21,8 @@ namespace ShipmentPackerBLL.Converters
                 Id = projectBO.Id,
                 ProjectName = projectBO.ProjectName,
                 CreatorName = projectBO.CreatorName,
-                CustomerName = projectBO.CustomerName
+                CustomerName = projectBO.CustomerName,
+                IsActive = projectBO.IsActive
             };
         }
 
@@ -36,7 +37,9 @@ namespace ShipmentPackerBLL.Converters
                 Id = project.Id,
                 ProjectName = project.ProjectName,
                 CreatorName = project.CreatorName,
-                CustomerName = project.CustomerName
+                CustomerName = project.CustomerName,
+                IsActive = project.IsActive
+                                      
             };
         }
     }
