@@ -15,13 +15,16 @@ namespace ShipmentPackerRestAPI.Controllers
     {
         DALFacade facade = new DALFacade();
         // POST: api/Reset
-        [HttpPost]
-        public void Post([FromBody]string value)
+        [HttpPost("{value}")]
+        public IActionResult Post(string value)
         {
             if (value.Equals("FixDatDbDaddy"))
             {
                 facade.UnitOfWork.clearDb();
+                return Ok("DB reset.");
             }
+            else
+                return BadRequest("What's the magic word?");
         }
     }
 }
