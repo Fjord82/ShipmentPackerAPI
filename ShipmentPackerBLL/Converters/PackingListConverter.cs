@@ -19,9 +19,14 @@ namespace ShipmentPackerBLL.Converters
             return new PackingList()
             {
                 Id = packingListBO.Id,
+                PackingName = packingListBO.PackingName,
+                CreatorName = packingListBO.CreatorName,
+                DeliveryAddress = packingListBO.DeliveryAddress,
+                DeliveryDate = packingListBO.DeliveryDate,
                 ItemType = packingListBO.ItemType,
                 FreightType = packingListBO.FreightType
             };
+
         }
 
         public PackingListBO Convert(PackingList packingList)
@@ -33,6 +38,10 @@ namespace ShipmentPackerBLL.Converters
             return new PackingListBO()
             {
                 Id = packingList.Id,
+                PackingName = packingList.PackingName,
+                CreatorName = packingList.CreatorName,
+                DeliveryAddress = packingList.DeliveryAddress,
+                DeliveryDate = packingList.DeliveryDate,
                 ItemType = packingList.ItemType,
                 FreightType = packingList.FreightType
             };

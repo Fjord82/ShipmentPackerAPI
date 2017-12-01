@@ -21,6 +21,10 @@ namespace Test.BLL.Converters
             packingListBOs.Add(new PackingListBO()
             {
                 Id = 30,
+                PackingName = "Thorsminde",
+                CreatorName = "Emil",
+                DeliveryAddress = "Skolegade",
+                DeliveryDate = "02-10-2107",
                 ItemType = "Cylinder",
                 FreightType = "Road"
             });
@@ -37,6 +41,10 @@ namespace Test.BLL.Converters
             packingLists.Add(new PackingList()
             {
                 Id = 30,
+                PackingName = "Thorsminde",
+                CreatorName = "Emil",
+                DeliveryAddress = "Skolegade",
+                DeliveryDate = "02-10-2107",
                 ItemType = "Cylinder",
                 FreightType = "Road"
             });
