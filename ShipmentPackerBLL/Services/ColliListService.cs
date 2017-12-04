@@ -11,11 +11,13 @@ namespace ShipmentPackerBLL.Services
     {
         public IDALFacade _facade { get; set; }
         ColliListConverter _conv;
+        PackingListConverter _convPL;
 
         public ColliListService(IDALFacade facade)
         {
             _facade = facade;
             _conv = new ColliListConverter();
+            _convPL = new PackingListConverter();
         }
 
         public ColliListBO Create(ColliListBO colliList)
@@ -61,9 +63,15 @@ namespace ShipmentPackerBLL.Services
 
             using (var uow = _facade.UnitOfWork)
             {
-                var colliList = uow.ColliListRepository.Get(Id);
+                var colliList = _conv.Convert(uow.ColliListRepository.Get(Id));
+                if(colliList != null)
+                {
+                    colliList.PackingLists = uow.PackingListRepository.GetAllById(colliList.PackingListIds)
+                        .Select(pl => _convPL.Convert(pl))
+                        .ToList();
+                }
                 uow.Complete();
-                return _conv.Convert(colliList);
+                return colliList;
             }
         }
 
@@ -93,6 +101,22 @@ namespace ShipmentPackerBLL.Services
                 colliListEnt.ItemType = colliListUpdated.ItemType;
                 colliListEnt.FreightType = colliListUpdated.FreightType;
                 colliListEnt.IsActive = colliListUpdated.IsActive;
+
+                if (colliListUpdated.PackingLists != null)
+                {
+                    colliListEnt.PackingLists.RemoveAll(
+                        cl => !colliListUpdated.PackingLists.Exists(
+                            pu => pu.PackingListID == cl.PackingListID &&
+                            pu.ColliListID == cl.ColliListID));
+
+                    colliListUpdated.PackingLists.RemoveAll(
+                        p => colliListEnt.PackingLists.Exists(
+                            pu => pu.PackingListID == p.PackingListID &&
+                            pu.ColliListID == p.ColliListID));
+
+                    colliListEnt.PackingLists.AddRange(
+                        colliListUpdated.PackingLists);
+                }
 
                 uow.Complete();
                 return _conv.Convert(colliListEnt);

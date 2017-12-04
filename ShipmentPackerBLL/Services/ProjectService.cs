@@ -51,8 +51,6 @@ namespace ShipmentPackerBLL.Services
                     project.PackingLists = uow.PackingListRepository.GetAllById(project.PackingListIds)
                         .Select(pl => _convPL.Convert(pl))
                         .ToList();
-
-
                 }
                 uow.Complete();
                 return project;
