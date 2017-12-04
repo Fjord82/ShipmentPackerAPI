@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ShipmentPackerDAL.Context;
 using ShipmentPackerDAL.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ShipmentPackerDAL.Repositories
 {
@@ -30,16 +31,23 @@ namespace ShipmentPackerDAL.Repositories
 
         public PackingList Get(int Id)
         {
-            return _context.PackingLists.FirstOrDefault(pl => pl.Id == Id);
+            return _context.PackingLists
+                .Include(pl => pl.Projects)
+                .FirstOrDefault(pl => pl.Id == Id);
         }
 
         public List<PackingList> GetAll()
         {
-            return _context.PackingLists.ToList();
+            return _context.PackingLists
+                .Include(pl => pl.Projects)
+                .ToList();
         }
 
         public IEnumerable<PackingList> GetAllById(List<int> ids)
         {
+            if (ids == null)
+                return null;
+
             return _context.PackingLists.Where(pl => ids.Contains(pl.Id));
         }
     }

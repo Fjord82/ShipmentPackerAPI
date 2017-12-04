@@ -77,7 +77,6 @@ namespace Test.BLL.BusinessObjects
             reset();
         }
 
-
         public void reset()
         {
             project = new ProjectBO();
