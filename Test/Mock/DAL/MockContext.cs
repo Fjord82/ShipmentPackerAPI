@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using ShipmentPackerDAL.Entities;
-using ShipmentPackerDAL.JoinEntities;
 
 namespace Test.Mock.DAL
 {
@@ -32,6 +31,20 @@ namespace Test.Mock.DAL
                         .HasOne(ppl => ppl.PackingList)
                         .WithMany(p => p.Projects)
                         .HasForeignKey(ppl => ppl.PackingListID);
+
+            //PackingList and ColliList relation
+            modelBuilder.Entity<PackingColliList>()
+                        .HasKey(pcl => new { pcl.PackingListID, pcl.ColliListID });
+
+            modelBuilder.Entity<PackingColliList>()
+                        .HasOne(p => p.PackingList)
+                        .WithMany(pcl => pcl.ColliLists)
+                        .HasForeignKey(p => p.PackingListID);
+
+            modelBuilder.Entity<PackingColliList>()
+                        .HasOne(pcl => pcl.ColliList)
+                        .WithMany(c => c.PackingLists)
+                        .HasForeignKey(pcl => pcl.ColliListID);
 
             base.OnModelCreating(modelBuilder);
         }
