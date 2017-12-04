@@ -14,7 +14,7 @@ namespace ShipmentPackerDAL.Entities
 
         public string DeliveryAddress { get; set; }
 
-        public string DeliveryDate { get; set; }
+        public DateTime DeliveryDate { get; set; }
 
         public string ItemType { get; set; }
 
