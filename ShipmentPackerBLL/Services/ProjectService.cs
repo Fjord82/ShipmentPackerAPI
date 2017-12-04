@@ -46,11 +46,13 @@ namespace ShipmentPackerBLL.Services
             using (var uow = _facade.UnitOfWork)
             {
                 var project = _conv.Convert(uow.ProjectRepository.Get(Id));
-                if (project.PackingLists != null)
+                if (project != null)
                 {
                     project.PackingLists = uow.PackingListRepository.GetAllById(project.PackingListIds)
                         .Select(pl => _convPL.Convert(pl))
                         .ToList();
+
+
                 }
                 uow.Complete();
                 return project;
@@ -113,7 +115,7 @@ namespace ShipmentPackerBLL.Services
                             pu.ProjectID == p.ProjectID));
 
                     projectUpdated.PackingLists.RemoveAll(
-                        p => projectUpdated.PackingLists.Exists(
+                        p => projectEnt.PackingLists.Exists(
                             pu => pu.PackingListID == p.PackingListID &&
                             pu.ProjectID == p.ProjectID));
 

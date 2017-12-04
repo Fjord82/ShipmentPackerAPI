@@ -94,7 +94,7 @@ namespace ShipmentPackerBLL.Services
                             p.PackingListID == pu.PackingListID));
 
                     packingListUpdated.Projects.RemoveAll(
-                        pu => packingListUpdated.Projects.Exists(
+                        pu => packingListEnt.Projects.Exists(
                             p => p.ProjectID == pu.ProjectID &&
                             p.PackingListID == pu.PackingListID));
 
