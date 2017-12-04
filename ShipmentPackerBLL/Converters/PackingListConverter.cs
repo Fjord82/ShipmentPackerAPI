@@ -2,7 +2,6 @@
 using ShipmentPackerBLL.BusinessObjects;
 using ShipmentPackerDAL.Entities;
 using System.Linq;
-using ShipmentPackerDAL.JoinEntities;
 
 namespace ShipmentPackerBLL.Converters
 {
@@ -33,6 +32,12 @@ namespace ShipmentPackerBLL.Converters
                 {
                     ProjectID = pID,
                     PackingListID = packingListBO.Id
+                }).ToList(),
+
+                ColliLists = packingListBO.ColliListIds?.Select(clID => new PackingColliList()
+                {
+                    ColliListID = clID,
+                    PackingListID = packingListBO.Id
                 }).ToList()
             };
 
@@ -55,7 +60,8 @@ namespace ShipmentPackerBLL.Converters
                 FreightType = packingList.FreightType,
                 IsActive = packingList.IsActive,
 
-                ProjectIds = packingList.Projects?.Select(p => p.ProjectID).ToList()
+                ProjectIds = packingList.Projects?.Select(p => p.ProjectID).ToList(),
+                ColliListIds = packingList.ColliLists?.Select(cl => cl.ColliListID).ToList()
 
             };
         }

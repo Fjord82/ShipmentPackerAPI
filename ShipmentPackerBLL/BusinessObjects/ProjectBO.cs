@@ -21,6 +21,5 @@ namespace ShipmentPackerBLL.BusinessObjects
 
         public List<int> PackingListIds { get; set; }
         public List<PackingListBO> PackingLists { get; set; }
-
     }
 }

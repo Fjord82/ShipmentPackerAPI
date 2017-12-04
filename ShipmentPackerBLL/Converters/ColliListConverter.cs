@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ShipmentPackerBLL.BusinessObjects;
 using ShipmentPackerDAL.Entities;
 
@@ -22,7 +23,13 @@ namespace ShipmentPackerBLL.Converters
                 Id = colliListBO.Id,
                 ItemType = colliListBO.ItemType,
                 FreightType = colliListBO.FreightType,
-                IsActive = colliListBO.IsActive
+                IsActive = colliListBO.IsActive,
+
+                PackingLists = colliListBO.PackingListIds?.Select(pID => new PackingColliList()
+                {
+                    PackingListID = pID,
+                    ColliListID = colliListBO.Id
+                }).ToList()
             };
         }
 
@@ -38,7 +45,9 @@ namespace ShipmentPackerBLL.Converters
                 Id = colliList.Id,
                 ItemType = colliList.ItemType,
                 FreightType = colliList.FreightType,
-                IsActive = colliList.IsActive
+                IsActive = colliList.IsActive,
+
+                PackingListIds = colliList.PackingLists?.Select(p => p.PackingListID).ToList()
             };
         }
     }

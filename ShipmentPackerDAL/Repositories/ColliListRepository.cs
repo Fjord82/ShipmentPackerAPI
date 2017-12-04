@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using ShipmentPackerDAL.Context;
 using ShipmentPackerDAL.Entities;
 
@@ -30,16 +31,22 @@ namespace ShipmentPackerDAL.Repositories
 
         public ColliList Get(int Id)
         {
-            return _context.ColliLists.FirstOrDefault(cl => cl.Id == Id);
+            return _context.ColliLists
+                           .Include(c => c.PackingLists)
+                           .FirstOrDefault(cl => cl.Id == Id);
         }
 
         public List<ColliList> GetAll()
         {
-            return _context.ColliLists.ToList();
+            return _context.ColliLists
+                           .Include(p => p.PackingLists)
+                           .ToList();
         }
 
         public IEnumerable<ColliList> GetAllById(List<int> ids)
         {
+            if (ids == null)
+                return null;
             return _context.ColliLists.Where(cl => ids.Contains(cl.Id));
         }
     }
