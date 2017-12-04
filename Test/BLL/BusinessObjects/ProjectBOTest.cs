@@ -77,6 +77,18 @@ namespace Test.BLL.BusinessObjects
             reset();
         }
 
+        [Fact]
+        public void ValidateIsActiveTest()
+        {
+            Assert.False(project.IsActive);
+
+            project.IsActive = true;
+
+            Assert.True(project.IsActive);
+
+            reset();
+        }
+
         public void reset()
         {
             project = new ProjectBO();

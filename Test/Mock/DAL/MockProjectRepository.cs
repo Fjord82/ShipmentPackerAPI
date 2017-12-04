@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ShipmentPackerDAL;
 using ShipmentPackerDAL.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Test.Mock.DAL
 {
@@ -30,18 +31,22 @@ namespace Test.Mock.DAL
 
         public Project Get(int Id)
         {
-            return _context.Projects.FirstOrDefault(p => p.Id == Id);
-
+            return _context.Projects
+                .Include(p => p.PackingLists)
+                .FirstOrDefault(p => p.Id == Id);
         }
 
         public List<Project> GetAll()
         {
-            return _context.Projects.ToList();
+            return _context.Projects
+                .Include(p => p.PackingLists)
+                .ToList();
         }
 
         public IEnumerable<Project> GetAllById(List<int> ids)
         {
-
+            if (ids == null)
+                return null;
             return _context.Projects.Where(p => ids.Contains(p.Id));
         }
 

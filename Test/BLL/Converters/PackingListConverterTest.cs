@@ -24,7 +24,7 @@ namespace Test.BLL.Converters
                 PackingName = "Thorsminde",
                 CreatorName = "Emil",
                 DeliveryAddress = "Skolegade",
-                DeliveryDate = "02-10-2107",
+                DeliveryDate = new DateTime(1995, 12, 21),
                 ItemType = "Cylinder",
                 FreightType = "Road"
             });
@@ -44,7 +44,7 @@ namespace Test.BLL.Converters
                 PackingName = "Thorsminde",
                 CreatorName = "Emil",
                 DeliveryAddress = "Skolegade",
-                DeliveryDate = "02-10-2107",
+                DeliveryDate = new DateTime(2001, 2, 5),
                 ItemType = "Cylinder",
                 FreightType = "Road"
             });
