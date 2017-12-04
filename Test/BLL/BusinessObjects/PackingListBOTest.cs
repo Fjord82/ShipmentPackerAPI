@@ -55,6 +55,18 @@ namespace Test.BLL.BusinessObjects
             reset();
         }
 
+        [Fact]
+        public void ValidateIsActiveTest()
+        {
+            Assert.False(packingList.IsActive);
+
+            packingList.IsActive = true;
+
+            Assert.True(packingList.IsActive);
+
+            reset();
+        }
+
         public void reset()
         {
             packingList = new PackingListBO();
