@@ -16,26 +16,16 @@ namespace Test.BLL.Services
         {
             facade = new MockFacade();
             service = new ColliListService(facade);
+            clearDb();
         }
 
         [Fact]
         public void CreatePassTest()
-        {
-            try
-            {
-                var colliList = getColliListMock();
+        {  
+            var colliList = getColliListMock();
                 var newColliList = service.Create(colliList);
 
                 Assert.True(newColliList.Id > 0);
-            }
-            catch (Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
         }
 
         [Fact]
@@ -48,23 +38,12 @@ namespace Test.BLL.Services
 
         [Fact]
         public void ReadPassTest()
-        {
-            try
-            {
-                var colliList = getColliListMock();
+        {  
+            var colliList = getColliListMock();
                 var newColliList = service.Create(colliList);
 
                 var createdCollistList = service.Get(newColliList.Id);
                 Assert.Equal(newColliList.ItemType, createdCollistList.ItemType);
-            }
-            catch (Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
         }
 
         [Fact]
@@ -76,15 +55,12 @@ namespace Test.BLL.Services
 
                 Assert.Null(entityColliList);
             }
-            clearDb();
         }
 
         [Fact]
         public void GetAllPassTest()
-        {
-            try
-            {
-                List<ColliListBO> createdColliLists = new List<ColliListBO>();
+        {  
+            List<ColliListBO> createdColliLists = new List<ColliListBO>();
                 for (int i = 0; i < 2; i++)
                 {
                     var colliList = getColliListMock();
@@ -95,38 +71,18 @@ namespace Test.BLL.Services
                 var listOfColliList = service.GetAll();
                 Assert.Equal(createdColliLists.Count, listOfColliList.Count);
                 Assert.Equal(createdColliLists.ToString(), listOfColliList.ToString());
-            }
-            catch (Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
         }
 
         [Fact]
         public void DeletePassTest()
-        {
-            try
-            {
-                var newColliList = getColliListMock();
+        {   
+            var newColliList = getColliListMock();
                 newColliList = service.Create(newColliList);
                 var deletedColliList = service.Delete(newColliList.Id);
 
                 var checkColliList = service.Get(deletedColliList.Id);
 
                 Assert.Null(checkColliList);
-            }
-            catch (Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
         }
 
         [Fact]
@@ -138,15 +94,12 @@ namespace Test.BLL.Services
 
                 Assert.Null(entityColliList);
             }
-            clearDb();
         }
 
         [Fact]
         public void UpdatePassTest()
-        {
-            try
-            {
-                var originalColliList = getColliListMock();
+        {   
+            var originalColliList = getColliListMock();
                 originalColliList = service.Create(originalColliList);
 
                 var newColliList = new ColliListBO();
@@ -165,15 +118,6 @@ namespace Test.BLL.Services
                 Assert.Equal(newColliList.ItemType, updatedColliList.ItemType);
 
                 Assert.NotEqual(originalColliList.ItemType, newColliList.ItemType);
-            }
-            catch (Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
         }
 
         [Fact]

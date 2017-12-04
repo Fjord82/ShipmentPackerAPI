@@ -14,30 +14,20 @@ namespace Test.BLL.Services
 
         public PackingListServiceTest()
         {
+            
             facade = new MockFacade();
             service = new PackingListService(facade);
+            clearDb();
+
         }
 
         [Fact]
         public void CreatePassTest()
-        {
-
-            try
-            {
-                clearDb();
-                var packingList = getPackingListMock();
+        {   
+            var packingList = getPackingListMock();
                 var newPackingList = service.Create(packingList);
 
                 Assert.True(newPackingList.Id > 0);
-            }
-            catch (Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
         }
 
         [Fact]
@@ -46,31 +36,17 @@ namespace Test.BLL.Services
             var newPackingList = service.Create(null);
 
             Assert.Null(newPackingList);
-
-            clearDb();
         }
 
 
         [Fact]
         public void ReadPassTest()
-        {
-            try
-            {
-                clearDb();
-                var packingList = getPackingListMock();
+        {   
+            var packingList = getPackingListMock();
                 var newPackingList = service.Create(packingList);
 
                 var createdPackingList = service.Get(newPackingList.Id);
                 Assert.Equal(newPackingList.ItemType, createdPackingList.ItemType);
-            }
-            catch (Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
         }
 
         [Fact]
@@ -82,16 +58,12 @@ namespace Test.BLL.Services
 
                 Assert.Null(entityPackingList);
             }
-            clearDb();
         }
 
         [Fact]
         public void GetAllPassTest()
-        {
-            try
-            {
-                clearDb();
-                List<PackingListBO> createdPackingLists = new List<PackingListBO>();
+        {   
+            List<PackingListBO> createdPackingLists = new List<PackingListBO>();
                 for (int i = 0; i < 2; i++)
                 {
                     var packingList = getPackingListMock();
@@ -102,39 +74,18 @@ namespace Test.BLL.Services
                 var listOfPackingList = service.GetAll();
                 Assert.Equal(createdPackingLists.Count, listOfPackingList.Count);
                 Assert.Equal(createdPackingLists.ToString(), listOfPackingList.ToString());
-            }
-            catch (Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
         }
 
         [Fact]
         public void DeletePassTest()
-        {
-            try
-            {
-                clearDb();
-                var newPackingList = getPackingListMock();
+        {   
+            var newPackingList = getPackingListMock();
                 newPackingList = service.Create(newPackingList);
                 var deletedPackingList = service.Delete(newPackingList.Id);
 
                 var checkPackingList = service.Get(deletedPackingList.Id);
 
                 Assert.Null(checkPackingList);
-            }
-            catch (Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
         }
 
         [Fact]
@@ -146,15 +97,12 @@ namespace Test.BLL.Services
 
                 Assert.Null(entityPackingList);
             }
-            clearDb();
         }
 
         [Fact]
         public void UpdatePassTest()
-        {
-            try
-            {
-                var originalPackingList = getPackingListMock();
+        {   
+            var originalPackingList = getPackingListMock();
                 originalPackingList = service.Create(originalPackingList);
 
                 var newPackingList = new PackingListBO();
@@ -172,16 +120,7 @@ namespace Test.BLL.Services
 
                 Assert.Equal(newPackingList.ItemType, updatedPackingList.ItemType);
 
-                Assert.NotEqual(originalPackingList.ItemType, newPackingList.ItemType);
-            }
-            catch (Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
+                Assert.NotEqual(originalPackingList.ItemType, newPackingList.ItemType); 
         }
 
         [Fact]

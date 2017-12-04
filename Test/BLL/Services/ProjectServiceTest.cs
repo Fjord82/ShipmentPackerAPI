@@ -15,29 +15,21 @@ namespace Test.BLL.Services
 
         public ProjectServiceTest()
         {
+            
             facade = new MockFacade();
             service = new ProjectService(facade);
+            clearDb();
+
+
         }
 
         [Fact]
         public void CreatePassTest()
         {
-            try
-            {
-                clearDb();
-                var project = getProjectMock();
+            var project = getProjectMock();
                 var newProject = service.Create(project);
 
                 Assert.True(newProject.Id > 0);
-            }
-            catch (Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
         }
 
         [Fact]
@@ -46,30 +38,17 @@ namespace Test.BLL.Services
             var newProject = service.Create(null);
 
             Assert.Null(newProject);
-
-            clearDb();
         }
 
         [Fact]
         public void ReadPassTest()
         {
-            try
-            {
-                clearDb();
-                var project = getProjectMock();
+            var project = getProjectMock();
                 var newProject = service.Create(project);
 
                 var createdProject = service.Get(newProject.Id);
                 Assert.Equal(newProject.CreatorName, createdProject.CreatorName);
-            }
-            catch (Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
+           
         }
 
         [Fact]
@@ -81,16 +60,12 @@ namespace Test.BLL.Services
 
                 Assert.Null(entityProject);
             }
-            clearDb();
         }
 
         [Fact]
         public void GetAllPassTest()
         {
-            try
-            {
-                clearDb();
-                List<ProjectBO> createdProjects = new List<ProjectBO>();
+            List<ProjectBO> createdProjects = new List<ProjectBO>();
                 for (int i = 0; i < 2; i++)
                 {
                     var project = getProjectMock();
@@ -101,38 +76,18 @@ namespace Test.BLL.Services
                 var projectList = service.GetAll();
                 Assert.Equal(createdProjects.Count, projectList.Count);
                 Assert.Equal(createdProjects.ToString(), projectList.ToString());
-            } catch(Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
         }
 
         [Fact]
         public void DeletePassTest()
-        {
-            try
-            {
-                clearDb();
-                var newProject = getProjectMock();
+        {   
+            var newProject = getProjectMock();
                 newProject = service.Create(newProject);
                 var deletedProject = service.Delete(newProject.Id);
 
                 var checkProject = service.Get(deletedProject.Id);
 
                 Assert.Null(checkProject);
-            }
-            catch (Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
         }
 
         [Fact]
@@ -144,16 +99,12 @@ namespace Test.BLL.Services
 
                 Assert.Null(entityProject);
             }
-            clearDb();
         }
 
         [Fact]
         public void UpdatePassTest()
-        {
-            try
-            {
-                clearDb();
-                var originalProject = getProjectMock();
+        {   
+            var originalProject = getProjectMock();
                 originalProject = service.Create(originalProject);
 
                 var newProject = new ProjectBO();
@@ -173,15 +124,6 @@ namespace Test.BLL.Services
                 Assert.Equal(newProject.CreatorName, updatedProject.CreatorName);
 
                 Assert.NotEqual(originalProject.CreatorName, newProject.CreatorName);
-            }
-            catch (Exception e)
-            {
-                Assert.True(false, e.Message);
-            }
-            finally
-            {
-                clearDb();
-            }
         }
 
         [Fact]
@@ -197,8 +139,6 @@ namespace Test.BLL.Services
 
             Assert.Null(nullProject);
             Assert.Null(newProject);
-
-            clearDb();
         }
 
 

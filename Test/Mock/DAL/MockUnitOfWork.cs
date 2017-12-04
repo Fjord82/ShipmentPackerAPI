@@ -38,14 +38,8 @@ namespace Test.Mock.DAL
 
         public void clearDb()
         {
-            try
-            {
-                Context.Database.EnsureDeleted();
-                Context.Database.EnsureCreated();
-            }catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            Context.Database.EnsureDeleted();
+            Context.Database.EnsureCreated();
         }
 
     }
