@@ -1,6 +1,4 @@
-﻿using ShipmentPackerDAL.JoinEntities;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ShipmentPackerDAL.Entities
 {
@@ -17,6 +15,5 @@ namespace ShipmentPackerDAL.Entities
         public bool IsActive { get; set; }
 
         public List <ProjectPackingList> PackingLists { get; set; }
-
     }
 }

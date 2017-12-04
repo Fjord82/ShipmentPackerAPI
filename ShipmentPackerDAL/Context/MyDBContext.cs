@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using ShipmentPackerDAL.Entities;
-using ShipmentPackerDAL.JoinEntities;
 
 namespace ShipmentPackerDAL.Context
 {
@@ -13,22 +12,23 @@ namespace ShipmentPackerDAL.Context
                 .Options;
 
         //For Local host
-        public MyDBContext() : base(options)
+        /*public MyDBContext() : base(options)
         {
 
-        }
+        }*/
 
         //For Azure Deployment
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseSqlServer(@"Server=tcp:shipmentpacker.database.windows.net,1433;Initial Catalog=ShipmentPackerDB;Persist Security Info=False;User ID=NotMyProblem;Password=SuperSecretPassword1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-        //    }
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(@"Server=tcp:shipmentpacker.database.windows.net,1433;Initial Catalog=ShipmentPackerDB;Persist Security Info=False;User ID=NotMyProblem;Password=SuperSecretPassword1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Project and PackingList relation
             modelBuilder.Entity<ProjectPackingList>()
                         .HasKey(ppl => new { ppl.ProjectID, ppl.PackingListID });
 
@@ -41,6 +41,20 @@ namespace ShipmentPackerDAL.Context
                         .HasOne(ppl => ppl.PackingList)
                         .WithMany(p => p.Projects)
                         .HasForeignKey(ppl => ppl.PackingListID);
+
+            //PackingList and ColliList relation
+            modelBuilder.Entity<PackingColliList>()
+                        .HasKey(pcl => new { pcl.PackingListID, pcl.ColliListID });
+
+            modelBuilder.Entity<PackingColliList>()
+                        .HasOne(p => p.PackingList)
+                        .WithMany(pcl => pcl.ColliLists)
+                        .HasForeignKey(p => p.PackingListID);
+
+            modelBuilder.Entity<PackingColliList>()
+                        .HasOne(pcl => pcl.ColliList)
+                        .WithMany(c => c.PackingLists)
+                        .HasForeignKey(pcl => pcl.ColliListID);
 
             base.OnModelCreating(modelBuilder);
         }

@@ -12,12 +12,14 @@ namespace ShipmentPackerBLL.Services
         public IDALFacade _facade { get; set; }
         ProjectConverter _conv;
         PackingListConverter _convPL;
+        ColliListConverter _convCL;
 
         public PackingListService(IDALFacade facade)
         {
             _facade = facade;
             _convPL = new PackingListConverter();
             _conv = new ProjectConverter();
+            _convCL = new ColliListConverter();
         }
 
         public PackingListBO Create(PackingListBO packingList)
@@ -58,6 +60,10 @@ namespace ShipmentPackerBLL.Services
                     packingList.Projects = uow.ProjectRepository.GetAllById(packingList.ProjectIds)
                         .Select(p => _conv.Convert(p))
                         .ToList();
+
+                    packingList.ColliLists = uow.ColliListRepository.GetAllById(packingList.ColliListIds)
+                        .Select(cl => _convCL.Convert(cl))
+                        .ToList();
                 }
                 uow.Complete();
                 return packingList;
@@ -89,6 +95,7 @@ namespace ShipmentPackerBLL.Services
 
                 if (packingListUpdated != null)
                 {
+                    //Related to Project relation
                     packingListEnt.Projects.RemoveAll(
                         pu => !packingListUpdated.Projects.Exists(
                             p => p.ProjectID == pu.ProjectID &&
@@ -101,6 +108,20 @@ namespace ShipmentPackerBLL.Services
 
                     packingListEnt.Projects.AddRange(
                         packingListUpdated.Projects);
+                    
+                    //Related to ColliList
+                    packingListEnt.ColliLists.RemoveAll(
+                        pu => !packingListUpdated.ColliLists.Exists(
+                            p => p.ColliListID == pu.ColliListID &&
+                            p.PackingListID == pu.PackingListID));
+
+                    packingListUpdated.ColliLists.RemoveAll(
+                        pu => packingListEnt.ColliLists.Exists(
+                            p => p.ColliListID == pu.ColliListID &&
+                            p.PackingListID == pu.PackingListID));
+
+                    packingListEnt.ColliLists.AddRange(
+                        packingListUpdated.ColliLists);
                 }
 
                 uow.Complete();

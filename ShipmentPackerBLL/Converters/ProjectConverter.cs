@@ -1,8 +1,7 @@
 ﻿using System;
 using ShipmentPackerBLL.BusinessObjects;
-using ShipmentPackerDAL.Entities;
 using System.Linq;
-using ShipmentPackerDAL.JoinEntities;
+using ShipmentPackerDAL.Entities;
 
 namespace ShipmentPackerBLL.Converters
 {
