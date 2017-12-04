@@ -10,12 +10,14 @@ namespace ShipmentPackerBLL.Services
     public class PackingListService : IPackingListService
     {
         public IDALFacade _facade { get; set; }
-        PackingListConverter _conv;
+        ProjectConverter _conv;
+        PackingListConverter _convPL;
 
         public PackingListService(IDALFacade facade)
         {
             _facade = facade;
-            _conv = new PackingListConverter();
+            _convPL = new PackingListConverter();
+            _conv = new ProjectConverter();
         }
 
         public PackingListBO Create(PackingListBO packingList)
@@ -27,9 +29,9 @@ namespace ShipmentPackerBLL.Services
 
              using(var uow = _facade.UnitOfWork)
              {
-                 var createdPackingList = uow.PackingListRepository.Create(_conv.ConvertBO(packingList));
+                 var createdPackingList = uow.PackingListRepository.Create(_convPL.ConvertBO(packingList));
                  uow.Complete();
-                 return _conv.Convert(createdPackingList);
+                 return _convPL.Convert(createdPackingList);
              }
         }
 
@@ -37,7 +39,7 @@ namespace ShipmentPackerBLL.Services
         {
             using (var uow = _facade.UnitOfWork)
             {
-                return uow.PackingListRepository.GetAll().Select(pl => _conv.Convert(pl)).ToList();
+                return uow.PackingListRepository.GetAll().Select(pl => _convPL.Convert(pl)).ToList();
             }
         }
 
@@ -50,9 +52,15 @@ namespace ShipmentPackerBLL.Services
 
             using (var uow = _facade.UnitOfWork)
             {
-                var packingList = uow.PackingListRepository.Get(Id);
+                var packingList = _convPL.Convert(uow.PackingListRepository.Get(Id));
+                if (packingList != null)
+                {
+                    packingList.Projects = uow.ProjectRepository.GetAllById(packingList.ProjectIds)
+                        .Select(p => _conv.Convert(p))
+                        .ToList();
+                }
                 uow.Complete();
-                return _conv.Convert(packingList);
+                return packingList;
             }
         }
 
@@ -68,7 +76,7 @@ namespace ShipmentPackerBLL.Services
                 if (packingListEnt == null)
                     return null;
 
-                var packingListUpdated = _conv.ConvertBO(packingList);
+                var packingListUpdated = _convPL.ConvertBO(packingList);
 
                 packingListEnt.Id = packingListUpdated.Id;
                 packingListEnt.PackingName = packingListUpdated.PackingName;
@@ -79,8 +87,24 @@ namespace ShipmentPackerBLL.Services
                 packingListEnt.FreightType = packingListUpdated.FreightType;
                 packingListEnt.IsActive = packingListUpdated.IsActive;
 
+                if (packingListUpdated != null)
+                {
+                    packingListEnt.Projects.RemoveAll(
+                        pu => !packingListUpdated.Projects.Exists(
+                            p => p.ProjectID == pu.ProjectID &&
+                            p.PackingListID == pu.PackingListID));
+
+                    packingListUpdated.Projects.RemoveAll(
+                        pu => packingListEnt.Projects.Exists(
+                            p => p.ProjectID == pu.ProjectID &&
+                            p.PackingListID == pu.PackingListID));
+
+                    packingListEnt.Projects.AddRange(
+                        packingListUpdated.Projects);
+                }
+
                 uow.Complete();
-                return _conv.Convert(packingListEnt);
+                return _convPL.Convert(packingListEnt);
             }
         }
 
@@ -98,7 +122,7 @@ namespace ShipmentPackerBLL.Services
                 {
                     return null;
                 }
-                packingList = _conv.Convert(uow.PackingListRepository.Delete(Id));
+                packingList = _convPL.Convert(uow.PackingListRepository.Delete(Id));
                 uow.Complete();
                 return packingList;
             }

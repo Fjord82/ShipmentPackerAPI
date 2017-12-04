@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ShipmentPackerDAL.JoinEntities;
+using System;
+using System.Collections.Generic;
+
 namespace ShipmentPackerDAL.Entities
 {
     public class PackingList
@@ -11,12 +14,15 @@ namespace ShipmentPackerDAL.Entities
 
         public string DeliveryAddress { get; set; }
 
-        public string DeliveryDate { get; set; }
+        public DateTime DeliveryDate { get; set; }
 
         public string ItemType { get; set; }
 
         public string FreightType { get; set; }
 
         public bool IsActive { get; set; }
+
+        public List<ProjectPackingList> Projects { get; set; }
+
     }
 }

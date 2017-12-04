@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ShipmentPackerDAL.JoinEntities;
+using System;
+using System.Collections.Generic;
+
 namespace ShipmentPackerDAL.Entities
 {
     public class Project
@@ -12,6 +15,8 @@ namespace ShipmentPackerDAL.Entities
         public string CustomerName { get; set; }
 
         public bool IsActive { get; set; }
+
+        public List <ProjectPackingList> PackingLists { get; set; }
 
     }
 }

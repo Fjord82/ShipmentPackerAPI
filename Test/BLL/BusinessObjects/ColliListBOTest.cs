@@ -56,6 +56,19 @@ namespace Test.BLL.BusinessObjects
             reset();
         }
 
+        [Fact]
+        public void ValidateIsActiveTest()
+        {
+            Assert.False(colliList.IsActive);
+
+            colliList.IsActive = true;
+
+            Assert.True(colliList.IsActive);
+
+            reset();
+        }
+
+
         public void reset()
         {
             colliList = new ColliListBO();
