@@ -24,6 +24,11 @@ namespace ShipmentPackerBLL.Converters
                 ItemType = colliListBO.ItemType,
                 FreightType = colliListBO.FreightType,
                 IsActive = colliListBO.IsActive,
+                Dimensions = colliListBO.Dimensions,
+                NetWeight = colliListBO.NetWeight,
+                TotalWeight = colliListBO.TotalWeight,
+                ProjectName = colliListBO.ProjectName,
+                Worker = colliListBO.Worker,
 
                 PackingLists = colliListBO.PackingListIds?.Select(pID => new PackingColliList()
                 {
@@ -46,6 +51,11 @@ namespace ShipmentPackerBLL.Converters
                 ItemType = colliList.ItemType,
                 FreightType = colliList.FreightType,
                 IsActive = colliList.IsActive,
+                Dimensions = colliList.Dimensions,
+                NetWeight = colliList.NetWeight,
+                TotalWeight = colliList.TotalWeight,
+                ProjectName = colliList.ProjectName,
+                Worker = colliList.Worker,
 
                 PackingListIds = colliList.PackingLists?.Select(p => p.PackingListID).ToList()
             };

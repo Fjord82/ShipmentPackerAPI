@@ -18,7 +18,7 @@ namespace ShipmentPackerBLL.BusinessObjects
         public string DeliveryAddress { get; set; }
 
         [Required]
-        public DateTime DeliveryDate { get; set; }
+        public string DeliveryDate { get; set; }
 
         [Required]
         public string ItemType { get; set; }
