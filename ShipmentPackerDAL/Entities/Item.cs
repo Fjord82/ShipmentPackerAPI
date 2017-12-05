@@ -7,6 +7,10 @@ namespace ShipmentPackerDAL.Entities
 
         public string ItemName { get; set; }
 
+        public string Dimension { get; set; }
+
+        public double Weight { get; set; }
+
         public bool DangerousGoods { get; set; }
     }
 }
