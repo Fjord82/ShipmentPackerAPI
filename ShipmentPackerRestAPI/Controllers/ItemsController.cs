@@ -12,11 +12,11 @@ namespace ShipmentPackerRestAPI.Controllers
     [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class ItemController : Controller
+    public class ItemsController : Controller
     {
         BLLFacade facade = new BLLFacade();
 
-        // GET: api/values
+        // GET: api/items
         [HttpGet]
         public IActionResult Get()
         {
@@ -29,7 +29,7 @@ namespace ShipmentPackerRestAPI.Controllers
             return Ok(item);
         }
 
-        // GET api/values/5
+        // GET api/items/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -42,7 +42,7 @@ namespace ShipmentPackerRestAPI.Controllers
             return Ok(item);
         }
 
-        // POST api/values
+        // POST api/items
         [HttpPost]
         public IActionResult Post([FromBody]ItemBO item)
         {
@@ -53,7 +53,7 @@ namespace ShipmentPackerRestAPI.Controllers
             return Ok(facade.ItemService.Create(item));
         }
 
-        // PUT api/values/5
+        // PUT api/items/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]ItemBO item)
         {
@@ -76,7 +76,7 @@ namespace ShipmentPackerRestAPI.Controllers
             }
         }
 
-        // DELETE api/values/5
+        // DELETE api/items/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
