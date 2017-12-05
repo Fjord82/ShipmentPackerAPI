@@ -3,8 +3,10 @@ namespace ShipmentPackerDAL.Entities
 {
     public class Item
     {
-        public Item()
-        {
-        }
+        public int Id { get; set; }
+
+        public string ItemName { get; set; }
+
+        public bool DangerousGoods { get; set; }
     }
 }

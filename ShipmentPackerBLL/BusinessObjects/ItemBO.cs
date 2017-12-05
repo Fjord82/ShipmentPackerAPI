@@ -3,8 +3,10 @@ namespace ShipmentPackerBLL.BusinessObjects
 {
     public class ItemBO
     {
-        public ItemBO()
-        {
-        }
+        public int Id { get; set; }
+
+        public string ItemName { get; set; }
+
+        public bool DangerousGoods { get; set; }
     }
 }
