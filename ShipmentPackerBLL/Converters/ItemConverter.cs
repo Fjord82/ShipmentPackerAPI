@@ -20,7 +20,9 @@ namespace ShipmentPackerBLL.Converters
             {
                 Id = itemBO.Id,
                 ItemName = itemBO.ItemName,
-                DangerousGoods = itemBO.DangerousGoods
+                DangerousGoods = itemBO.DangerousGoods,
+                Dimension = itemBO.Dimension,
+                Weight = itemBO.Weight
 
             };
         }
@@ -35,7 +37,9 @@ namespace ShipmentPackerBLL.Converters
             {
                 Id = item.Id,
                 ItemName = item.ItemName,
-                DangerousGoods = item.DangerousGoods
+                DangerousGoods = item.DangerousGoods,
+                Dimension = item.Dimension,
+                Weight = item.Weight
             };
         }
     }

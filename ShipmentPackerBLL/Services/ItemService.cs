@@ -93,6 +93,8 @@ namespace ShipmentPackerBLL.Services
 
                 itemEnt.Id = itemUpdated.Id;
                 itemEnt.ItemName = itemUpdated.ItemName;
+                itemEnt.Dimension = itemUpdated.Dimension;
+                itemEnt.Weight = itemUpdated.Weight;
                 itemEnt.DangerousGoods = itemUpdated.DangerousGoods;
 
                 uow.Complete();

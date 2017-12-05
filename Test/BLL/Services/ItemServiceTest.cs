@@ -159,6 +159,8 @@ namespace Test.BLL.Services
                 var newItem = new ItemBO();
                 newItem.Id = originalItem.Id;
                 newItem.ItemName = originalItem.ItemName;
+                newItem.Dimension = originalItem.Dimension;
+                newItem.Weight = originalItem.Weight;
                 newItem.DangerousGoods = originalItem.DangerousGoods;
                 newItem.ItemName = "Bottle";
                 newItem = service.Update(newItem);
@@ -205,6 +207,8 @@ namespace Test.BLL.Services
             ItemBO item = new ItemBO()
             {
                 ItemName = "Bottle",
+                Dimension = "10.0",
+                Weight = 2.0,
                 DangerousGoods = false
             };
 

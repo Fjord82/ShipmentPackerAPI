@@ -21,6 +21,8 @@ namespace Test.BLL.Converters
             {
                 Id = 15,
                 ItemName = "Bottle",
+                Dimension = "10.0",
+                Weight = 2.0,
                 DangerousGoods = false
             });
 
@@ -36,6 +38,8 @@ namespace Test.BLL.Converters
             {
                 Id = 15,
                 ItemName = "Bottle",
+                Dimension = "10.0",
+                Weight = 2.0,
                 DangerousGoods = false
             });
 
@@ -55,6 +59,8 @@ namespace Test.BLL.Converters
                 var item = _conv.ConvertBO(BO);
                 Assert.NotNull(item);
                 Assert.Equal(BO.ItemName, item.ItemName);
+                Assert.Equal(BO.Dimension, item.Dimension);
+                Assert.Equal(BO.Weight, item.Weight);
                 Assert.Equal(BO.DangerousGoods, item.DangerousGoods);
                 Assert.Equal(BO.Id, item.Id);
             }
@@ -76,6 +82,8 @@ namespace Test.BLL.Converters
                 var itemBO = _conv.Convert(entity);
                 Assert.NotNull(itemBO);
                 Assert.Equal(entity.ItemName, itemBO.ItemName);
+                Assert.Equal(entity.Dimension, itemBO.Dimension);
+                Assert.Equal(entity.Weight, itemBO.Weight);
                 Assert.Equal(entity.DangerousGoods, itemBO.DangerousGoods);
                 Assert.Equal(entity.Id, itemBO.Id);
             }
