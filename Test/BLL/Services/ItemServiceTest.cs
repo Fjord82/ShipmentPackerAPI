@@ -111,6 +111,42 @@ namespace Test.BLL.Services
             }
         }
 
+        [Fact]
+        public void DeletePassTest()
+        {
+            try
+            {
+                clearDb();
+                var newItem = getItemMock();
+                newItem = service.Create(newItem);
+                var deletedItem = service.Delete(newItem.Id);
+
+                var checkItem = service.Get(deletedItem.Id);
+
+                Assert.Null(checkItem);
+            }
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
+        }
+
+        [Fact]
+        public void DeleteFailTest()
+        {
+            for (int i = -2; i < 5; i++)
+            {
+                var entityItem = service.Delete(i);
+
+                Assert.Null(entityItem);
+            }
+            clearDb();
+        }
+
 
         public ItemBO getItemMock()
         {
