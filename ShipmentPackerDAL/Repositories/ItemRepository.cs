@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ShipmentPackerDAL.Context;
 using ShipmentPackerDAL.Entities;
 
@@ -16,27 +17,33 @@ namespace ShipmentPackerDAL.Repositories
 
         public Item Create(Item item)
         {
-            throw new NotImplementedException();
+            _context.Items.Add(item);
+            return item;
         }
 
         public Item Delete(int Id)
         {
-            throw new NotImplementedException();
+            var itemToDelete = Get(Id);
+            _context.Items.Remove(itemToDelete);
+            return itemToDelete;
         }
 
         public Item Get(int Id)
         {
-            throw new NotImplementedException();
+            return _context.Items.FirstOrDefault(i => i.Id == Id);
+
         }
 
         public List<Item> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Items.ToList();
         }
 
         public IEnumerable<Item> GetAllById(List<int> ids)
         {
-            throw new NotImplementedException();
+            if (ids == null)
+                return null;
+            return _context.Items.Where(i => ids.Contains(i.Id));
         }
     }
 }
