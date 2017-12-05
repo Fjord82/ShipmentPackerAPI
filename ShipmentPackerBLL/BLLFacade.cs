@@ -22,5 +22,10 @@ namespace ShipmentPackerBLL
         {
             get { return new ColliListService(new DALFacade()); }
         }
+
+        public IItemService ItemService
+        {
+            get { return new ItemService(new DALFacade()); }
+        }
     }
 }

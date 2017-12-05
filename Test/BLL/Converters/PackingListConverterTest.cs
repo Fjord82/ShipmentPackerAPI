@@ -24,14 +24,14 @@ namespace Test.BLL.Converters
                 PackingName = "Thorsminde",
                 CreatorName = "Emil",
                 DeliveryAddress = "Skolegade",
-                DeliveryDate = new DateTime(1995, 12, 21),
+                DeliveryDate = "28-03-1996",
                 ItemType = "Cylinder",
                 FreightType = "Road"
             });
 
             packingListBOs.Add(new PackingListBO()
             {
-                FreightType = "PackingList without FrieghtType info"
+                FreightType = "PackingList without FreightType info"
             });
 
             packingListBOs.Add(new PackingListBO());
@@ -44,14 +44,14 @@ namespace Test.BLL.Converters
                 PackingName = "Thorsminde",
                 CreatorName = "Emil",
                 DeliveryAddress = "Skolegade",
-                DeliveryDate = new DateTime(2001, 2, 5),
+                DeliveryDate = "12-06-2001",
                 ItemType = "Cylinder",
                 FreightType = "Road"
             });
 
             packingLists.Add(new PackingList()
             {
-                FreightType = "PackingList without FrieghtType info"
+                FreightType = "PackingList without FreightType info"
             });
 
             packingLists.Add(new PackingList());

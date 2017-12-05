@@ -32,7 +32,8 @@ namespace Test.Mock.DAL
         public PackingList Get(int Id)
         {
             return _context.PackingLists
-                .Include(pl => pl.Projects)
+                           .Include(pl => pl.Projects)
+                           .Include(pl => pl.ColliLists)
                 .FirstOrDefault(pl => pl.Id == Id);
         }
 
@@ -40,6 +41,7 @@ namespace Test.Mock.DAL
         {
             return _context.PackingLists
                 .Include(pl => pl.Projects)
+                           .Include(pl => pl.ColliLists)
                 .ToList();
         }
 
