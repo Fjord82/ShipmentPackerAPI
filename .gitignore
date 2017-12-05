@@ -38,3 +38,7 @@ Thumbs.db
 
 # dotCover
 *.dotCover
+.vs/ShipmentPacker/v15/Server/sqlite3/db.lock
+.vs/ShipmentPacker/v15/Server/sqlite3/storage.ide
+.vs/ShipmentPacker/v15/Server/sqlite3/storage.ide-shm
+.vs/ShipmentPacker/v15/Server/sqlite3/storage.ide-wal

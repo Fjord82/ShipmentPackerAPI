@@ -21,7 +21,13 @@ namespace Test.BLL.Converters
             {
                 Id = 40,
                 ItemType = "ImportantItem",
-                FreightType = "Mega tough"
+                FreightType = "Mega tough",
+                Dimensions= "Large",
+                IsActive = true,
+                NetWeight = 20,
+                ProjectName = "Project",
+                TotalWeight = 25,
+                Worker = "Billy"
             });
 
             clListBOs.Add(new ColliListBO()
@@ -59,6 +65,12 @@ namespace Test.BLL.Converters
                 Assert.Equal(BO.ItemType, colliList.ItemType);
                 Assert.Equal(BO.FreightType, colliList.FreightType);
                 Assert.Equal(BO.Id, colliList.Id);
+                Assert.Equal(BO.IsActive, colliList.IsActive);
+                Assert.Equal(BO.NetWeight, colliList.NetWeight);
+                Assert.Equal(BO.TotalWeight, colliList.TotalWeight);
+                Assert.Equal(BO.Dimensions, colliList.Dimensions);
+                Assert.Equal(BO.ProjectName, colliList.ProjectName);
+                Assert.Equal(BO.Worker, colliList.Worker);
             }
         }
 
