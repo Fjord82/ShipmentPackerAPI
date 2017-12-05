@@ -101,6 +101,11 @@ namespace ShipmentPackerBLL.Services
                 colliListEnt.ItemType = colliListUpdated.ItemType;
                 colliListEnt.FreightType = colliListUpdated.FreightType;
                 colliListEnt.IsActive = colliListUpdated.IsActive;
+                colliListEnt.Dimensions = colliListUpdated.Dimensions;
+                colliListEnt.NetWeight = colliListUpdated.NetWeight;
+                colliListEnt.ProjectName = colliListUpdated.ProjectName;
+                colliListEnt.TotalWeight = colliListUpdated.TotalWeight;
+                colliListEnt.Worker = colliListUpdated.Worker;
 
                 if (colliListUpdated.PackingLists != null)
                 {
