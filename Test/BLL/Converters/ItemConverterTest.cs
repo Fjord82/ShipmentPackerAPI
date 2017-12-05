@@ -21,7 +21,7 @@ namespace Test.BLL.Converters
             {
                 Id = 15,
                 ItemName = "Bottle",
-                DangerousGoods = true
+                DangerousGoods = false
             });
 
             itemBOs.Add(new ItemBO()
@@ -36,7 +36,7 @@ namespace Test.BLL.Converters
             {
                 Id = 15,
                 ItemName = "Bottle",
-                DangerousGoods = true
+                DangerousGoods = false
             });
 
             items.Add(new Item()

@@ -17,7 +17,7 @@ namespace Test.BLL.BusinessObjects
 
             var result = Validator.TryValidateProperty(item.ItemName, new ValidationContext(item) { MemberName = "ItemName" }, null);
 
-            Assert.False(result);
+            Assert.True(result);
         }
 
 
