@@ -35,7 +35,22 @@ namespace ShipmentPackerBLL.Services
 
         public ItemBO Delete(int Id)
         {
-            throw new NotImplementedException();
+            if (Id < 1)
+            {
+                return null;
+            }
+            using (var uow = _facade.UnitOfWork)
+            {
+
+                var item = Get(Id);
+                if (item == null)
+                {
+                    return null;
+                }
+                item = _conv.Convert(uow.ItemRepository.Delete(Id));
+                uow.Complete();
+                return item;
+            }
         }
 
         public ItemBO Get(int Id)
