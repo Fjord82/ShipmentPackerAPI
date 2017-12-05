@@ -147,6 +147,58 @@ namespace Test.BLL.Services
             clearDb();
         }
 
+        [Fact]
+        public void UpdatePassTest()
+        {
+            try
+            {
+                clearDb();
+                var originalItem = getItemMock();
+                originalItem = service.Create(originalItem);
+
+                var newItem = new ItemBO();
+                newItem.Id = originalItem.Id;
+                newItem.ItemName = originalItem.ItemName;
+                newItem.DangerousGoods = originalItem.DangerousGoods;
+                newItem.ItemName = "Bottle";
+                newItem = service.Update(newItem);
+
+                var updatedItem = service.Get(originalItem.Id);
+
+                Assert.Equal(originalItem.Id, newItem.Id);
+
+                Assert.Equal("Bottle", newItem.ItemName);
+
+                Assert.Equal(newItem.ItemName, updatedItem.ItemName);
+
+                Assert.NotEqual(originalItem.ItemName, newItem.ItemName);
+            }
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
+        }
+
+        [Fact]
+        public void UpdateFailTest()
+        {
+            var originalItem = getItemMock();
+            originalItem = service.Create(originalItem);
+            var newItem = originalItem;
+            newItem.Id++;
+            newItem = service.Update(newItem);
+
+            var nullItem = service.Update(null);
+
+            Assert.Null(nullItem);
+            Assert.Null(newItem);
+
+            clearDb();
+        }
 
         public ItemBO getItemMock()
         {

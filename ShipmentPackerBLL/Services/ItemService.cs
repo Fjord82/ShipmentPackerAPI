@@ -79,7 +79,25 @@ namespace ShipmentPackerBLL.Services
 
         public ItemBO Update(ItemBO item)
         {
-            throw new NotImplementedException();
+            if (item == null)
+                return null;
+
+            using (var uow = _facade.UnitOfWork)
+            {
+                var itemEnt = uow.ItemRepository.Get(item.Id);
+
+                if (itemEnt == null)
+                    return null;
+
+                var itemUpdated = _conv.ConvertBO(item);
+
+                itemEnt.Id = itemUpdated.Id;
+                itemEnt.ItemName = itemUpdated.ItemName;
+                itemEnt.DangerousGoods = itemUpdated.DangerousGoods;
+
+                uow.Complete();
+                return _conv.Convert(itemEnt);
+            }
         }
     }
 }
