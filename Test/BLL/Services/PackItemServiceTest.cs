@@ -145,6 +145,59 @@ namespace Test.BLL.Services
             clearDb();
         }
 
+        [Fact]
+        public void UpdatePassTest()
+        {
+            try
+            {
+                var originalPackItem = getPackItemMock();
+                originalPackItem = service.Create(originalPackItem);
+
+                var newPackItem = new PackItemBO();
+                newPackItem.Id = originalPackItem.Id;
+                newPackItem.PackingListId = originalPackItem.PackingListId;
+                newPackItem.ItemId = originalPackItem.ItemId;
+                newPackItem.Count = originalPackItem.Count;
+                newPackItem.PackingListId = 5;
+                newPackItem = service.Update(newPackItem);
+
+                var updatedPackItem = service.Get(originalPackItem.Id);
+
+                Assert.Equal(originalPackItem.Id, newPackItem.Id);
+
+                Assert.Equal(5, newPackItem.PackingListId);
+
+                Assert.Equal(newPackItem.PackingListId, updatedPackItem.PackingListId);
+
+                Assert.NotEqual(originalPackItem.PackingListId, newPackItem.PackingListId);
+            }
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
+        }
+
+        [Fact]
+        public void UpdateFailTest()
+        {
+            var originalPackItem = getPackItemMock();
+            originalPackItem = service.Create(originalPackItem);
+            var newPackItem = originalPackItem;
+            newPackItem.Id++;
+            newPackItem = service.Update(newPackItem);
+
+            var nullItem = service.Update(null);
+
+            Assert.Null(nullItem);
+            Assert.Null(newPackItem);
+
+            clearDb();
+        }
+
         public PackItemBO getPackItemMock()
         {
             PackItemBO packItem = new PackItemBO()
