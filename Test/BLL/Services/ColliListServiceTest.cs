@@ -9,18 +9,20 @@ namespace Test.BLL.Services
 {
     public class ColliListServiceTest
     {
-        ColliListService service;
-        MockFacade facade;
+        //ColliListService service;
+        //MockFacade facade;
 
         public ColliListServiceTest()
         {
-            facade = new MockFacade();
-            service = new ColliListService(facade);
+            //facade = new MockFacade();
+            //service = new ColliListService(facade);
         }
 
         [Fact]
         public void CreatePassTest()
         {
+            MockFacade facade = new MockFacade();
+            ColliListService service = new ColliListService(facade);
             try
             {
                 var colliList = getColliListMock();
@@ -41,6 +43,9 @@ namespace Test.BLL.Services
         [Fact]
         public void CreateFailTest()
         {
+            MockFacade facade = new MockFacade();
+            ColliListService service = new ColliListService(facade);
+
             var newColliList = service.Create(null);
 
             Assert.Null(newColliList);
@@ -49,6 +54,8 @@ namespace Test.BLL.Services
         [Fact]
         public void ReadPassTest()
         {
+            MockFacade facade = new MockFacade();
+            ColliListService service = new ColliListService(facade);
             try
             {
                 var colliList = getColliListMock();
@@ -70,6 +77,9 @@ namespace Test.BLL.Services
         [Fact]
         public void ReadFailTest()
         {
+            MockFacade facade = new MockFacade();
+            ColliListService service = new ColliListService(facade);
+
             for (int i = -2; i < 1; i++)
             {
                 var entityColliList = service.Get(i);
@@ -82,6 +92,8 @@ namespace Test.BLL.Services
         [Fact]
         public void GetAllPassTest()
         {
+            MockFacade facade = new MockFacade();
+            ColliListService service = new ColliListService(facade);
             try
             {
                 List<ColliListBO> createdColliLists = new List<ColliListBO>();
@@ -109,6 +121,8 @@ namespace Test.BLL.Services
         [Fact]
         public void DeletePassTest()
         {
+            MockFacade facade = new MockFacade();
+            ColliListService service = new ColliListService(facade);
             try
             {
                 var newColliList = getColliListMock();
@@ -132,6 +146,9 @@ namespace Test.BLL.Services
         [Fact]
         public void DeleteFailTest()
         {
+            MockFacade facade = new MockFacade();
+            ColliListService service = new ColliListService(facade);
+
             for (int i = -2; i < 5; i++)
             {
                 var entityColliList = service.Delete(i);
@@ -144,6 +161,8 @@ namespace Test.BLL.Services
         [Fact]
         public void UpdatePassTest()
         {
+            MockFacade facade = new MockFacade();
+            ColliListService service = new ColliListService(facade);
             try
             {
                 var originalColliList = getColliListMock();
@@ -179,6 +198,9 @@ namespace Test.BLL.Services
         [Fact]
         public void UpdateFailTest()
         {
+            MockFacade facade = new MockFacade();
+            ColliListService service = new ColliListService(facade);
+
             var originalColliList = getColliListMock();
             originalColliList = service.Create(originalColliList);
             var newColliList = originalColliList;
@@ -205,7 +227,7 @@ namespace Test.BLL.Services
 
         private void clearDb()
         {
-            service._facade.UnitOfWork.clearDb();
+            //service._facade.UnitOfWork.clearDb();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Test.Mock.DAL
     {
         private MockContext _context;
 
+
         public MockProjectRepository(MockContext context)
         {
             _context = context;
@@ -18,14 +19,18 @@ namespace Test.Mock.DAL
 
         public Project Create(Project project)
         {
-            _context.Projects.Add(project);
+            //_context.Projects.Add(project);
+            //project = getProjectMock();
+            List<Project> projects = new List<Project>();
+            projects.Add(project);
+
             return project;
         }
 
         public Project Delete(int Id)
         {
             var proj = Get(Id);
-            _context.Projects.Remove(proj);
+           _context.Projects.Remove(proj);
             return proj;
         }
 
@@ -49,6 +54,19 @@ namespace Test.Mock.DAL
                 return null;
             return _context.Projects.Where(p => ids.Contains(p.Id));
         }
+
+        /*public Project getProjectMock()
+        {
+            Project project = new Project()
+            {
+                //Id = 1,
+                ProjectName = "ImportantProject",
+                CreatorName = "Bobby",
+                CustomerName = "Billy"
+            };
+
+            return project;
+        }*/
 
     }
 }

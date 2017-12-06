@@ -7,23 +7,25 @@ using Xunit;
 
 namespace Test.BLL.Services
 {
-    public class ItemServiceTest
+    public class ItemServiceTest 
     {
-        ItemService service;
-        MockFacade facade;
+        //ItemService service;
+        //MockFacade facade;
 
         public ItemServiceTest()
         {
-            facade = new MockFacade();
-            service = new ItemService(facade);
+            //facade = new MockFacade();
+            //service = new ItemService(facade);
+
         }
 
         [Fact]
         public void CreatePassTest()
         {
+            MockFacade facade = new MockFacade();
+            ItemService service = new ItemService(facade);
             try
             {
-                clearDb();
                 var item = getItemMock();
                 var newItem = service.Create(item);
 
@@ -42,6 +44,9 @@ namespace Test.BLL.Services
         [Fact]
         public void CreateFailTest()
         {
+            MockFacade facade = new MockFacade();
+            ItemService service = new ItemService(facade);
+
             var newItem = service.Create(null);
 
             Assert.Null(newItem);
@@ -52,9 +57,10 @@ namespace Test.BLL.Services
         [Fact]
         public void ReadPassTest()
         {
+            MockFacade facade = new MockFacade();
+            ItemService service = new ItemService(facade);
             try
             {
-                clearDb();
                 var item = getItemMock();
                 var newItem = service.Create(item);
 
@@ -74,6 +80,9 @@ namespace Test.BLL.Services
         [Fact]
         public void ReadFailTest()
         {
+            MockFacade facade = new MockFacade();
+            ItemService service = new ItemService(facade);
+
             for (int i = -2; i < 1; i++)
             {
                 var entityItem = service.Get(i);
@@ -86,9 +95,10 @@ namespace Test.BLL.Services
         [Fact]
         public void GetAllPassTest()
         {
+            MockFacade facade = new MockFacade();
+            ItemService service = new ItemService(facade);
             try
             {
-                clearDb();
                 List<ItemBO> createdItems = new List<ItemBO>();
                 for (int i = 0; i < 2; i++)
                 {
@@ -114,9 +124,10 @@ namespace Test.BLL.Services
         [Fact]
         public void DeletePassTest()
         {
+            MockFacade facade = new MockFacade();
+            ItemService service = new ItemService(facade);
             try
             {
-                clearDb();
                 var newItem = getItemMock();
                 newItem = service.Create(newItem);
                 var deletedItem = service.Delete(newItem.Id);
@@ -138,6 +149,9 @@ namespace Test.BLL.Services
         [Fact]
         public void DeleteFailTest()
         {
+            MockFacade facade = new MockFacade();
+            ItemService service = new ItemService(facade);
+
             for (int i = -2; i < 5; i++)
             {
                 var entityItem = service.Delete(i);
@@ -150,9 +164,10 @@ namespace Test.BLL.Services
         [Fact]
         public void UpdatePassTest()
         {
+            MockFacade facade = new MockFacade();
+            ItemService service = new ItemService(facade);
             try
             {
-                clearDb();
                 var originalItem = getItemMock();
                 originalItem = service.Create(originalItem);
 
@@ -188,6 +203,9 @@ namespace Test.BLL.Services
         [Fact]
         public void UpdateFailTest()
         {
+            MockFacade facade = new MockFacade();
+            ItemService service = new ItemService(facade);
+
             var originalItem = getItemMock();
             originalItem = service.Create(originalItem);
             var newItem = originalItem;
@@ -218,7 +236,8 @@ namespace Test.BLL.Services
 
         private void clearDb()
         {
-            service._facade.UnitOfWork.clearDb();
+            //service._facade.UnitOfWork.clearDb();
         }
+
     }
 }

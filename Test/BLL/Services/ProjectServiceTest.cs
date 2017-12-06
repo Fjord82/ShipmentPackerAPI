@@ -10,21 +10,22 @@ namespace Test.BLL.Services
    public class ProjectServiceTest
     {
 
-        ProjectService service;
-        MockFacade facade;
+        //ProjectService service;
+        //MockFacade facade;
 
         public ProjectServiceTest()
         {
-            facade = new MockFacade();
-            service = new ProjectService(facade);
+            //MockFacade facade = new MockFacade();
+            //ProjectService service = new ProjectService(facade);
         }
 
         [Fact]
         public void CreatePassTest()
         {
+            MockFacade facade = new MockFacade();
+            ProjectService service = new ProjectService(facade);
             try
             {
-                clearDb();
                 var project = getProjectMock();
                 var newProject = service.Create(project);
 
@@ -43,6 +44,9 @@ namespace Test.BLL.Services
         [Fact]
         public void CreateFailTest()
         {
+            MockFacade facade = new MockFacade();
+            ProjectService service = new ProjectService(facade);
+
             var newProject = service.Create(null);
 
             Assert.Null(newProject);
@@ -53,9 +57,10 @@ namespace Test.BLL.Services
         [Fact]
         public void ReadPassTest()
         {
+            MockFacade facade = new MockFacade();
+            ProjectService service = new ProjectService(facade);
             try
             {
-                clearDb();
                 var project = getProjectMock();
                 var newProject = service.Create(project);
 
@@ -75,6 +80,8 @@ namespace Test.BLL.Services
         [Fact]
         public void ReadFailTest()
         {
+            MockFacade facade = new MockFacade();
+            ProjectService service = new ProjectService(facade);
             for (int i= -2; i < 1; i++)
             {
                 var entityProject = service.Get(i);
@@ -87,9 +94,10 @@ namespace Test.BLL.Services
         [Fact]
         public void GetAllPassTest()
         {
+            MockFacade facade = new MockFacade();
+            ProjectService service = new ProjectService(facade);
             try
             {
-                clearDb();
                 List<ProjectBO> createdProjects = new List<ProjectBO>();
                 for (int i = 0; i < 2; i++)
                 {
@@ -114,9 +122,10 @@ namespace Test.BLL.Services
         [Fact]
         public void DeletePassTest()
         {
+            MockFacade facade = new MockFacade();
+            ProjectService service = new ProjectService(facade);
             try
             {
-                clearDb();
                 var newProject = getProjectMock();
                 newProject = service.Create(newProject);
                 var deletedProject = service.Delete(newProject.Id);
@@ -138,6 +147,8 @@ namespace Test.BLL.Services
         [Fact]
         public void DeleteFailTest()
         {
+            MockFacade facade = new MockFacade();
+            ProjectService service = new ProjectService(facade);
             for (int i = -2; i < 5; i++)
             {
                 var entityProject = service.Delete(i);
@@ -150,9 +161,10 @@ namespace Test.BLL.Services
         [Fact]
         public void UpdatePassTest()
         {
+            MockFacade facade = new MockFacade();
+            ProjectService service = new ProjectService(facade);
             try
             {
-                clearDb();
                 var originalProject = getProjectMock();
                 originalProject = service.Create(originalProject);
 
@@ -187,6 +199,9 @@ namespace Test.BLL.Services
         [Fact]
         public void UpdateFailTest()
         {
+            MockFacade facade = new MockFacade();
+            ProjectService service = new ProjectService(facade);
+
             var originalProject = getProjectMock();
             originalProject = service.Create(originalProject);
             var newProject = originalProject;
@@ -206,6 +221,7 @@ namespace Test.BLL.Services
         {
             ProjectBO project = new ProjectBO()
             {
+                Id = 1,
                 ProjectName = "ImportantProject",
                 CreatorName = "Bobby",
                 CustomerName = "Billy"
@@ -217,7 +233,7 @@ namespace Test.BLL.Services
 
         private void clearDb()
         {
-            service._facade.UnitOfWork.clearDb();
+            //service._facade.UnitOfWork.clearDb();
         }
     }
 }

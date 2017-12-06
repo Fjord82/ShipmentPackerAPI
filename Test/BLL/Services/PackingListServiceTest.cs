@@ -9,22 +9,22 @@ namespace Test.BLL.Services
 {
     public class PackingListServiceTest
     {
-        PackingListService service;
-        MockFacade facade;
+        //PackingListService service;
+        //MockFacade facade;
 
         public PackingListServiceTest()
         {
-            facade = new MockFacade();
-            service = new PackingListService(facade);
+            //facade = new MockFacade();
+            //service = new PackingListService(facade);
         }
 
         [Fact]
         public void CreatePassTest()
         {
-
+            MockFacade facade = new MockFacade();
+            PackingListService service = new PackingListService(facade);
             try
             {
-                clearDb();
                 var packingList = getPackingListMock();
                 var newPackingList = service.Create(packingList);
 
@@ -43,6 +43,9 @@ namespace Test.BLL.Services
         [Fact]
         public void CreateFailTest()
         {
+            MockFacade facade = new MockFacade();
+            PackingListService service = new PackingListService(facade);
+
             var newPackingList = service.Create(null);
 
             Assert.Null(newPackingList);
@@ -54,9 +57,10 @@ namespace Test.BLL.Services
         [Fact]
         public void ReadPassTest()
         {
+            MockFacade facade = new MockFacade();
+            PackingListService service = new PackingListService(facade);
             try
             {
-                clearDb();
                 var packingList = getPackingListMock();
                 var newPackingList = service.Create(packingList);
 
@@ -76,6 +80,9 @@ namespace Test.BLL.Services
         [Fact]
         public void ReadFailTest()
         {
+            MockFacade facade = new MockFacade();
+            PackingListService service = new PackingListService(facade);
+
             for (int i = -2; i < 1; i++)
             {
                 var entityPackingList = service.Get(i);
@@ -88,9 +95,10 @@ namespace Test.BLL.Services
         [Fact]
         public void GetAllPassTest()
         {
+            MockFacade facade = new MockFacade();
+            PackingListService service = new PackingListService(facade);
             try
             {
-                clearDb();
                 List<PackingListBO> createdPackingLists = new List<PackingListBO>();
                 for (int i = 0; i < 2; i++)
                 {
@@ -116,9 +124,10 @@ namespace Test.BLL.Services
         [Fact]
         public void DeletePassTest()
         {
+            MockFacade facade = new MockFacade();
+            PackingListService service = new PackingListService(facade);
             try
             {
-                clearDb();
                 var newPackingList = getPackingListMock();
                 newPackingList = service.Create(newPackingList);
                 var deletedPackingList = service.Delete(newPackingList.Id);
@@ -140,6 +149,8 @@ namespace Test.BLL.Services
         [Fact]
         public void DeleteFailTest()
         {
+            MockFacade facade = new MockFacade();
+            PackingListService service = new PackingListService(facade);
             for (int i = -2; i < 5; i++)
             {
                 var entityPackingList = service.Delete(i);
@@ -152,6 +163,8 @@ namespace Test.BLL.Services
         [Fact]
         public void UpdatePassTest()
         {
+            MockFacade facade = new MockFacade();
+            PackingListService service = new PackingListService(facade);
             try
             {
                 var originalPackingList = getPackingListMock();
@@ -187,6 +200,9 @@ namespace Test.BLL.Services
         [Fact]
         public void UpdateFailTest()
         {
+            MockFacade facade = new MockFacade();
+            PackingListService service = new PackingListService(facade);
+
             var originalPackingList = getPackingListMock();
             originalPackingList = service.Create(originalPackingList);
             var newPackingList = originalPackingList;
@@ -214,7 +230,7 @@ namespace Test.BLL.Services
 
         private void clearDb()
         {
-            service._facade.UnitOfWork.clearDb();
+            //service._facade.UnitOfWork.clearDb();
         }
 
     }
