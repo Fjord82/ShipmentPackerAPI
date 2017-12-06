@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ShipmentPackerBLL.BusinessObjects;
 using ShipmentPackerBLL.Services;
 using Test.Mock.DAL;
@@ -45,6 +46,67 @@ namespace Test.BLL.Services
             Assert.Null(newPackItem);
 
             clearDb();
+        }
+
+
+        [Fact]
+        public void ReadPassTest()
+        {
+            try
+            {
+                var packItem = getPackItemMock();
+                var newPackItem = service.Create(packItem);
+
+                var createdPackItem = service.Get(newPackItem.Id);
+                Assert.Equal(newPackItem.PackingListId, createdPackItem.PackingListId);
+            }
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
+        }
+
+        [Fact]
+        public void ReadFailTest()
+        {
+            for (int i = -2; i < 1; i++)
+            {
+                var entityPackItem = service.Get(i);
+
+                Assert.Null(entityPackItem);
+            }
+            clearDb();
+        }
+
+        [Fact]
+        public void GetAllPassTest()
+        {
+            try
+            {
+                List<PackItemBO> createdPackItems = new List<PackItemBO>();
+                for (int i = 0; i < 2; i++)
+                {
+                    var packItem = getPackItemMock();
+                    var newPackItem = service.Create(packItem);
+                    createdPackItems.Add(newPackItem);
+                }
+
+                var packItemList = service.GetAll();
+                Assert.Equal(createdPackItems.Count, packItemList.Count);
+                Assert.Equal(createdPackItems.ToString(), packItemList.ToString());
+            }
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
         }
 
         public PackItemBO getPackItemMock()
