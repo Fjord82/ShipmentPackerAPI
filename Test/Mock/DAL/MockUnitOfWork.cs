@@ -16,6 +16,8 @@ namespace Test.Mock.DAL
 
         public IItemRepository ItemRepository { get; set; }
 
+        public IPackItemRepository PackItemRepository { get; set; }
+
         private MockContext Context;
 
         public MockUnitOfWork()
@@ -26,6 +28,7 @@ namespace Test.Mock.DAL
             PackingListRepository = new MockPackingListRepository(Context);
             ColliListRepository = new MockColliListRepository(Context);
             ItemRepository = new MockItemRepository(Context);
+            PackItemRepository = new MockPackItemRepository(Context);
         }
 
 

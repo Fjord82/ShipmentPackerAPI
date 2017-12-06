@@ -11,6 +11,7 @@ namespace ShipmentPackerDAL.UOW
         public IPackingListRepository PackingListRepository { get; internal set; }
         public IColliListRepository ColliListRepository { get; internal set; }
         public IItemRepository ItemRepository { get; internal set; }
+        public IPackItemRepository PackItemRepository { get; internal set; }
 
         private MyDBContext Context;
 

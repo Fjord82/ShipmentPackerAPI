@@ -17,7 +17,7 @@ namespace Test.BLL.BusinessObjects
 
             var result = Validator.TryValidateProperty(item.ItemName, new ValidationContext(item) { MemberName = "ItemName" }, null);
 
-            Assert.True(result);
+            Assert.False(result);
         }
 
 
@@ -40,7 +40,7 @@ namespace Test.BLL.BusinessObjects
 
             var result = Validator.TryValidateProperty(item.Dimension, new ValidationContext(item) { MemberName = "Dimension" }, null);
 
-            Assert.True(result);
+            Assert.False(result);
         }
 
 
