@@ -19,7 +19,18 @@ namespace ShipmentPackerBLL.Services
 
         public PackItemBO Create(PackItemBO packItem)
         {
-            throw new NotImplementedException();
+            if(packItem == null)
+            {
+                return null;
+            }
+
+            using(var uow = _facade.UnitOfWork)
+            {
+                var createdPackItem = uow.PackItemRepository.Create(_conv.ConvertBO(packItem));
+                uow.Complete();
+                return _conv.Convert(createdPackItem);
+            }
+
         }
 
         public PackItemBO Delete(int Id)
