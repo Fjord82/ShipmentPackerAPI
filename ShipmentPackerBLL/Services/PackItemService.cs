@@ -80,7 +80,26 @@ namespace ShipmentPackerBLL.Services
 
         public PackItemBO Update(PackItemBO packItem)
         {
-            throw new NotImplementedException();
+            if (packItem == null)
+                return null;
+
+            using (var uow = _facade.UnitOfWork)
+            {
+                var packItemEnt = uow.PackItemRepository.Get(packItem.Id);
+
+                if (packItemEnt == null)
+                    return null;
+
+                var packItemUpdated = _conv.ConvertBO(packItem);
+
+                packItemEnt.Id = packItemUpdated.Id;
+                packItemEnt.PackingListId = packItemUpdated.PackingListId;
+                packItemEnt.ItemId = packItemUpdated.ItemId;
+                packItemEnt.Count = packItemUpdated.Count;
+
+                uow.Complete();
+                return _conv.Convert(packItemEnt);
+            }
         }
     }
 }
