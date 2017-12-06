@@ -13,6 +13,8 @@ namespace ShipmentPackerDAL
 
         IItemRepository ItemRepository { get; }
 
+        IPackItemRepository PackItemRepository { get; }
+
         int Complete();
 
         void clearDb();
