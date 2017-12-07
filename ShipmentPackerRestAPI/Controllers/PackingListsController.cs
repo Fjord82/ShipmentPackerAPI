@@ -73,7 +73,7 @@ namespace ShipmentPackerRestAPI.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(404, e.Message);
+                return StatusCode(404, e.StackTrace + "/n" + e.Message);
             }
         }
         
