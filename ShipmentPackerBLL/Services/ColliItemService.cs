@@ -79,7 +79,26 @@ namespace ShipmentPackerBLL.Services
 
         public ColliItemBO Update(ColliItemBO colliItem)
         {
-            throw new NotImplementedException();
+            if (colliItem == null)
+                return null;
+
+            using (var uow = _facade.UnitOfWork)
+            {
+                var colliItemEnt = uow.ColliItemRepository.Get(colliItem.Id);
+
+                if (colliItemEnt == null)
+                    return null;
+
+                var colliItemUpdated = _conv.ConvertBO(colliItem);
+
+                colliItemEnt.Id = colliItemUpdated.Id;
+                colliItemEnt.ColliListId = colliItemUpdated.ColliListId;
+                colliItemEnt.ItemId = colliItemUpdated.ItemId;
+                colliItemEnt.Count = colliItemUpdated.Count;
+
+                uow.Complete();
+                return _conv.Convert(colliItemEnt);
+            }
         }
     }
 }
