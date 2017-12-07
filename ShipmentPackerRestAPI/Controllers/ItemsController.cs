@@ -70,7 +70,7 @@ namespace ShipmentPackerRestAPI.Controllers
                 }
                 return Ok(updatedItem);
             }
-            catch (InvalidOperationException e)
+            catch (Exception e)
             {
                 return StatusCode(404, e.Message);
             }
