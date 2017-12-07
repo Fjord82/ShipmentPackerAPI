@@ -19,7 +19,17 @@ namespace ShipmentPackerBLL.Services
 
         public ColliItemBO Create(ColliItemBO colliItem)
         {
-            throw new NotImplementedException();
+            if(colliItem == null)
+            {
+                return null;
+            }
+
+            using(var uow = _facade.UnitOfWork)
+            {
+                var createdColliItem = uow.ColliItemRepository.Create(_conv.ConvertBO(colliItem));
+                uow.Complete();
+                return _conv.Convert(createdColliItem);
+            }
         }
 
         public ColliItemBO Delete(int Id)
