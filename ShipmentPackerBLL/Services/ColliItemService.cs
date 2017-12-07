@@ -35,7 +35,22 @@ namespace ShipmentPackerBLL.Services
 
         public ColliItemBO Delete(int Id)
         {
-            throw new NotImplementedException();
+            if (Id < 1)
+            {
+                return null;
+            }
+            using (var uow = _facade.UnitOfWork)
+            {
+
+                var colliItem = Get(Id);
+                if (colliItem == null)
+                {
+                    return null;
+                }
+                colliItem = _conv.Convert(uow.ColliItemRepository.Delete(Id));
+                uow.Complete();
+                return colliItem;
+            }
         }
 
         public ColliItemBO Get(int Id)

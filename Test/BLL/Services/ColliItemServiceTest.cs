@@ -108,6 +108,41 @@ namespace Test.BLL.Services
             }
         }
 
+        [Fact]
+        public void DeletePassTest()
+        {
+            try
+            {
+                var newColliItem = getColliItemMock();
+                newColliItem = service.Create(newColliItem);
+                var deletedColliItem = service.Delete(newColliItem.Id);
+
+                var checkColliItem = service.Get(deletedColliItem.Id);
+
+                Assert.Null(checkColliItem);
+            }
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
+        }
+
+        [Fact]
+        public void DeleteFailTest()
+        {
+            for (int i = -2; i < 5; i++)
+            {
+                var entityColliItem = service.Delete(i);
+
+                Assert.Null(entityColliItem);
+            }
+            clearDb();
+        }
+
         public ColliItemBO getColliItemMock()
         {
             ColliItemBO colliItem = new ColliItemBO()
