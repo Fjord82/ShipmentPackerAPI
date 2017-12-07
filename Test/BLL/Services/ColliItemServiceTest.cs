@@ -143,6 +143,59 @@ namespace Test.BLL.Services
             clearDb();
         }
 
+        [Fact]
+        public void UpdatePassTest()
+        {
+            try
+            {
+                var originalColliItem = getColliItemMock();
+                originalColliItem = service.Create(originalColliItem);
+
+                var newColliItem = new ColliItemBO();
+                newColliItem.Id = originalColliItem.Id;
+                newColliItem.ColliListId = originalColliItem.ColliListId;
+                newColliItem.ItemId = originalColliItem.ItemId;
+                newColliItem.Count = originalColliItem.Count;
+                newColliItem.ColliListId = 5;
+                newColliItem = service.Update(newColliItem);
+
+                var updatedColliItem = service.Get(originalColliItem.Id);
+
+                Assert.Equal(originalColliItem.Id, newColliItem.Id);
+
+                Assert.Equal(5, newColliItem.ColliListId);
+
+                Assert.Equal(newColliItem.ColliListId, updatedColliItem.ColliListId);
+
+                Assert.NotEqual(originalColliItem.ColliListId, newColliItem.ColliListId);
+            }
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
+        }
+
+        [Fact]
+        public void UpdateFailTest()
+        {
+            var originalColliItem = getColliItemMock();
+            originalColliItem = service.Create(originalColliItem);
+            var newColliItem = originalColliItem;
+            newColliItem.Id++;
+            newColliItem = service.Update(newColliItem);
+
+            var nullItem = service.Update(null);
+
+            Assert.Null(nullItem);
+            Assert.Null(newColliItem);
+
+            clearDb();
+        }
+
         public ColliItemBO getColliItemMock()
         {
             ColliItemBO colliItem = new ColliItemBO()
