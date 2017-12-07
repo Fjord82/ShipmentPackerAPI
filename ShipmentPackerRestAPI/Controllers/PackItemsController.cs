@@ -66,9 +66,9 @@ namespace ShipmentPackerRestAPI.Controllers
                 }
                 return Ok(updatedPackItem);
             }
-            catch (InvalidOperationException e)
+            catch (Exception e)
             {
-                return StatusCode(404, e.Message);
+                return StatusCode(404, e.Message + "/n" + e.StackTrace);
             }
         }
 
