@@ -1,46 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using ShipmentPackerBLL;
+using ShipmentPackerBLL.BusinessObjects;
 
 namespace ShipmentPackerRestAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class PackItemController : Controller
     {
-        // GET: api/values
+        BLLFacade _facade = new BLLFacade();
+
+        // GET: api/PackItems
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var packItem = _facade.PackItemService.GetAll();
+            if(packItem == null)
+            {
+                return StatusCode(404, "No packItems in DB.");
+            }
+            return Ok(packItem);
         }
 
-        // GET api/values/5
+        // GET api/packitems/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            var packItem = _facade.PackItemService.Get(id);
+            if (packItem == null)
+            {
+                return StatusCode(404, "No packItems found.");
+            }
+            return Ok(packItem);
         }
 
-        // POST api/values
+        // POST api/PackItems
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]PackItemBO packItem)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(_facade.PackItemService.Create(packItem));
         }
 
-        // PUT api/values/5
+        // PUT api/PackItems/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]PackItemBO packItem)
         {
+            if (id != packItem.Id)
+            {
+                return BadRequest("Path ID does not match packItem ID in JSON object.");
+            }
+            try
+            {
+                var updatedPackItem = _facade.PackItemService.Update(packItem);
+                if (updatedPackItem == null)
+                {
+                    return StatusCode(404, "No packItem found with that ID");
+                }
+                return Ok(updatedPackItem);
+            }
+            catch (InvalidOperationException e)
+            {
+                return StatusCode(404, e.Message);
+            }
         }
 
-        // DELETE api/values/5
+        // DELETE api/packItems/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var deletedPackItem = _facade.ItemService.Delete(id);
+            if (deletedPackItem == null)
+            {
+                return StatusCode(404, "No packItem found with that ID");
+            }
+            return Ok(deletedPackItem);
         }
     }
 }
