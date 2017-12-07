@@ -10,7 +10,7 @@ using ShipmentPackerBLL.BusinessObjects;
 namespace ShipmentPackerRestAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class PackItemController : Controller
+    public class PackItemsController : Controller
     {
         BLLFacade _facade = new BLLFacade();
 
@@ -76,7 +76,7 @@ namespace ShipmentPackerRestAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var deletedPackItem = _facade.ItemService.Delete(id);
+            var deletedPackItem = _facade.PackItemService.Delete(id);
             if (deletedPackItem == null)
             {
                 return StatusCode(404, "No packItem found with that ID");
