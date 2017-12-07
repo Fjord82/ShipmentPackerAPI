@@ -1,12 +1,16 @@
 ﻿using System;
-namespace ShipmentPackerDAL.Entities
+using System.ComponentModel.DataAnnotations;
+
+namespace ShipmentPackerBLL.BusinessObjects
 {
-    public class ColliItem
+    public class ColliItemBO
     {
         public int Id { get; set; }
 
+        [Required]
         public int ColliListId { get; set; }
 
+        [Required]
         public int ItemId { get; set; }
 
         public int Count { get; set; }
