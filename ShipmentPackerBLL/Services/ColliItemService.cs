@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ShipmentPackerBLL.BusinessObjects;
 using ShipmentPackerBLL.Converters;
 using ShipmentPackerDAL;
@@ -39,12 +40,26 @@ namespace ShipmentPackerBLL.Services
 
         public ColliItemBO Get(int Id)
         {
-            throw new NotImplementedException();
+            if (Id < 1)
+            {
+                return null;
+            }
+
+            using (var uow = _facade.UnitOfWork)
+            {
+                var colliItem = _conv.Convert(uow.ColliItemRepository.Get(Id));
+
+                uow.Complete();
+                return colliItem;
+            }
         }
 
         public List<ColliItemBO> GetAll()
         {
-            throw new NotImplementedException();
+            using (var uow = _facade.UnitOfWork)
+            {
+                return uow.ColliItemRepository.GetAll().Select(pi => _conv.Convert(pi)).ToList();
+            }
         }
 
         public ColliItemBO Update(ColliItemBO colliItem)
