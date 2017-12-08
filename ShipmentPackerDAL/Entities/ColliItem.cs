@@ -10,5 +10,9 @@ namespace ShipmentPackerDAL.Entities
         public int ItemId { get; set; }
 
         public int Count { get; set; }
+
+        public ColliList ColliList { get; set; }
+
+        public Item Item { get; set; }
     }
 }

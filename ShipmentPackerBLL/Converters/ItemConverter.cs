@@ -29,6 +29,12 @@ namespace ShipmentPackerBLL.Converters
                 {
                     ItemId = itemBO.Id
                                                  
+                }).ToList(),
+
+                ColliItems = itemBO.ColliItems?.Select(ciID => new ColliItem()
+                {
+                    ItemId = itemBO.Id
+
                 }).ToList()
 
             };
@@ -48,7 +54,8 @@ namespace ShipmentPackerBLL.Converters
                 Dimension = item.Dimension,
                 Weight = item.Weight,
 
-                PackItemsIds = item.PackItems?.Select(pi => pi.Id).ToList()
+                PackItemsIds = item.PackItems?.Select(pi => pi.Id).ToList(),
+                ColliItemsIds = item.ColliItems?.Select(ci => ci.Id).ToList()
             };
         }
     }
