@@ -14,5 +14,9 @@ namespace ShipmentPackerBLL.BusinessObjects
         public int ItemId { get; set; }
 
         public int Count { get; set; }
+
+        public ColliListBO ColliList { get; set; }
+
+        public ItemBO Item { get; set; }
     }
 }

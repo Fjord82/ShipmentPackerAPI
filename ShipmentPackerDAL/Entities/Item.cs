@@ -16,5 +16,7 @@ namespace ShipmentPackerDAL.Entities
         public bool DangerousGoods { get; set; }
 
         public List<PackItem> PackItems { get; set; }
+        public List<ColliItem> ColliItems { get; set; }
+
     }
 }

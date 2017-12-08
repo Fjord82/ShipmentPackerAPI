@@ -33,6 +33,7 @@ namespace ShipmentPackerDAL.Repositories
         {
             return _context.ColliLists
                            .Include(c => c.PackingLists)
+                           .Include(cl => cl.ColliItems)
                            .FirstOrDefault(cl => cl.Id == Id);
         }
 
@@ -40,6 +41,7 @@ namespace ShipmentPackerDAL.Repositories
         {
             return _context.ColliLists
                            .Include(p => p.PackingLists)
+                           .Include(cl => cl.ColliItems)
                            .ToList();
         }
 
