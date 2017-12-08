@@ -34,6 +34,7 @@ namespace ShipmentPackerDAL.Repositories
             return _context.PackingLists
                            .Include(pl => pl.Projects)
                            .Include(pl => pl.ColliLists)
+                           .Include(pl => pl.PackItems)
                 .FirstOrDefault(pl => pl.Id == Id);
         }
 
@@ -42,6 +43,7 @@ namespace ShipmentPackerDAL.Repositories
             return _context.PackingLists
                 .Include(pl => pl.Projects)
                            .Include(pl => pl.ColliLists)
+                           .Include(pl => pl.PackItems)
                 .ToList();
         }
 

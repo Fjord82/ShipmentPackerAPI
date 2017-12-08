@@ -33,5 +33,8 @@ namespace ShipmentPackerBLL.BusinessObjects
 
         public List<int> ColliListIds { get; set; }
         public List<ColliListBO> ColliLists { get; set; }
+
+        public List<int> PackItemsIds { get; set; }
+        public List<PackItemBO> PackItems { get; set; }
     }
 }

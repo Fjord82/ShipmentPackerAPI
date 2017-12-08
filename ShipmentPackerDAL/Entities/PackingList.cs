@@ -23,7 +23,6 @@ namespace ShipmentPackerDAL.Entities
 
         public List<ProjectPackingList> Projects { get; set; }
         public List<PackingColliList> ColliLists { get; set; }
-
-
+        public List<PackItem> PackItems { get; set; }
     }
 }

@@ -38,6 +38,12 @@ namespace ShipmentPackerBLL.Converters
                 {
                     ColliListID = clID,
                     PackingListID = packingListBO.Id
+                }).ToList(),
+
+                PackItems = packingListBO.PackItemsIds?.Select(piID => new PackItem()
+                {
+                    PackingListId = packingListBO.Id
+                                                 
                 }).ToList()
             };
 
@@ -61,7 +67,9 @@ namespace ShipmentPackerBLL.Converters
                 IsActive = packingList.IsActive,
 
                 ProjectIds = packingList.Projects?.Select(p => p.ProjectID).ToList(),
-                ColliListIds = packingList.ColliLists?.Select(cl => cl.ColliListID).ToList()
+                ColliListIds = packingList.ColliLists?.Select(cl => cl.ColliListID).ToList(),
+                PackItemsIds = packingList.PackItems?.Select(pi => pi.Id).ToList()
+                                          
 
             };
         }

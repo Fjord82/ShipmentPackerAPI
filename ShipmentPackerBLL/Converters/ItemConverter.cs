@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ShipmentPackerBLL.BusinessObjects;
 using ShipmentPackerDAL.Entities;
 
@@ -22,7 +23,13 @@ namespace ShipmentPackerBLL.Converters
                 ItemName = itemBO.ItemName,
                 DangerousGoods = itemBO.DangerousGoods,
                 Dimension = itemBO.Dimension,
-                Weight = itemBO.Weight
+                Weight = itemBO.Weight,
+
+                PackItems = itemBO.PackItemsIds?.Select(piID => new PackItem()
+                {
+                    ItemId = itemBO.Id
+                                                 
+                }).ToList()
 
             };
         }
@@ -39,7 +46,9 @@ namespace ShipmentPackerBLL.Converters
                 ItemName = item.ItemName,
                 DangerousGoods = item.DangerousGoods,
                 Dimension = item.Dimension,
-                Weight = item.Weight
+                Weight = item.Weight,
+
+                PackItemsIds = item.PackItems?.Select(pi => pi.Id).ToList()
             };
         }
     }

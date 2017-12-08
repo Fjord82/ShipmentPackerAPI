@@ -12,19 +12,19 @@ namespace ShipmentPackerDAL.Context
                 .Options;
 
         //For Local host
-        /*public MyDBContext() : base(options)
+        public MyDBContext() : base(options)
         {
 
-        }*/
+        }
 
         //For Azure Deployment
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(@"Server=tcp:shipmentpacker.database.windows.net,1433;Initial Catalog=ShipmentPackerDB;Persist Security Info=False;User ID=NotMyProblem;Password=SuperSecretPassword1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
-        }
+        }*/
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -55,6 +55,20 @@ namespace ShipmentPackerDAL.Context
                         .HasOne(pcl => pcl.ColliList)
                         .WithMany(c => c.PackingLists)
                         .HasForeignKey(pcl => pcl.ColliListID);
+
+            //PackingList and Item relation
+            /*modelBuilder.Entity<PackItem>()
+                        .HasKey(pi => new { pi.PackingListId, pi.ItemId });*/
+
+            /*modelBuilder.Entity<PackItem>()
+                        .HasOne(pi => pi.PackingList)
+                        .WithMany(pl => pl.PackItems)
+                        .HasForeignKey(pi => pi.PackingListId);
+
+            modelBuilder.Entity<PackItem>()
+                        .HasOne(pi => pi.Item)
+                        .WithMany(i => i.PackItems)
+                        .HasForeignKey(pi => pi.ItemId);*/
 
             base.OnModelCreating(modelBuilder);
         }
