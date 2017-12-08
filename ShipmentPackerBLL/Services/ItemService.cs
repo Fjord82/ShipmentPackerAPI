@@ -11,11 +11,13 @@ namespace ShipmentPackerBLL.Services
     {
         public IDALFacade _facade { get; set; }
         ItemConverter _conv;
+        PackItemConverter _convPI;
 
         public ItemService(IDALFacade facade)
         {
             _facade = facade;
             _conv = new ItemConverter();
+            _convPI = new PackItemConverter();
         }
 
         public ItemBO Create(ItemBO item)
@@ -63,6 +65,12 @@ namespace ShipmentPackerBLL.Services
             using (var uow = _facade.UnitOfWork)
             {
                 var item = _conv.Convert(uow.ItemRepository.Get(Id));
+                if(item != null)
+                {
+                    item.PackItems = uow.PackItemRepository.GetAllById(item.PackItemsIds)
+                        .Select(pi => _convPI.Convert(pi))
+                        .ToList();
+                }
 
                 uow.Complete();
                 return item;
