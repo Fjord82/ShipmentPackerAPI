@@ -77,7 +77,25 @@ namespace ShipmentPackerBLL.Services
 
         public FreightConditionBO Update(FreightConditionBO condition)
         {
-            throw new NotImplementedException();
+            if (condition == null)
+                return null;
+
+            using (var uow = _facade.UnitOfWork)
+            {
+                var conditionEnt = uow.FreightConditionRepository.Get(condition.Id);
+
+                if (conditionEnt == null)
+                    return null;
+
+                var conditionUpdated = _conv.ConvertBO(condition);
+
+                conditionEnt.Id = conditionUpdated.Id;
+                conditionEnt.DangerousGoodsNumber = conditionUpdated.DangerousGoodsNumber;
+                conditionEnt.DangerousGoodsName = conditionUpdated.DangerousGoodsName;
+
+                uow.Complete();
+                return _conv.Convert(conditionEnt);
+            }
         }
     }
 }

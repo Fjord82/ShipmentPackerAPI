@@ -147,6 +147,59 @@ namespace Test.BLL.Services
             clearDb();
         }
 
+        [Fact]
+        public void UpdatePassTest()
+        {
+            try
+            {
+                clearDb();
+                var originalCondition = getConditionMock();
+                originalCondition = service.Create(originalCondition);
+
+                var newCondition = new FreightConditionBO();
+                newCondition.Id = originalCondition.Id;
+                newCondition.DangerousGoodsNumber = originalCondition.DangerousGoodsNumber;
+                newCondition.DangerousGoodsName = originalCondition.DangerousGoodsName;
+                newCondition.DangerousGoodsName = "Pressured-Cylinder";
+                newCondition = service.Update(newCondition);
+
+                var updatedCondition = service.Get(originalCondition.Id);
+
+                Assert.Equal(originalCondition.Id, newCondition.Id);
+
+                Assert.Equal("Pressured-Cylinder", newCondition.DangerousGoodsName);
+
+                Assert.Equal(newCondition.DangerousGoodsName, updatedCondition.DangerousGoodsName);
+
+                Assert.NotEqual(originalCondition.DangerousGoodsName, newCondition.DangerousGoodsName);
+            }
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
+        }
+
+        [Fact]
+        public void UpdateFailTest()
+        {
+            var originalCondition = getConditionMock();
+            originalCondition = service.Create(originalCondition);
+            var newCondition = originalCondition;
+            newCondition.Id++;
+            newCondition = service.Update(newCondition);
+
+            var nullCondition = service.Update(null);
+
+            Assert.Null(nullCondition);
+            Assert.Null(newCondition);
+
+            clearDb();
+        }
+
 
         public FreightConditionBO getConditionMock()
         {
