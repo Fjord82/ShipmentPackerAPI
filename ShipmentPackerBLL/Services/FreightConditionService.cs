@@ -19,7 +19,16 @@ namespace ShipmentPackerBLL.Services
 
         public FreightConditionBO Create(FreightConditionBO condition)
         {
-            throw new NotImplementedException();
+            if(condition == null)
+            {
+                return null;
+            }
+            using(var uow = _facade.UnitOfWork)
+            {
+                var createdCondition = uow.FreightConditionRepository.Create(_conv.ConvertBO(condition));
+                uow.Complete();
+                return _conv.Convert(createdCondition);
+            }
         }
 
         public FreightConditionBO Delete(int Id)
