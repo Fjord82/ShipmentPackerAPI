@@ -79,6 +79,7 @@ namespace ShipmentPackerDAL.Context
         public DbSet<Item> Items { get; set; }
         public DbSet<PackItem> PackItems { get; set; }
         public DbSet<ColliItem> ColliItems { get; set; }
+        public DbSet<FreightCondition> FreightConditions { get; set; }
 
    }
 }
