@@ -24,7 +24,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 var project = getProjectMock();
                 var newProject = service.Create(project);
 
@@ -55,7 +54,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 var project = getProjectMock();
                 var newProject = service.Create(project);
 
@@ -89,7 +87,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 List<ProjectBO> createdProjects = new List<ProjectBO>();
                 for (int i = 0; i < 2; i++)
                 {
@@ -116,7 +113,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 var newProject = getProjectMock();
                 newProject = service.Create(newProject);
                 var deletedProject = service.Delete(newProject.Id);
@@ -152,7 +148,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 var originalProject = getProjectMock();
                 originalProject = service.Create(originalProject);
 

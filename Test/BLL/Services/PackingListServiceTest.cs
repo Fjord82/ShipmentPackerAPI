@@ -24,7 +24,6 @@ namespace Test.BLL.Services
 
             try
             {
-                clearDb();
                 var packingList = getPackingListMock();
                 var newPackingList = service.Create(packingList);
 
@@ -56,7 +55,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 var packingList = getPackingListMock();
                 var newPackingList = service.Create(packingList);
 
@@ -90,7 +88,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 List<PackingListBO> createdPackingLists = new List<PackingListBO>();
                 for (int i = 0; i < 2; i++)
                 {
@@ -118,7 +115,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 var newPackingList = getPackingListMock();
                 newPackingList = service.Create(newPackingList);
                 var deletedPackingList = service.Delete(newPackingList.Id);

@@ -23,7 +23,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 var condition = getConditionMock();
                 var newCondition = service.Create(condition);
 
@@ -54,7 +53,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 var condition = getConditionMock();
                 var newCondtion = service.Create(condition);
 
@@ -88,7 +86,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 List<FreightConditionBO> createdConditions = new List<FreightConditionBO>();
                 for (int i = 0; i < 2; i++)
                 {
@@ -116,7 +113,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 var newCondition = getConditionMock();
                 newCondition = service.Create(newCondition);
                 var deletedCondition = service.Delete(newCondition.Id);
@@ -152,7 +148,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 var originalCondition = getConditionMock();
                 originalCondition = service.Create(originalCondition);
 
