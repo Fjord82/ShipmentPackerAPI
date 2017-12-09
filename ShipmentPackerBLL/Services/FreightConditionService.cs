@@ -34,7 +34,22 @@ namespace ShipmentPackerBLL.Services
 
         public FreightConditionBO Delete(int Id)
         {
-            throw new NotImplementedException();
+            if (Id < 1)
+            {
+                return null;
+            }
+            using (var uow = _facade.UnitOfWork)
+            {
+
+                var condition = Get(Id);
+                if (condition == null)
+                {
+                    return null;
+                }
+                condition = _conv.Convert(uow.FreightConditionRepository.Delete(Id));
+                uow.Complete();
+                return condition;
+            }
         }
 
         public FreightConditionBO Get(int Id)
