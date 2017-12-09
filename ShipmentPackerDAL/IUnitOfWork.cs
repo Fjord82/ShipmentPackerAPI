@@ -17,6 +17,8 @@ namespace ShipmentPackerDAL
 
         IColliItemRepository ColliItemRepository { get; }
 
+        IFreightConditionRepository FreightConditionRepository { get; }
+
         int Complete();
 
         void clearDb();

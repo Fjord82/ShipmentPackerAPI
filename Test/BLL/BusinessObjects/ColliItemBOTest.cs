@@ -7,8 +7,5 @@ namespace Test.BLL.BusinessObjects
     {
         static ColliItemBO packItem = new ColliItemBO();
 
-        public ColliItemBOTest()
-        {
-        }
     }
 }

@@ -14,11 +14,13 @@ namespace Test.Mock.DAL
 
         public IColliListRepository ColliListRepository { get; internal set; }
 
-        public IItemRepository ItemRepository { get; set; }
+        public IItemRepository ItemRepository { get; internal set; }
 
-        public IPackItemRepository PackItemRepository { get; set; }
+        public IPackItemRepository PackItemRepository { get; internal set; }
 
-        public IColliItemRepository ColliItemRepository { get; set; }
+        public IColliItemRepository ColliItemRepository { get; internal set; }
+
+        public IFreightConditionRepository FreightConditionRepository { get; internal set; }
 
         private MockContext Context;
 
@@ -32,6 +34,7 @@ namespace Test.Mock.DAL
             ItemRepository = new MockItemRepository(Context);
             PackItemRepository = new MockPackItemRepository(Context);
             ColliItemRepository = new MockColliItemRepository(Context);
+            FreightConditionRepository = new MockFreightConditionRepository(Context);
         }
 
 

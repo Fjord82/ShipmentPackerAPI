@@ -13,6 +13,7 @@ namespace ShipmentPackerDAL.UOW
         public IItemRepository ItemRepository { get; internal set; }
         public IPackItemRepository PackItemRepository { get; internal set; }
         public IColliItemRepository ColliItemRepository { get; internal set; }
+        public IFreightConditionRepository FreightConditionRepository { get; internal set; }
 
         private MyDBContext Context;
 
@@ -26,6 +27,7 @@ namespace ShipmentPackerDAL.UOW
             ItemRepository = new ItemRepository(Context);
             PackItemRepository = new PackItemRepository(Context);
             ColliItemRepository = new ColliItemRepository(Context);
+            FreightConditionRepository = new FreightConditionRepository(Context);
         }
 
 
