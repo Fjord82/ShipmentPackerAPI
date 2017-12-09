@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ShipmentPackerBLL.BusinessObjects;
 using ShipmentPackerBLL.Converters;
 using ShipmentPackerDAL;
@@ -38,12 +39,25 @@ namespace ShipmentPackerBLL.Services
 
         public FreightConditionBO Get(int Id)
         {
-            throw new NotImplementedException();
+            if(Id < 1)
+            {
+                return null;
+            }
+            using(var uow = _facade.UnitOfWork)
+            {
+                var condition = _conv.Convert(uow.FreightConditionRepository.Get(Id));
+                uow.Complete();
+                return condition;
+            }
+
         }
 
         public List<FreightConditionBO> GetAll()
         {
-            throw new NotImplementedException();
+            using (var uow = _facade.UnitOfWork)
+            {
+                return uow.FreightConditionRepository.GetAll().Select(fc => _conv.Convert(fc)).ToList();
+            }
         }
 
         public FreightConditionBO Update(FreightConditionBO condition)
