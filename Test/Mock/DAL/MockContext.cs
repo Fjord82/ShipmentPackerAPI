@@ -56,6 +56,7 @@ namespace Test.Mock.DAL
         public DbSet<PackItem> PackItems { get; set; }
         public DbSet<ColliItem> ColliItems { get; set; }
         public DbSet<FreightCondition> FreightConditions { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }

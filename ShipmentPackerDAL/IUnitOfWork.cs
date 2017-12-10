@@ -19,6 +19,8 @@ namespace ShipmentPackerDAL
 
         IFreightConditionRepository FreightConditionRepository { get; }
 
+        IUserRepository UserRepository { get; }
+
         int Complete();
 
         void clearDb();
