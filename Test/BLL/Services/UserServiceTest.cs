@@ -108,6 +108,41 @@ namespace Test.BLL.Services
             }
         }
 
+        [Fact]
+        public void DeletePassTest()
+        {
+            try
+            {
+                var newUser = getUserMock();
+                newUser = service.Create(newUser);
+                var deletedUser = service.Delete(newUser.Id);
+
+                var checkUser = service.Get(deletedUser.Id);
+
+                Assert.Null(checkUser);
+            }
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
+        }
+
+        [Fact]
+        public void DeleteFailTest()
+        {
+            for (int i = -2; i < 5; i++)
+            {
+                var entityUser = service.Delete(i);
+
+                Assert.Null(entityUser);
+            }
+            clearDb();
+        }
+
 
 
         public UserBO getUserMock()
