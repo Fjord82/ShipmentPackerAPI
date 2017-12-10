@@ -16,7 +16,7 @@ namespace Test.BLL.BusinessObjects
 
             var result = Validator.TryValidateProperty(condition.DangerousGoodsNumber, new ValidationContext(condition) { MemberName = "DangerousGoodsNumber" }, null);
 
-            Assert.False(result);
+            Assert.True(result);
         }
 
 
@@ -39,7 +39,7 @@ namespace Test.BLL.BusinessObjects
 
             var result = Validator.TryValidateProperty(condition.DangerousGoodsName, new ValidationContext(condition) { MemberName = "DangerousGoodsName" }, null);
 
-            Assert.False(result);
+            Assert.True(result);
         }
 
 
