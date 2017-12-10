@@ -22,6 +22,8 @@ namespace Test.Mock.DAL
 
         public IFreightConditionRepository FreightConditionRepository { get; internal set; }
 
+        public IUserRepository UserRepository { get; internal set; }
+
         private MockContext Context;
 
         public MockUnitOfWork()
@@ -35,6 +37,7 @@ namespace Test.Mock.DAL
             PackItemRepository = new MockPackItemRepository(Context);
             ColliItemRepository = new MockColliItemRepository(Context);
             FreightConditionRepository = new MockFreightConditionRepository(Context);
+            UserRepository = new MockUserRepository(Context);
         }
 
 
