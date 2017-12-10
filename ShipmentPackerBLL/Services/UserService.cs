@@ -34,7 +34,22 @@ namespace ShipmentPackerBLL.Services
 
         public UserBO Delete(int Id)
         {
-            throw new NotImplementedException();
+            if (Id < 1)
+            {
+                return null;
+            }
+            using (var uow = _facade.UnitOfWork)
+            {
+
+                var user = Get(Id);
+                if (user == null)
+                {
+                    return null;
+                }
+                user = _conv.Convert(uow.UserRepository.Delete(Id));
+                uow.Complete();
+                return user;
+            }
         }
 
         public UserBO Get(int Id)
