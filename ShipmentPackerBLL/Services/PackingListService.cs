@@ -133,20 +133,6 @@ namespace ShipmentPackerBLL.Services
                     packingListEnt.ColliLists.AddRange(
                         packingListUpdated.ColliLists);
 
-                    //Related to PackItem
-                    packingListEnt.PackItems.RemoveAll(
-                        pu => !packingListUpdated.PackItems.Exists(
-                            p => p.Id == pu.Id &&
-                            p.PackingListId == pu.PackingListId));
-
-
-                    packingListUpdated.PackItems.RemoveAll(
-                        pu => packingListEnt.PackItems.Exists(
-                            p => p.Id == pu.Id &&
-                            p.PackingListId == pu.PackingListId));
-
-                    packingListEnt.PackItems.AddRange(
-                        packingListUpdated.PackItems);
                 }
 
                 uow.Complete();
