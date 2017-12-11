@@ -144,6 +144,59 @@ namespace Test.BLL.Services
         }
 
 
+        [Fact]
+        public void UpdatePassTest()
+        {
+            try
+            {
+                var originalUser = getUserMock();
+                originalUser = service.Create(originalUser);
+
+                var newUser = new UserBO();
+                newUser.Id = originalUser.Id;
+                newUser.FirstName = originalUser.FirstName;
+                newUser.LastName = originalUser.LastName;
+                newUser.UserName = "Bumle";
+                newUser = service.Update(newUser);
+
+                var updatedUser = service.Get(originalUser.Id);
+
+                Assert.Equal(originalUser.Id, newUser.Id);
+
+                Assert.Equal("Bumle", newUser.UserName);
+
+                Assert.Equal(newUser.UserName, updatedUser.UserName);
+
+                Assert.NotEqual(originalUser.UserName, newUser.UserName);
+            }
+            catch (Exception e)
+            {
+                Assert.True(false, e.Message);
+            }
+            finally
+            {
+                clearDb();
+            }
+        }
+
+        [Fact]
+        public void UpdateFailTest()
+        {
+            var originalUser = getUserMock();
+            originalUser = service.Create(originalUser);
+            var newUser = originalUser;
+            newUser.Id++;
+            newUser = service.Update(newUser);
+
+            var nullUser = service.Update(null);
+
+            Assert.Null(nullUser);
+            Assert.Null(newUser);
+
+            clearDb();
+        }
+
+
 
         public UserBO getUserMock()
         {
