@@ -38,6 +38,25 @@ namespace ShipmentPackerBLL.Services
 
         }
 
+        public List<PackItemBO> CreateList(List<PackItemBO> packItems)
+        {
+            if (packItems == null && packItems.Count == 0)
+            {
+                return null;
+            }
+
+            using (var uow = _facade.UnitOfWork)
+            {
+                var createdPackItems = new List<PackItemBO>();
+                foreach (var packItem in packItems)
+                {
+                    createdPackItems.Add(_conv.Convert(uow.PackItemRepository.Create(_conv.ConvertBO(packItem))));
+                }
+                uow.Complete();
+                return createdPackItems;
+            }
+        }
+
         public PackItemBO Delete(int Id)
         {
             if (Id < 1)
