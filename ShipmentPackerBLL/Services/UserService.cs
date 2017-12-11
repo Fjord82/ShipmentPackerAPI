@@ -76,7 +76,31 @@ namespace ShipmentPackerBLL.Services
 
         public UserBO Update(UserBO user)
         {
-            throw new NotImplementedException();
+            if (user == null)
+                return null;
+
+            using (var uow = _facade.UnitOfWork)
+            {
+                var userEnt = uow.UserRepository.Get(user.Id);
+
+                if (userEnt == null)
+                    return null;
+
+                var userUpdated = _conv.ConvertBO(user);
+
+                userEnt.Id = userUpdated.Id;
+                userEnt.FirstName = userUpdated.FirstName;
+                userEnt.LastName = userUpdated.LastName;
+                userEnt.UserName = userUpdated.UserName;
+                userEnt.HomePhoneNumber = userUpdated.HomePhoneNumber;
+                userEnt.WorkPhoneNumber = userUpdated.WorkPhoneNumber;
+                userEnt.WorkEmail = userUpdated.WorkEmail;
+                userEnt.Password = userUpdated.Password;
+                userEnt.WorkTitle = userUpdated.WorkTitle;
+
+                uow.Complete();
+                return _conv.Convert(userEnt);
+            }
         }
     }
 }
