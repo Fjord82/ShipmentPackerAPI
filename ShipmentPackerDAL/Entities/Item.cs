@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ShipmentPackerDAL.JoinEntities;
 
 namespace ShipmentPackerDAL.Entities
 {
@@ -17,6 +18,8 @@ namespace ShipmentPackerDAL.Entities
 
         public List<PackItem> PackItems { get; set; }
         public List<ColliItem> ColliItems { get; set; }
+
+        public List<ItemFreightCondition> FreightConditions { get; set; }
 
     }
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using ShipmentPackerBLL.BusinessObjects;
 using ShipmentPackerDAL.Entities;
+using ShipmentPackerDAL.JoinEntities;
 
 namespace ShipmentPackerBLL.Converters
 {
@@ -35,6 +36,12 @@ namespace ShipmentPackerBLL.Converters
                 {
                     ItemId = itemBO.Id
 
+                }).ToList(),
+
+                FreightConditions = itemBO.FreightConditionIds?.Select(fcID => new ItemFreightCondition()
+                {
+                    FreightConditionID = fcID,
+                    ItemID = itemBO.Id
                 }).ToList()
 
             };
@@ -55,7 +62,8 @@ namespace ShipmentPackerBLL.Converters
                 Weight = item.Weight,
 
                 PackItemsIds = item.PackItems?.Select(pi => pi.Id).ToList(),
-                ColliItemsIds = item.ColliItems?.Select(ci => ci.Id).ToList()
+                ColliItemsIds = item.ColliItems?.Select(ci => ci.Id).ToList(),
+                FreightConditionIds = item.FreightConditions?.Select(fc => fc.FreightConditionID).ToList()
             };
         }
     }

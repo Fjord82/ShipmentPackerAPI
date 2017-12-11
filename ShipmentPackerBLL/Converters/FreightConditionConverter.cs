@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using ShipmentPackerBLL.BusinessObjects;
 using ShipmentPackerDAL.Entities;
+using ShipmentPackerDAL.JoinEntities;
 
 namespace ShipmentPackerBLL.Converters
 {
@@ -20,8 +22,13 @@ namespace ShipmentPackerBLL.Converters
             {
                 Id = conditionBO.Id,
                 DangerousGoodsNumber = conditionBO.DangerousGoodsNumber,
-                DangerousGoodsName = conditionBO.DangerousGoodsName
+                DangerousGoodsName = conditionBO.DangerousGoodsName,
 
+                Items = conditionBO.ItemIds?.Select(iID => new ItemFreightCondition()
+                {
+                    ItemID = iID,
+                    FreightConditionID = conditionBO.Id
+                }).ToList()
             };
         }
 
@@ -35,7 +42,9 @@ namespace ShipmentPackerBLL.Converters
             {
                 Id = condition.Id,
                 DangerousGoodsNumber = condition.DangerousGoodsNumber,
-                DangerousGoodsName = condition.DangerousGoodsName
+                DangerousGoodsName = condition.DangerousGoodsName,
+
+                ItemIds = condition.Items?.Select(ic => ic.ItemID).ToList()
             };
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using ShipmentPackerDAL.Context;
 using ShipmentPackerDAL.Entities;
 
@@ -30,12 +31,16 @@ namespace ShipmentPackerDAL.Repositories
 
         public FreightCondition Get(int Id)
         {
-            return _context.FreightConditions.FirstOrDefault(fc => fc.Id == Id);
+            return _context.FreightConditions
+                           .Include(fc => fc.Items)
+                           .FirstOrDefault(fc => fc.Id == Id);
         }
 
         public List<FreightCondition> GetAll()
         {
-            return _context.FreightConditions.ToList();
+            return _context.FreightConditions
+                           .Include(fc => fc.Items)
+                           .ToList();
         }
 
         public IEnumerable<FreightCondition> GetAllById(List<int> ids)

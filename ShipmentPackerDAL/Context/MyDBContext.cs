@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using ShipmentPackerDAL.Entities;
+using ShipmentPackerDAL.JoinEntities;
 
 namespace ShipmentPackerDAL.Context
 {
@@ -56,19 +57,19 @@ namespace ShipmentPackerDAL.Context
                         .WithMany(c => c.PackingLists)
                         .HasForeignKey(pcl => pcl.ColliListID);
 
-            //PackingList and Item relation
-            /*modelBuilder.Entity<PackItem>()
-                        .HasKey(pi => new { pi.PackingListId, pi.ItemId });*/
+            //Item and FreightCondition relation
+            modelBuilder.Entity<ItemFreightCondition>()
+                        .HasKey(ifc => new { ifc.ItemID, ifc.FreightConditionID });
 
-            /*modelBuilder.Entity<PackItem>()
-                        .HasOne(pi => pi.PackingList)
-                        .WithMany(pl => pl.PackItems)
-                        .HasForeignKey(pi => pi.PackingListId);
+            modelBuilder.Entity<ItemFreightCondition>()
+                        .HasOne(i => i.Item)
+                        .WithMany(ifc => ifc.FreightConditions)
+                        .HasForeignKey(i => i.ItemID);
 
-            modelBuilder.Entity<PackItem>()
-                        .HasOne(pi => pi.Item)
-                        .WithMany(i => i.PackItems)
-                        .HasForeignKey(pi => pi.ItemId);*/
+            modelBuilder.Entity<ItemFreightCondition>()
+                        .HasOne(ifc => ifc.FreightCondition)
+                        .WithMany(i => i.Items)
+                        .HasForeignKey(ifc => ifc.FreightConditionID);
 
             base.OnModelCreating(modelBuilder);
         }
