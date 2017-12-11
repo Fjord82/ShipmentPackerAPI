@@ -73,7 +73,6 @@ namespace ShipmentPackerBLL.Services
                         .Select(pi => _convPI.Convert(pi))
                         .ToList();
 
-                    packingList.PackItems.Select(pi => pi.Item = _convI.Convert(uow.ItemRepository.Get(pi.ItemId)));
                 }
                 uow.Complete();
                 return packingList;
