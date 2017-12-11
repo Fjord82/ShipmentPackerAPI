@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using ShipmentPackerBLL;
 using ShipmentPackerBLL.BusinessObjects;
 
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 namespace ShipmentPackerRestAPI.Controllers
 {
     [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class FreightConditionsController : Controller
+    public class UsersController : Controller
     {
         BLLFacade _facade = new BLLFacade();
 
@@ -20,55 +22,55 @@ namespace ShipmentPackerRestAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var condition = _facade.FreightConditionService.GetAll();
-            if (condition == null)
+            var user = _facade.UserService.GetAll();
+            if (user == null)
             {
-                return StatusCode(404, "No freight infos in DB.");
+                return StatusCode(404, "No users in DB.");
             }
 
-            return Ok(condition);
+            return Ok(user);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var condition = _facade.FreightConditionService.Get(id);
-            if (condition == null)
+            var user = _facade.UserService.Get(id);
+            if (user == null)
             {
-                return StatusCode(404, "No freight info found.");
+                return StatusCode(404, "No user info found.");
             }
 
-            return Ok(condition);
+            return Ok(user);
         }
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]FreightConditionBO condition)
+        public IActionResult Post([FromBody]UserBO user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            return Ok(_facade.FreightConditionService.Create(condition));
+            return Ok(_facade.UserService.Create(user));
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]FreightConditionBO condition)
+        public IActionResult Put(int id, [FromBody]UserBO user)
         {
-            if (id != condition.Id)
+            if (id != user.Id)
             {
-                return BadRequest("Path ID does not match freight conditio ID in JSON object.");
+                return BadRequest("Path ID does not match user ID in JSON object.");
             }
             try
             {
-                var updatedCondition = _facade.FreightConditionService.Update(condition);
-                if (updatedCondition == null)
+                var updatedUser = _facade.UserService.Update(user);
+                if (updatedUser == null)
                 {
-                    return StatusCode(404, "No freight condition found with that ID");
+                    return StatusCode(404, "No user found with that ID");
                 }
-                return Ok(updatedCondition);
+                return Ok(updatedUser);
             }
             catch (Exception e)
             {
@@ -80,13 +82,13 @@ namespace ShipmentPackerRestAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var deletedCondition = _facade.FreightConditionService.Delete(id);
-            if (deletedCondition == null)
+            var deletedUser = _facade.UserService.Delete(id);
+            if (deletedUser == null)
             {
-                return StatusCode(404, "No freight condition found with that ID");
+                return StatusCode(404, "No user found with that ID");
             }
 
-            return Ok(deletedCondition);
+            return Ok(deletedUser);
         }
     }
 }
