@@ -18,7 +18,7 @@ namespace ShipmentPackerRestAPI.Controllers
     {
         BLLFacade _facade = new BLLFacade();
 
-        // GET: api/values
+        // GET: api/users
         [HttpGet]
         public IActionResult Get()
         {
@@ -31,7 +31,7 @@ namespace ShipmentPackerRestAPI.Controllers
             return Ok(user);
         }
 
-        // GET api/values/5
+        // GET api/users/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -44,7 +44,7 @@ namespace ShipmentPackerRestAPI.Controllers
             return Ok(user);
         }
 
-        // POST api/values
+        // POST api/users
         [HttpPost]
         public IActionResult Post([FromBody]UserBO user)
         {
@@ -55,7 +55,7 @@ namespace ShipmentPackerRestAPI.Controllers
             return Ok(_facade.UserService.Create(user));
         }
 
-        // PUT api/values/5
+        // PUT api/users/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]UserBO user)
         {
@@ -78,7 +78,7 @@ namespace ShipmentPackerRestAPI.Controllers
             }
         }
 
-        // DELETE api/values/5
+        // DELETE api/users/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
