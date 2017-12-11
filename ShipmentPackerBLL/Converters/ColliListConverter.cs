@@ -34,6 +34,12 @@ namespace ShipmentPackerBLL.Converters
                 {
                     PackingListID = pID,
                     ColliListID = colliListBO.Id
+                }).ToList(),
+
+                ColliItems = colliListBO.ColliItemsIds?.Select(ciID => new ColliItem()
+                {
+                    ColliListId = colliListBO.Id
+
                 }).ToList()
             };
         }
@@ -57,7 +63,8 @@ namespace ShipmentPackerBLL.Converters
                 ProjectName = colliList.ProjectName,
                 Worker = colliList.Worker,
 
-                PackingListIds = colliList.PackingLists?.Select(p => p.PackingListID).ToList()
+                PackingListIds = colliList.PackingLists?.Select(p => p.PackingListID).ToList(),
+                ColliItemsIds = colliList.ColliItems?.Select(ci => ci.Id).ToList()
             };
         }
     }

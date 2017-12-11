@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace ShipmentPackerDAL.Entities
 {
     public class Item
@@ -12,5 +14,9 @@ namespace ShipmentPackerDAL.Entities
         public double Weight { get; set; }
 
         public bool DangerousGoods { get; set; }
+
+        public List<PackItem> PackItems { get; set; }
+        public List<ColliItem> ColliItems { get; set; }
+
     }
 }

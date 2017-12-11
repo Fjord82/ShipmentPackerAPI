@@ -37,5 +37,15 @@ namespace ShipmentPackerBLL
         {
             get { return new ColliItemService(new DALFacade()); }
         }
+
+        public IFreightConditionService FreightConditionService
+        {
+            get { return new FreightConditionService(new DALFacade()); }
+        }
+
+        public IUserService UserService
+        {
+            get { return new UserService(new DALFacade()); }
+        }
     }
 }

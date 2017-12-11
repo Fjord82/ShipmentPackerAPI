@@ -23,7 +23,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 var item = getItemMock();
                 var newItem = service.Create(item);
 
@@ -54,7 +53,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 var item = getItemMock();
                 var newItem = service.Create(item);
 
@@ -88,7 +86,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 List<ItemBO> createdItems = new List<ItemBO>();
                 for (int i = 0; i < 2; i++)
                 {
@@ -116,7 +113,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 var newItem = getItemMock();
                 newItem = service.Create(newItem);
                 var deletedItem = service.Delete(newItem.Id);
@@ -152,7 +148,6 @@ namespace Test.BLL.Services
         {
             try
             {
-                clearDb();
                 var originalItem = getItemMock();
                 originalItem = service.Create(originalItem);
 

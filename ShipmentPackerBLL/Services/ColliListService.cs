@@ -12,12 +12,14 @@ namespace ShipmentPackerBLL.Services
         public IDALFacade _facade { get; set; }
         ColliListConverter _conv;
         PackingListConverter _convPL;
+        ColliItemConverter _convCI;
 
         public ColliListService(IDALFacade facade)
         {
             _facade = facade;
             _conv = new ColliListConverter();
             _convPL = new PackingListConverter();
+            _convCI = new ColliItemConverter();
         }
 
         public ColliListBO Create(ColliListBO colliList)
@@ -68,6 +70,10 @@ namespace ShipmentPackerBLL.Services
                 {
                     colliList.PackingLists = uow.PackingListRepository.GetAllById(colliList.PackingListIds)
                         .Select(pl => _convPL.Convert(pl))
+                        .ToList();
+
+                    colliList.ColliItems = uow.ColliItemRepository.GetAllById(colliList.ColliItemsIds)
+                        .Select(ci => _convCI.Convert(ci))
                         .ToList();
                 }
                 uow.Complete();

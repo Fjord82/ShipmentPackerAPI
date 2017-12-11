@@ -21,7 +21,7 @@ namespace ShipmentPackerBLL.Converters
                 Id = packItemBO.Id,
                 PackingListId = packItemBO.PackingListId,
                 ItemId = packItemBO.ItemId,
-                Count = packItemBO.Count
+                Count = packItemBO.Count,
 
             };
         }
@@ -37,7 +37,10 @@ namespace ShipmentPackerBLL.Converters
                 Id = packItem.Id,
                 PackingListId = packItem.PackingListId,
                 ItemId = packItem.ItemId,
-                Count = packItem.Count
+                Count = packItem.Count,
+
+                PackingList = new PackingListConverter().Convert(packItem.PackingList),
+                Item = new ItemConverter().Convert(packItem.Item)
             };
         }
     }

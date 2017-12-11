@@ -24,5 +24,6 @@ namespace ShipmentPackerDAL.Entities
         public bool IsActive { get; set; }
 
         public List<PackingColliList> PackingLists { get; set; }
+        public List<ColliItem> ColliItems { get; set; }
     }
 }

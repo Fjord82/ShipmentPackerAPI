@@ -3,9 +3,8 @@ using ShipmentPackerBLL.BusinessObjects;
 
 namespace Test.BLL.BusinessObjects
 {
-    public class ColliItemBOTest
+    public class UserBOTest
     {
-        static ColliItemBO packItem = new ColliItemBO();
-
+        static UserBO project = new UserBO();
     }
 }

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using ShipmentPackerBLL;
 using ShipmentPackerBLL.BusinessObjects;
 
 namespace ShipmentPackerRestAPI.Controllers
 {
+    [EnableCors("MyPolicy")]
+    [Produces("application/json")]
     [Route("api/[controller]")]
     public class PackItemsController : Controller
     {

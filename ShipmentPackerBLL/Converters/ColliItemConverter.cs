@@ -37,7 +37,10 @@ namespace ShipmentPackerBLL.Converters
                 Id = colliItem.Id,
                 ColliListId = colliItem.ColliListId,
                 ItemId = colliItem.ItemId,
-                Count = colliItem.Count
+                Count = colliItem.Count,
+
+                ColliList = new ColliListConverter().Convert(colliItem.ColliList),
+                Item = new ItemConverter().Convert(colliItem.Item)
             };
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ShipmentPackerBLL.BusinessObjects
@@ -18,6 +19,12 @@ namespace ShipmentPackerBLL.BusinessObjects
 
         [Required]
         public bool DangerousGoods { get; set; }
+
+        public List<int> PackItemsIds { get; set; }
+        public List<PackItemBO> PackItems { get; set; }
+
+        public List<int> ColliItemsIds { get; set; }
+        public List<ColliItemBO> ColliItems { get; set; }
 
     }
 }
