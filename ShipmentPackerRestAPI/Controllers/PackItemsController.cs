@@ -53,7 +53,7 @@ namespace ShipmentPackerRestAPI.Controllers
         }
 
         // POST api/PackItems
-        [HttpPost]
+        [HttpPost("list")]
         public IActionResult Post([FromBody]List<PackItemBO> packItems)
         {
             if (!ModelState.IsValid)
