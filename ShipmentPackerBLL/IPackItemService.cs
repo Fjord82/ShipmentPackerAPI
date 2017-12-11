@@ -9,6 +9,7 @@ namespace ShipmentPackerBLL
 
         //C - Create
         PackItemBO Create(PackItemBO packItem);
+        List<PackItemBO> CreateList(List<PackItemBO> packItems);
 
         //R - Read
         List<PackItemBO> GetAll();

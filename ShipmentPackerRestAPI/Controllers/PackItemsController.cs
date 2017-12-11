@@ -52,6 +52,17 @@ namespace ShipmentPackerRestAPI.Controllers
             return Ok(_facade.PackItemService.Create(packItem));
         }
 
+        // POST api/PackItems
+        [HttpPost]
+        public IActionResult Post([FromBody]List<PackItemBO> packItems)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(_facade.PackItemService.CreateList(packItems));
+        }
+
         // PUT api/PackItems/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]PackItemBO packItem)
