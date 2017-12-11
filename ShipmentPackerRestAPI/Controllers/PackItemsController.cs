@@ -86,6 +86,26 @@ namespace ShipmentPackerRestAPI.Controllers
             }
         }
 
+        // PUT api/PackItems/5
+        [HttpPut("/list")]
+        public IActionResult Put([FromBody]List<PackItemBO> packItems)
+        {
+            if (packItems == null)
+            {
+                return BadRequest("Update list is empty.");
+            }
+            try
+            {
+                var updatedPackItems = _facade.PackItemService.UpdateList(packItems);
+
+                return Ok(updatedPackItems);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(404, e.Message + "/n" + e.StackTrace);
+            }
+        }
+
         // DELETE api/packItems/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
