@@ -28,17 +28,17 @@ namespace ShipmentPackerBLL.Services
 
         public PackingListBO Create(PackingListBO packingList)
         {
-             if(packingList == null)
-             {
-                 return null;
-             }
+            if (packingList == null)
+            {
+                return null;
+            }
 
-             using(var uow = _facade.UnitOfWork)
-             {
-                 var createdPackingList = uow.PackingListRepository.Create(_convPL.ConvertBO(packingList));
-                 uow.Complete();
-                 return _convPL.Convert(createdPackingList);
-             }
+            using (var uow = _facade.UnitOfWork)
+            {
+                var createdPackingList = uow.PackingListRepository.Create(_convPL.ConvertBO(packingList));
+                uow.Complete();
+                return _convPL.Convert(createdPackingList);
+            }
         }
 
         public List<PackingListBO> GetAll()
@@ -118,7 +118,7 @@ namespace ShipmentPackerBLL.Services
 
                     packingListEnt.Projects.AddRange(
                         packingListUpdated.Projects);
-                    
+
                     //Related to ColliList
                     packingListEnt.ColliLists.RemoveAll(
                         pu => !packingListUpdated.ColliLists.Exists(
@@ -132,6 +132,21 @@ namespace ShipmentPackerBLL.Services
 
                     packingListEnt.ColliLists.AddRange(
                         packingListUpdated.ColliLists);
+
+                    //Related to PackItem
+                    packingListEnt.PackItems.RemoveAll(
+                        pu => !packingListUpdated.PackItems.Exists(
+                            p => p.Id == pu.Id &&
+                            p.PackingListId == pu.PackingListId));
+
+
+                    packingListUpdated.PackItems.RemoveAll(
+                        pu => packingListEnt.PackItems.Exists(
+                            p => p.Id == pu.Id &&
+                            p.PackingListId == pu.PackingListId));
+
+                    packingListEnt.PackItems.AddRange(
+                        packingListUpdated.PackItems);
                 }
 
                 uow.Complete();
