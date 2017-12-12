@@ -71,17 +71,26 @@ namespace ShipmentPackerBLL.Services
                 var item = _conv.Convert(uow.ItemRepository.Get(Id));
                 if(item != null)
                 {
-                    item.PackItems = uow.PackItemRepository.GetAllById(item.PackItemsIds)
-                        .Select(pi => _convPI.Convert(pi))
-                        .ToList();
+                    if (item.PackItemsIds != null)
+                    {
+                        item.PackItems = uow.PackItemRepository.GetAllById(item.PackItemsIds)
+                            .Select(pi => _convPI.Convert(pi))
+                            .ToList();
+                    }
 
-                    item.ColliItems = uow.ColliItemRepository.GetAllById(item.ColliItemsIds)
-                        .Select(ci => _convCI.Convert(ci))
-                        .ToList();
+                    if (item.ColliItemsIds != null)
+                    {
+                        item.ColliItems = uow.ColliItemRepository.GetAllById(item.ColliItemsIds)
+                            .Select(ci => _convCI.Convert(ci))
+                            .ToList();
+                    }
 
-                    item.FreightConditions = uow.FreightConditionRepository.GetAllById(item.FreightConditionIds)
-                        .Select(fc => _convFC.Convert(fc))
-                        .ToList();
+                    if (item.FreightConditionIds != null)
+                    {
+                        item.FreightConditions = uow.FreightConditionRepository.GetAllById(item.FreightConditionIds)
+                            .Select(fc => _convFC.Convert(fc))
+                            .ToList();
+                    }
                 }
 
                 uow.Complete();
