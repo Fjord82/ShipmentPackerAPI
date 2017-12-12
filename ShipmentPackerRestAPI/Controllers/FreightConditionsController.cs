@@ -59,7 +59,7 @@ namespace ShipmentPackerRestAPI.Controllers
         {
             if (id != condition.Id)
             {
-                return BadRequest("Path ID does not match freight conditio ID in JSON object.");
+                return BadRequest("Path ID does not match freight condition ID in JSON object.");
             }
             try
             {

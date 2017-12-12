@@ -26,5 +26,8 @@ namespace ShipmentPackerBLL.BusinessObjects
         public List<int> ColliItemsIds { get; set; }
         public List<ColliItemBO> ColliItems { get; set; }
 
+        public List<int> FreightConditionIds { get; set; }
+        public List<FreightConditionBO> FreightConditions { get; set; }
+
     }
 }

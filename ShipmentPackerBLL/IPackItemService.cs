@@ -17,7 +17,6 @@ namespace ShipmentPackerBLL
 
         //U - Update
         PackItemBO Update(PackItemBO packItem);
-        List<PackItemBO> UpdateList(List<PackItemBO> PackItems);
 
         //D - Delete
         PackItemBO Delete(int Id);

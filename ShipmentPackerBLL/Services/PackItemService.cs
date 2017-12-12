@@ -130,22 +130,6 @@ namespace ShipmentPackerBLL.Services
             }
         }
 
-        public List<PackItemBO> UpdateList(List<PackItemBO> PackItems)
-        {
-            if (PackItems == null || PackItems.Count < 1)
-            {
-                return null;
-            }
-            using (var uow = _facade.UnitOfWork)
-            {
-                var updatedList = new List<PackItemBO>();
-                foreach (var PackItem in PackItems)
-                {
-                    updatedList.Add(Update(PackItem));
-                }
-                uow.Complete();
-                return updatedList;
-            }
-        }
+
     }
 }
