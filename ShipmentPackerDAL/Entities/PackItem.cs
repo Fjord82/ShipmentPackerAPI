@@ -11,6 +11,8 @@ namespace ShipmentPackerDAL.Entities
 
         public int Count { get; set; }
 
+        public int Packed { get; set; }
+
         public PackingList PackingList { get; set; }
 
         public Item Item { get; set; }

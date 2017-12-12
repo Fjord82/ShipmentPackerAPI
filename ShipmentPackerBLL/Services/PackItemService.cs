@@ -124,6 +124,7 @@ namespace ShipmentPackerBLL.Services
                 packItemEnt.PackingListId = packItemUpdated.PackingListId;
                 packItemEnt.ItemId = packItemUpdated.ItemId;
                 packItemEnt.Count = packItemUpdated.Count;
+                packItemEnt.Packed = packItemUpdated.Packed;
 
                 uow.Complete();
                 return _conv.Convert(packItemEnt);
