@@ -13,6 +13,7 @@ namespace ShipmentPackerBLL.Services
         ItemConverter _conv;
         PackItemConverter _convPI;
         ColliItemConverter _convCI;
+        FreightConditionConverter _convFC;
 
         public ItemService(IDALFacade facade)
         {
@@ -20,6 +21,7 @@ namespace ShipmentPackerBLL.Services
             _conv = new ItemConverter();
             _convPI = new PackItemConverter();
             _convCI = new ColliItemConverter();
+            _convFC = new FreightConditionConverter();
         }
 
         public ItemBO Create(ItemBO item)
@@ -76,6 +78,10 @@ namespace ShipmentPackerBLL.Services
                     item.ColliItems = uow.ColliItemRepository.GetAllById(item.ColliItemsIds)
                         .Select(ci => _convCI.Convert(ci))
                         .ToList();
+
+                    item.FreightConditions = uow.FreightConditionRepository.GetAllById(item.FreightConditionIds)
+                        .Select(fc => _convFC.Convert(fc))
+                        .ToList();
                 }
 
                 uow.Complete();
@@ -87,7 +93,7 @@ namespace ShipmentPackerBLL.Services
         {
             using (var uow = _facade.UnitOfWork)
             {
-                return uow.ItemRepository.GetAll().Select(p => _conv.Convert(p)).ToList();
+                return uow.ItemRepository.GetAll().Select(i => _conv.Convert(i)).ToList();
             }
         }
 
@@ -110,6 +116,23 @@ namespace ShipmentPackerBLL.Services
                 itemEnt.Dimension = itemUpdated.Dimension;
                 itemEnt.Weight = itemUpdated.Weight;
                 itemEnt.DangerousGoods = itemUpdated.DangerousGoods;
+
+                if (itemUpdated != null)
+                {
+                    //Related to FreightCondition relation
+                    itemEnt.FreightConditions.RemoveAll(
+                        ic => !itemUpdated.FreightConditions.Exists(
+                            fc => fc.FreightConditionID == ic.FreightConditionID &&
+                            fc.ItemID == ic.ItemID));
+
+                    itemUpdated.FreightConditions.RemoveAll(
+                            ic => itemEnt.FreightConditions.Exists(
+                                fc => fc.FreightConditionID == ic.FreightConditionID &&
+                                fc.ItemID == ic.ItemID));
+                   
+                    itemEnt.FreightConditions.AddRange(
+                        itemUpdated.FreightConditions);
+                }
 
                 uow.Complete();
                 return _conv.Convert(itemEnt);
