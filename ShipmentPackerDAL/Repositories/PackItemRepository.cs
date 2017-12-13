@@ -26,6 +26,9 @@ namespace ShipmentPackerDAL.Repositories
         public PackItem Delete(int Id)
         {
             var packItemToDelete = Get(Id);
+            if (packItemToDelete == null)
+                return null;
+
             _context.PackItems.Remove(packItemToDelete);
             return packItemToDelete;
         }

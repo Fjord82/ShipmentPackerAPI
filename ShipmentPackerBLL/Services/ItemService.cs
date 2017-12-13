@@ -53,6 +53,20 @@ namespace ShipmentPackerBLL.Services
                 {
                     return null;
                 }
+                if (item.ColliItemsIds != null)
+                {
+                    foreach (var id in item.ColliItemsIds)
+                    {
+                        uow.ColliItemRepository.Delete(id);
+                    }
+                }
+                if (item.PackItemsIds != null)
+                {
+                    foreach (var id in item?.PackItemsIds)
+                    {
+                        uow.PackItemRepository.Delete(id);
+                    }
+                }
                 item = _conv.Convert(uow.ItemRepository.Delete(Id));
                 uow.Complete();
                 return item;

@@ -50,6 +50,13 @@ namespace ShipmentPackerBLL.Services
                 {
                     return null;
                 }
+                if (colliList.ColliItemsIds != null)
+                {
+                    foreach (var id in colliList?.ColliItemsIds)
+                    {
+                        uow.ColliItemRepository.Delete(id);
+                    }
+                }
                 colliList = _conv.Convert(uow.ColliListRepository.Delete(Id));
                 uow.Complete();
                 return colliList;
