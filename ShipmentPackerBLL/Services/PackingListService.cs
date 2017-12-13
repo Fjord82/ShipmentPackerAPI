@@ -154,6 +154,18 @@ namespace ShipmentPackerBLL.Services
                 {
                     return null;
                 }
+                foreach (var id in packingList.PackItemsIds)
+                {
+                    uow.PackItemRepository.Delete(id);
+                }
+                foreach (var colli in packingList.ColliLists)
+                {
+                    foreach (var id in colli.ColliItemsIds)
+                    {
+                        uow.ColliItemRepository.Delete(id);
+                    }
+                    uow.ColliListRepository.Delete(colli.Id);
+                }
                 packingList = _convPL.Convert(uow.PackingListRepository.Delete(Id));
                 uow.Complete();
                 return packingList;

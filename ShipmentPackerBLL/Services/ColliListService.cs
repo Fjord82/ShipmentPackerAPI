@@ -50,6 +50,10 @@ namespace ShipmentPackerBLL.Services
                 {
                     return null;
                 }
+                foreach (var id in colliList.ColliItemsIds)
+                {
+                    uow.ColliItemRepository.Delete(id);
+                }
                 colliList = _conv.Convert(uow.ColliListRepository.Delete(Id));
                 uow.Complete();
                 return colliList;
@@ -107,6 +111,11 @@ namespace ShipmentPackerBLL.Services
                 colliListEnt.ItemType = colliListUpdated.ItemType;
                 colliListEnt.FreightType = colliListUpdated.FreightType;
                 colliListEnt.IsActive = colliListUpdated.IsActive;
+                colliListEnt.Dimensions = colliListUpdated.Dimensions;
+                colliListEnt.NetWeight = colliListUpdated.NetWeight;
+                colliListEnt.ProjectName = colliListUpdated.ProjectName;
+                colliListEnt.TotalWeight = colliListUpdated.TotalWeight;
+                colliListEnt.Worker = colliListUpdated.Worker;
 
                 if (colliListUpdated.PackingLists != null)
                 {
