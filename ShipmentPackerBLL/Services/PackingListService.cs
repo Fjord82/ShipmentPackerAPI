@@ -154,17 +154,27 @@ namespace ShipmentPackerBLL.Services
                 {
                     return null;
                 }
-                foreach (var id in packingList.PackItemsIds)
+
+                if (packingList.PackItemsIds != null)
                 {
-                    uow.PackItemRepository.Delete(id);
-                }
-                foreach (var colli in packingList.ColliLists)
-                {
-                    foreach (var id in colli.ColliItemsIds)
+                    foreach (var id in packingList?.PackItemsIds)
                     {
-                        uow.ColliItemRepository.Delete(id);
+                        uow.PackItemRepository.Delete(id);
                     }
-                    uow.ColliListRepository.Delete(colli.Id);
+                }
+                if (packingList.ColliLists != null)
+                {
+                    foreach (var colli in packingList.ColliLists)
+                    {
+                        if (colli.ColliItemsIds != null)
+                        {
+                            foreach (var id in colli.ColliItemsIds)
+                            {
+                                uow.ColliItemRepository.Delete(id);
+                            }
+                        }
+                        uow.ColliListRepository.Delete(colli.Id);
+                    }
                 }
                 packingList = _convPL.Convert(uow.PackingListRepository.Delete(Id));
                 uow.Complete();
