@@ -50,7 +50,7 @@ namespace ShipmentPackerDAL.Repositories
         {
             if (ids == null)
                 return null;
-            return _context.ColliItems.Where(ci => ids.Contains(ci.Id));
+            return _context.ColliItems.Where(ci => ids.Contains(ci.Id)).Include(ci => ci.Item);
         }
     }
 }
