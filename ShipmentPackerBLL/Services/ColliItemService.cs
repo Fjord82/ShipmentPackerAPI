@@ -11,11 +11,15 @@ namespace ShipmentPackerBLL.Services
     {
         public IDALFacade _facade;
         ColliItemConverter _conv;
+        ColliListConverter _convCL;
+        ItemConverter _convIT;
 
         public ColliItemService(IDALFacade facade)
         {
             _facade = facade;
             _conv = new ColliItemConverter();
+            _convCL = new ColliListConverter();
+            _convIT = new ItemConverter();
         }
 
         public ColliItemBO Create(ColliItemBO colliItem)
@@ -63,6 +67,11 @@ namespace ShipmentPackerBLL.Services
             using (var uow = _facade.UnitOfWork)
             {
                 var colliItem = _conv.Convert(uow.ColliItemRepository.Get(Id));
+                if (colliItem != null)
+                {
+                    colliItem.ColliList = _convCL.Convert(uow.ColliListRepository.Get(colliItem.ColliListId));
+                    colliItem.Item = _convIT.Convert(uow.ItemRepository.Get(colliItem.ItemId));
+                }
 
                 uow.Complete();
                 return colliItem;
