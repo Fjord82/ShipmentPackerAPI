@@ -26,15 +26,15 @@ namespace ShipmentPackerRestAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(string username, string password)
+        public IActionResult Create(string WorkEmail, string password)
         {
-            var user = IsValidUserAndPasswordCombination(username, password);
-            if (user != null && !string.IsNullOrEmpty(username))
+            var user = IsValidUserAndPasswordCombination(WorkEmail, password);
+            if (user != null && !string.IsNullOrEmpty(WorkEmail))
             {
                 var token = GenerateToken(user);
                 return new ObjectResult(token);
             }
-            return BadRequest("Inalied E-Mail / Password combination.");
+            return BadRequest("Invalid E-Mail / Password combination.");
         }
 
         private UserBO IsValidUserAndPasswordCombination(string WorkEmail, string password)
