@@ -26,10 +26,10 @@ namespace ShipmentPackerRestAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(string workEmail, string password)
+        public IActionResult Create(string WorkEmail, string password)
         {
-            var user = IsValidUserAndPasswordCombination(username, password);
-            if (user != null && !string.IsNullOrEmpty(username))
+            var user = IsValidUserAndPasswordCombination(WorkEmail, password);
+            if (user != null && !string.IsNullOrEmpty(WorkEmail))
             {
                 var token = GenerateToken(user);
                 return new ObjectResult(token);
