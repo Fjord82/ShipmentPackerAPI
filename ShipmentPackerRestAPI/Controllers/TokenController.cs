@@ -49,6 +49,7 @@ namespace ShipmentPackerRestAPI.Controllers
             var claims = new List<Claim>
             {
                 new Claim("workEmail", user.WorkEmail),
+                new Claim("id", user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Nbf, new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString()),
                 new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddDays(1)).ToUnixTimeSeconds().ToString()),
             };
