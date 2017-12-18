@@ -34,7 +34,7 @@ namespace ShipmentPackerRestAPI.Controllers
                 var token = GenerateToken(user);
                 return new ObjectResult(token);
             }
-            return BadRequest("Invalid E-Mail / Password combination.");
+            return StatusCode(401, "Invalid E-Mail / Password combination.");
         }
 
         private UserBO IsValidUserAndPasswordCombination(string WorkEmail, string password)
