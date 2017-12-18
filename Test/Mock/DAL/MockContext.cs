@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using ShipmentPackerDAL.Entities;
+using ShipmentPackerDAL.JoinEntities;
 
 namespace Test.Mock.DAL
 {
@@ -45,6 +46,20 @@ namespace Test.Mock.DAL
                         .HasOne(pcl => pcl.ColliList)
                         .WithMany(c => c.PackingLists)
                         .HasForeignKey(pcl => pcl.ColliListID);
+
+            //Item and FreightCondition relation
+            modelBuilder.Entity<ItemFreightCondition>()
+                        .HasKey(ifc => new { ifc.ItemID, ifc.FreightConditionID });
+
+            modelBuilder.Entity<ItemFreightCondition>()
+                        .HasOne(i => i.Item)
+                        .WithMany(ifc => ifc.FreightConditions)
+                        .HasForeignKey(i => i.ItemID);
+
+            modelBuilder.Entity<ItemFreightCondition>()
+                        .HasOne(ifc => ifc.FreightCondition)
+                        .WithMany(i => i.Items)
+                        .HasForeignKey(ifc => ifc.FreightConditionID);
 
             base.OnModelCreating(modelBuilder);
         }
