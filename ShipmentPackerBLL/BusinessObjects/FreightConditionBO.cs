@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ShipmentPackerBLL.BusinessObjects
 {
@@ -7,8 +8,10 @@ namespace ShipmentPackerBLL.BusinessObjects
     {
         public int Id { get; set; }
 
+        [Required]
         public string DangerousGoodsNumber { get; set; }
 
+        [Required]
         public string DangerousGoodsName { get; set; }
 
         public List<int> ItemIds { get; set; }
