@@ -18,7 +18,7 @@ namespace ShipmentPackerRestAPI.Controllers
         [HttpPost("{value}")]
         public IActionResult Post(string value)
         {
-            if (value.Equals("FixDatDbDaddy"))
+            if (value.Equals("FixDB"))
             {
                 facade.UnitOfWork.clearDb();
                 return Ok("DB reset.");
